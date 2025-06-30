@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35825.156 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EShift", "EShift\EShift.csproj", "{F2FEF680-F28F-4380-955D-76067AC33392}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F2FEF680-F28F-4380-955D-76067AC33392}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2FEF680-F28F-4380-955D-76067AC33392}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2FEF680-F28F-4380-955D-76067AC33392}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2FEF680-F28F-4380-955D-76067AC33392}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {19F07890-06DE-4FC6-BCE4-21CFC0F172F3}
+	EndGlobalSection
+EndGlobal
