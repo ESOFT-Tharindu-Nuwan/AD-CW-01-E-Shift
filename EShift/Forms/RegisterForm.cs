@@ -10,12 +10,11 @@ using System.Windows.Forms;
 
 namespace EShift.Forms
 {
-    public partial class LoginForm : Form
+    public partial class RegisterForm: Form
     {
-        public LoginForm()
+        public RegisterForm()
         {
             InitializeComponent();
         }
-
     }
 }

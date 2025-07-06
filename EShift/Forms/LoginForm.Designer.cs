@@ -28,32 +28,107 @@
         /// </summary>
         private void InitializeComponent()
         {
-            button1 = new Button();
+            btnLogin = new Button();
+            lblUsername = new Label();
+            lblPassword = new Label();
+            txtUsername = new TextBox();
+            txtPassword = new TextBox();
+            lblRegister = new Label();
+            lnkRegister = new LinkLabel();
             SuspendLayout();
             // 
-            // button1
+            // btnLogin
             // 
-            button1.Location = new Point(305, 167);
-            button1.Name = "button1";
-            button1.Size = new Size(94, 29);
-            button1.TabIndex = 0;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            btnLogin.Cursor = Cursors.Hand;
+            btnLogin.FlatStyle = FlatStyle.System;
+            btnLogin.Location = new Point(118, 189);
+            btnLogin.Name = "btnLogin";
+            btnLogin.Size = new Size(115, 35);
+            btnLogin.TabIndex = 0;
+            btnLogin.Text = "LOGIN";
+            btnLogin.UseVisualStyleBackColor = true;
+            // 
+            // lblUsername
+            // 
+            lblUsername.AutoSize = true;
+            lblUsername.Location = new Point(21, 16);
+            lblUsername.Name = "lblUsername";
+            lblUsername.Size = new Size(75, 20);
+            lblUsername.TabIndex = 1;
+            lblUsername.Text = "Username";
+            // 
+            // lblPassword
+            // 
+            lblPassword.AutoSize = true;
+            lblPassword.Location = new Point(21, 98);
+            lblPassword.Name = "lblPassword";
+            lblPassword.Size = new Size(70, 20);
+            lblPassword.TabIndex = 2;
+            lblPassword.Text = "Password";
+            // 
+            // txtUsername
+            // 
+            txtUsername.Location = new Point(21, 39);
+            txtUsername.Name = "txtUsername";
+            txtUsername.PlaceholderText = "Enter Username here...";
+            txtUsername.Size = new Size(307, 27);
+            txtUsername.TabIndex = 3;
+            // 
+            // txtPassword
+            // 
+            txtPassword.Location = new Point(21, 121);
+            txtPassword.Name = "txtPassword";
+            txtPassword.PasswordChar = '*';
+            txtPassword.PlaceholderText = "Enter Password here...";
+            txtPassword.Size = new Size(307, 27);
+            txtPassword.TabIndex = 4;
+            // 
+            // lblRegister
+            // 
+            lblRegister.AutoSize = true;
+            lblRegister.Location = new Point(21, 266);
+            lblRegister.Name = "lblRegister";
+            lblRegister.Size = new Size(184, 20);
+            lblRegister.TabIndex = 5;
+            lblRegister.Text = "If you haven't register yet...";
+            // 
+            // lnkRegister
+            // 
+            lnkRegister.AutoSize = true;
+            lnkRegister.Location = new Point(255, 266);
+            lnkRegister.Name = "lnkRegister";
+            lnkRegister.Size = new Size(73, 20);
+            lnkRegister.TabIndex = 6;
+            lnkRegister.TabStop = true;
+            lnkRegister.Text = "REGISTER";
             // 
             // LoginForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Controls.Add(button1);
+            ClientSize = new Size(353, 313);
+            Controls.Add(lnkRegister);
+            Controls.Add(lblRegister);
+            Controls.Add(txtPassword);
+            Controls.Add(txtUsername);
+            Controls.Add(lblPassword);
+            Controls.Add(lblUsername);
+            Controls.Add(btnLogin);
             Name = "LoginForm";
-            Text = "LoginForm";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Login";
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
-        private Button button1;
+        private Button btnLogin;
+        private Label lblUsername;
+        private Label lblPassword;
+        private TextBox txtUsername;
+        private TextBox txtPassword;
+        private Label lblRegister;
+        private LinkLabel lnkRegister;
     }
 }
