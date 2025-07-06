@@ -59,38 +59,5 @@ namespace EShift.Properties {
                 resourceCulture = value;
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap A_preview_image_of_a_gradient_background_for_a_Windows_Forms_application_using_a_Material_Design_ins {
-            get {
-                object obj = ResourceManager.GetObject("A preview image of a gradient background for a Windows Forms application using a " +
-                        "Material Design-ins", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap A_preview_image_of_a_gradient_background_for_a_Windows_Forms_application_using_a_Material_Design_ins1 {
-            get {
-                object obj = ResourceManager.GetObject("A preview image of a gradient background for a Windows Forms application using a " +
-                        "Material Design-ins1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap A_preview_image_of_a_gradient_background_for_a_Windows_Forms_application_using_a_Material_Design_ins2 {
-            get {
-                object obj = ResourceManager.GetObject("A preview image of a gradient background for a Windows Forms application using a " +
-                        "Material Design-ins2", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
     }
 }
