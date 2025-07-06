@@ -13,7 +13,7 @@ namespace EShift.Models
         public int DriverID { get; set; } // Foreign Key to Driver
         public int? AssistantID { get; set; } // Foreign Key to Assistant
         public int? ContainerID { get; set; } // Foreign Key to Container
-        public string UnitName { get; set; }
+        public string? UnitName { get; set; }
         public bool IsOperational { get; set; }
     }
 }
