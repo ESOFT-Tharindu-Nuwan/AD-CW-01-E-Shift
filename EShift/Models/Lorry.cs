@@ -6,7 +6,15 @@ using System.Threading.Tasks;
 
 namespace EShift.Models
 {
-    class Lorry
+    public class Lorry
     {
+        public int LorryID { get; set; }
+        public string RegistrationNumber { get; set; }
+        public string Make { get; set; }
+        public string Model { get; set; }
+        public decimal Capacity { get; set; }
+        public string FuelType { get; set; }
+        public decimal CurrentMileage { get; set; }
+        public bool IsAvailable { get; set; }
     }
 }
