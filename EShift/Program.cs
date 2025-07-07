@@ -23,12 +23,12 @@ namespace EShift
             Configuration = builder.Build();
             ApplicationConfiguration.Initialize();
 
-            //using (SplashScreen splashForm = new SplashScreen())
-            //{
-            //    splashForm.ShowDialog();
-            //}
+            using (SplashScreen splashForm = new SplashScreen())
+            {
+                splashForm.ShowDialog();
+            }
 
-            Application.Run(new RegisterForm());
+            Application.Run(new LoginForm());
         }
     }
 }

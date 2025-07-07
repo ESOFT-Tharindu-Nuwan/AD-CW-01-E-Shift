@@ -52,6 +52,7 @@
             btnLogin.TabIndex = 0;
             btnLogin.Text = "LOGIN";
             btnLogin.UseVisualStyleBackColor = true;
+            btnLogin.Click += btnLogin_Click;
             // 
             // lblUsername
             // 
@@ -106,6 +107,7 @@
             lnkRegister.TabIndex = 6;
             lnkRegister.TabStop = true;
             lnkRegister.Text = "REGISTER";
+            lnkRegister.LinkClicked += lnkRegister_LinkClicked;
             // 
             // pictureBox1
             // 

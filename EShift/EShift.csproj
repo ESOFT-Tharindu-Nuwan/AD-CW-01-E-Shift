@@ -9,13 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Business\Interface\" />
-    <Folder Include="Business\Service\" />
-    <Folder Include="Repository\Interface\" />
-    <Folder Include="Repository\Service\" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
     <PackageReference Include="Microsoft.Data.SqlClient" Version="6.0.2" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="9.0.6" />
     <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="9.0.6" />

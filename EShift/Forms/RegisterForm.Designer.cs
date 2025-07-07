@@ -258,6 +258,7 @@
             btnRegister.TabIndex = 24;
             btnRegister.Text = "REGISTER";
             btnRegister.UseVisualStyleBackColor = true;
+            btnRegister.Click += btnRegister_Click;
             // 
             // btnCancel
             // 
@@ -267,6 +268,7 @@
             btnCancel.TabIndex = 25;
             btnCancel.Text = "CANCEL";
             btnCancel.UseVisualStyleBackColor = true;
+            btnCancel.Click += btnCancel_Click;
             // 
             // lblAlreadyRegister
             // 
@@ -286,6 +288,7 @@
             lnkLogin.TabIndex = 27;
             lnkLogin.TabStop = true;
             lnkLogin.Text = "LOGIN";
+            lnkLogin.LinkClicked += lnkLogin_LinkClicked;
             // 
             // RegisterForm
             // 
