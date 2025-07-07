@@ -21,9 +21,14 @@ namespace EShift
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
 
             Configuration = builder.Build();
-
             ApplicationConfiguration.Initialize();
-            Application.Run(new LoginForm());
+
+            //using (SplashScreen splashForm = new SplashScreen())
+            //{
+            //    splashForm.ShowDialog();
+            //}
+
+            Application.Run(new RegisterForm());
         }
     }
 }
