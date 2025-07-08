@@ -16,7 +16,7 @@ namespace EShift.Repository.Service
         {
             string query = "INSERT INTO Customers (UserID, CustomerNumber, FirstName, LastName, AddressLine1, AddressLine2, City, Province, PostalCode, PhoneNumber, Email, RegistrationDate) " +
                            "VALUES (@UserID, @CustomerNumber, @FirstName, @LastName, @AddressLine1, @AddressLine2, @City, @Province, @PostalCode, @PhoneNumber, @Email, @RegistrationDate); " +
-                           "SELECT SCOPE_IDENTITY();"; // Returns the ID of the newly inserted row
+                           "SELECT SCOPE_IDENTITY();";
             int newCustomerId = 0;
 
             using (SqlConnection connection = DBConnection.GetConnection())
@@ -26,7 +26,7 @@ namespace EShift.Repository.Service
                 command.Parameters.AddWithValue("@CustomerNumber", customer.CustomerNumber);
                 command.Parameters.AddWithValue("@FirstName", customer.FirstName);
                 command.Parameters.AddWithValue("@LastName", customer.LastName);
-                command.Parameters.AddWithValue("@AddressLine1", customer.AddressLine1 ?? (object)DBNull.Value); // Handle nulls for optional fields
+                command.Parameters.AddWithValue("@AddressLine1", customer.AddressLine1 ?? (object)DBNull.Value);
                 command.Parameters.AddWithValue("@AddressLine2", customer.AddressLine2 ?? (object)DBNull.Value);
                 command.Parameters.AddWithValue("@City", customer.City ?? (object)DBNull.Value);
                 command.Parameters.AddWithValue("@Province", customer.Province ?? (object)DBNull.Value);
@@ -61,7 +61,6 @@ namespace EShift.Repository.Service
                         FirstName = reader["FirstName"].ToString(),
                         LastName = reader["LastName"].ToString(),
                         Email = reader["Email"].ToString()
-                        // Populate other fields as needed for display or further logic
                     };
                 }
                 reader.Close();

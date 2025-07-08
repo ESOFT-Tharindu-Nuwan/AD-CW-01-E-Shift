@@ -19,7 +19,7 @@ namespace EShift.Repository.Service
                            "SELECT SCOPE_IDENTITY();"; // Returns the ID of the newly inserted row
             int newUserId = 0;
 
-            using (SqlConnection connection = DBConnection.GetConnection()) // Using your DBConnection helper
+            using (SqlConnection connection = DBConnection.GetConnection())
             {
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@Username", user.Username);
@@ -28,7 +28,7 @@ namespace EShift.Repository.Service
                 command.Parameters.AddWithValue("@IsActive", user.IsActive);
                 command.Parameters.AddWithValue("@DateCreated", user.DateCreated);
                 connection.Open();
-                newUserId = Convert.ToInt32(command.ExecuteScalar()); // Executes query and returns first column of first row
+                newUserId = Convert.ToInt32(command.ExecuteScalar());
             }
             return newUserId;
         }
@@ -62,7 +62,7 @@ namespace EShift.Repository.Service
             return user;
         }
 
-        public void DeleteUser(int userId) // Useful for rollback if customer creation fails
+        public void DeleteUser(int userId)
         {
             string query = "DELETE FROM Users WHERE UserID = @UserID";
             using (SqlConnection connection = DBConnection.GetConnection())

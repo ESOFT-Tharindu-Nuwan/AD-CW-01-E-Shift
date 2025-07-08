@@ -21,8 +21,6 @@ namespace EShift.Business.Service
 
         public void SaveCustomer(Customer customer)
         {
-            // Here you would implement logic for updating an existing customer.
-            // For initial registration, this is handled by UserService.RegisterCustomer.
             if (customer.CustomerID > 0)
             {
                 _customerRepository.UpdateCustomer(customer);
