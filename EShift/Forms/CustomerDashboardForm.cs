@@ -10,17 +10,11 @@ using System.Windows.Forms;
 
 namespace EShift.Forms
 {
-    public partial class CustomerDashboardForm : Form
+    public partial class CustomerDashboardForm: Form
     {
         public CustomerDashboardForm()
         {
             InitializeComponent();
         }
-
-        public CustomerDashboardForm(int userId)
-        {
-            InitializeComponent();
-        }
-
     }
 }
