@@ -10,18 +10,12 @@ using System.Windows.Forms;
 
 namespace EShift.Forms
 {
-    public partial class CustomerDashboardForm: Form
+    public partial class AddEditLorryForm : Form
     {
-        private readonly int _authenticatedCustomerId;
-        public CustomerDashboardForm()
+        public AddEditLorryForm()
         {
             InitializeComponent();
         }
 
-        public CustomerDashboardForm(int customerId)
-        {
-            InitializeComponent();
-            _authenticatedCustomerId = customerId;
-        }
     }
 }

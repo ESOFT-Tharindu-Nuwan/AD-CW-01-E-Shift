@@ -16,5 +16,8 @@ namespace EShift.Business.Interface
         bool AssignTransportUnitToJob(int jobId, int transportUnitId, DateTime adminAssignedDate);
         int GetTotalActiveJobsCount();
         int GetPendingJobRequestsCount();
+        bool AddJob(Job job, Load initialLoad);
+        string GenerateJobNumber();
+        string GenerateLoadNumber();
     }
 }

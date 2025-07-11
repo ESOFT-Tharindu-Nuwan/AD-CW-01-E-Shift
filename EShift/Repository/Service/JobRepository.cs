@@ -162,5 +162,121 @@ namespace EShift.Repository.Service
                 return (int)command.ExecuteScalar();
             }
         }
+
+        public int Add(Job job)
+        {
+            string query = @"
+                INSERT INTO Jobs (JobNumber, CustomerID, RequestedDate, ScheduledPickupDate, ScheduledDeliveryDate,
+                                  ActualPickupDate, ActualDeliveryDate, PickupLocation, DeliveryLocation, JobStatus,
+                                  TransportUnitID, QuotedPrice, FinalPrice, Remarks, AdminAssignedDate)
+                VALUES (@JobNumber, @CustomerID, @RequestedDate, @ScheduledPickupDate, @ScheduledDeliveryDate,
+                        @ActualPickupDate, @ActualDeliveryDate, @PickupLocation, @DeliveryLocation, @JobStatus,
+                        @TransportUnitID, @QuotedPrice, @FinalPrice, @Remarks, @AdminAssignedDate);
+                SELECT SCOPE_IDENTITY();";
+            int newJobId = 0;
+
+            using (SqlConnection connection = DBConnection.GetConnection())
+            {
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@JobNumber", job.JobNumber);
+                command.Parameters.AddWithValue("@CustomerID", job.CustomerID);
+                command.Parameters.AddWithValue("@RequestedDate", job.RequestedDate);
+                command.Parameters.AddWithValue("@ScheduledPickupDate", job.ScheduledPickupDate ?? (object)DBNull.Value);
+                command.Parameters.AddWithValue("@ScheduledDeliveryDate", job.ScheduledDeliveryDate ?? (object)DBNull.Value);
+                command.Parameters.AddWithValue("@ActualPickupDate", job.ActualPickupDate ?? (object)DBNull.Value);
+                command.Parameters.AddWithValue("@ActualDeliveryDate", job.ActualDeliveryDate ?? (object)DBNull.Value);
+                command.Parameters.AddWithValue("@PickupLocation", job.PickupLocation);
+                command.Parameters.AddWithValue("@DeliveryLocation", job.DeliveryLocation);
+                command.Parameters.AddWithValue("@JobStatus", job.JobStatus);
+                command.Parameters.AddWithValue("@TransportUnitID", job.TransportUnitID ?? (object)DBNull.Value);
+                command.Parameters.AddWithValue("@QuotedPrice", job.QuotedPrice ?? (object)DBNull.Value);
+                command.Parameters.AddWithValue("@FinalPrice", job.FinalPrice ?? (object)DBNull.Value);
+                command.Parameters.AddWithValue("@Remarks", job.Remarks ?? (object)DBNull.Value);
+                command.Parameters.AddWithValue("@AdminAssignedDate", job.AdminAssignedDate ?? (object)DBNull.Value);
+
+                connection.Open();
+                newJobId = Convert.ToInt32(command.ExecuteScalar());
+            }
+            return newJobId;
+        }
+
+        public void AddLoad(Load load)
+        {
+            string query = @"
+                INSERT INTO Loads (LoadNumber, JobID, Description, WeightKG, VolumeCBM, LoadStatus, SpecialInstructions)
+                VALUES (@LoadNumber, @JobID, @Description, @WeightKG, @VolumeCBM, @LoadStatus, @SpecialInstructions)";
+
+            using (SqlConnection connection = DBConnection.GetConnection())
+            {
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@LoadNumber", load.LoadNumber);
+                command.Parameters.AddWithValue("@JobID", load.JobID);
+                command.Parameters.AddWithValue("@Description", load.Description ?? (object)DBNull.Value);
+                command.Parameters.AddWithValue("@WeightKG", load.WeightKG);
+                command.Parameters.AddWithValue("@VolumeCBM", load.VolumeCBM);
+                command.Parameters.AddWithValue("@LoadStatus", load.LoadStatus);
+                command.Parameters.AddWithValue("@SpecialInstructions", load.SpecialInstructions ?? (object)DBNull.Value);
+
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+        }
+
+        public string GetNextJobNumber()
+        {
+            // A simple implementation: "JOB-" + current date + incremental counter
+            // For robust production, consider a more sophisticated sequence generator or GUID.
+            string prefix = "JOB-";
+            string datePart = DateTime.Today.ToString("yyyyMMdd");
+            string query = "SELECT COUNT(*) FROM Jobs WHERE JobNumber LIKE @Prefix + @DatePart + '%'";
+            using (SqlConnection connection = DBConnection.GetConnection())
+            {
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@Prefix", prefix);
+                command.Parameters.AddWithValue("@DatePart", datePart);
+                connection.Open();
+                int count = (int)command.ExecuteScalar();
+                return $"{prefix}{datePart}{(count + 1).ToString("D4")}"; // D4 for 0001, 0002 etc.
+            }
+        }
+
+        public string GetNextLoadNumber()
+        {
+            // Similar logic for Load numbers
+            string prefix = "LOAD-";
+            string datePart = DateTime.Today.ToString("yyyyMMdd");
+            string query = "SELECT COUNT(*) FROM Loads WHERE LoadNumber LIKE @Prefix + @DatePart + '%'";
+            using (SqlConnection connection = DBConnection.GetConnection())
+            {
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@Prefix", prefix);
+                command.Parameters.AddWithValue("@DatePart", datePart);
+                connection.Open();
+                int count = (int)command.ExecuteScalar();
+                return $"{prefix}{datePart}{(count + 1).ToString("D4")}";
+            }
+        }
+
+        // ... (other methods like GetJobsByCustomerId)
+        public List<Job> GetJobsByCustomerId(int customerId)
+        {
+            List<Job> jobs = new List<Job>();
+            string query = "SELECT * FROM Jobs WHERE CustomerID = @CustomerID ORDER BY RequestedDate DESC";
+
+            using (SqlConnection connection = DBConnection.GetConnection())
+            {
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@CustomerID", customerId);
+                connection.Open();
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        jobs.Add(MapJobFromReader(reader));
+                    }
+                }
+            }
+            return jobs;
+        }
     }
 }

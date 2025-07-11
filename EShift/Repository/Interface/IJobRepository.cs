@@ -16,5 +16,10 @@ namespace EShift.Repository.Interface
         bool AssignTransportUnit(int jobId, int transportUnitId, DateTime adminAssignedDate);
         int GetActiveJobsCount();
         int GetPendingRequestsCount();
+        int Add(Job job);
+        void AddLoad(Load load);
+        string GetNextJobNumber();
+        string GetNextLoadNumber();
+        List<Job> GetJobsByCustomerId(int customerId);
     }
 }
