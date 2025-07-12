@@ -18,8 +18,8 @@ namespace EShift.Forms
         private ITransportUnitService _transportUnitService;
         private ILorryService _lorryService; // To populate Lorry ComboBox
         private IDriverService _driverService; // To populate Driver ComboBox
-        //private IAssistantService _assistantService; // To populate Assistant ComboBox
-        //private IContainerService _containerService; // To populate Container ComboBox
+        private IAssistantService _assistantService; // To populate Assistant ComboBox
+        private IContainerService _containerService; // To populate Container ComboBox
 
         private int? _transportUnitId; // Nullable int: null for Add, ID for Edit
         private TransportUnit _currentTransportUnit;
@@ -52,8 +52,8 @@ namespace EShift.Forms
             _transportUnitService = new TransportUnitService();
             _lorryService = new LorryService();
             _driverService = new DriverService();
-            //_assistantService = new AssistantService();
-            //_containerService = new ContainerService();
+            _assistantService = new AssistantService();
+            _containerService = new ContainerService();
         }
 
         private void btnSubmit_Click(object sender, EventArgs e)
@@ -186,20 +186,20 @@ namespace EShift.Forms
                 cmbDriver.SelectedIndex = -1;
 
                 // Assistants (Optional, can be null)
-                //List<Assistant> assistants = _assistantService.GetAllAssistants();
+                List<Assistant> assistants = _assistantService.GetAllAssistants();
                 //assistants.Insert(0, new Assistant { AssistantID = -1, FirstName = "-- Select None --" }); // Option for null
-                //cmbAssistant.DataSource = assistants;
-                //cmbAssistant.DisplayMember = "FirstName";
-                //cmbAssistant.ValueMember = "AssistantID";
-                //cmbAssistant.SelectedValue = -1;
+                cmbAssistant.DataSource = assistants;
+                cmbAssistant.DisplayMember = "FirstName";
+                cmbAssistant.ValueMember = "AssistantID";
+                cmbAssistant.SelectedValue = -1;
 
                 // Containers (Optional, can be null)
-                //List<Models.Container> containers = _containerService.GetAllContainers();
+                List<Models.Container> containers = _containerService.GetAllContainers();
                 //containers.Insert(0, new Models.Container { ContainerID = -1, ContainerNumber = "-- Select None --" }); // Option for null
-                //cmbContainer.DataSource = containers;
-                //cmbContainer.DisplayMember = "ContainerNumber";
-                //cmbContainer.ValueMember = "ContainerID";
-                //cmbContainer.SelectedValue = -1;
+                cmbContainer.DataSource = containers;
+                cmbContainer.DisplayMember = "ContainerNumber";
+                cmbContainer.ValueMember = "ContainerID";
+                cmbContainer.SelectedValue = -1;
             }
             catch (Exception ex)
             {

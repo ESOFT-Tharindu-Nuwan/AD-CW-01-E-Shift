@@ -1,6 +1,6 @@
 ﻿namespace EShift.Forms
 {
-    partial class AddEditContainersForm
+    partial class AddEditContainerForm
     {
         /// <summary>
         /// Required designer variable.
@@ -67,6 +67,7 @@
             btnCancel.TabIndex = 55;
             btnCancel.Text = "Cancel";
             btnCancel.UseVisualStyleBackColor = true;
+            btnCancel.Click += btnCancel_Click;
             // 
             // btnSubmit
             // 
@@ -76,6 +77,7 @@
             btnSubmit.TabIndex = 54;
             btnSubmit.Text = "Submit";
             btnSubmit.UseVisualStyleBackColor = true;
+            btnSubmit.Click += btnSubmit_Click;
             // 
             // txtCapacityCBM
             // 
@@ -125,7 +127,7 @@
             lblContainerNumber.TabIndex = 48;
             lblContainerNumber.Text = "Container Number";
             // 
-            // AddEditContainersForm
+            // AddEditContainerForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -140,7 +142,7 @@
             Controls.Add(lblType);
             Controls.Add(txtContainerNumber);
             Controls.Add(lblContainerNumber);
-            Name = "AddEditContainersForm";
+            Name = "AddEditContainerForm";
             Text = "Add Edit Containers Form";
             ResumeLayout(false);
             PerformLayout();

@@ -20,6 +20,7 @@ namespace EShift.Forms
         private readonly IDriverService _driverService;
         private readonly ITransportUnitService _transportUnitService;
         private readonly IAssistantService _assistantService;
+        private readonly IContainerService _containerService;
         public AdminDashboardForm()
         {
             InitializeComponent();
@@ -34,6 +35,8 @@ namespace EShift.Forms
             LoadAllTransportUnits();
             _assistantService = new AssistantService(); // Initialize AssistantService.
             LoadAllAssistants();
+            _containerService = new ContainerService(); // Initialize ContainerService
+            LoadAllContainers();
         }
 
         public AdminDashboardForm(int adminUserId)
@@ -59,6 +62,8 @@ namespace EShift.Forms
             LoadAllTransportUnits();
             _assistantService = new AssistantService(); // Initialize AssistantService.
             LoadAllAssistants();
+            _containerService = new ContainerService(); // Initialize ContainerService
+            LoadAllContainers();
         }
 
         private void LoadDashboardOverview()
@@ -520,6 +525,85 @@ namespace EShift.Forms
             else
             {
                 MessageBox.Show("Please select an assistant to delete.", "No Assistant Selected", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void LoadAllContainers()
+        {
+            try
+            {
+                List<Models.Container> allContainers = _containerService.GetAllContainers();
+                dgvContainers.DataSource = allContainers; // Assuming you have a DataGridView named 'dgvContainers' on tabPageResources
+                dgvContainers.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading containers: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void btnAddContainer_Click(object sender, EventArgs e)
+        {
+            AddEditContainerForm addForm = new AddEditContainerForm();
+            if (addForm.ShowDialog() == DialogResult.OK)
+            {
+                LoadAllContainers(); // Refresh the list after adding
+                LoadDashboardOverview(); // Update counts
+            }
+        }
+
+        private void btnEditContainer_Click(object sender, EventArgs e)
+        {
+            if (dgvContainers.SelectedRows.Count > 0)
+            {
+                int selectedContainerId = (int)dgvContainers.SelectedRows[0].Cells["ContainerID"].Value;
+                AddEditContainerForm editForm = new AddEditContainerForm(selectedContainerId);
+                if (editForm.ShowDialog() == DialogResult.OK)
+                {
+                    LoadAllContainers(); // Refresh the list after editing
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a container to edit.", "No Container Selected", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void btnDeleteContainer_Click(object sender, EventArgs e)
+        {
+            if (dgvContainers.SelectedRows.Count > 0)
+            {
+                int selectedContainerId = (int)dgvContainers.SelectedRows[0].Cells["ContainerID"].Value;
+                string containerNumber = dgvContainers.SelectedRows[0].Cells["ContainerNumber"].Value.ToString();
+
+                DialogResult confirm = MessageBox.Show($"Are you sure you want to delete container '{containerNumber}'?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (confirm == DialogResult.Yes)
+                {
+                    try
+                    {
+                        if (_containerService.DeleteContainer(selectedContainerId))
+                        {
+                            MessageBox.Show("Container deleted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            LoadAllContainers(); // Refresh the list
+                            LoadDashboardOverview(); // Update counts
+                        }
+                        else
+                        {
+                            MessageBox.Show("Failed to delete container.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    catch (InvalidOperationException ex) // Catch if container is in use
+                    {
+                        MessageBox.Show(ex.Message, "Deletion Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"An unexpected error occurred during deletion: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a container to delete.", "No Container Selected", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
     }

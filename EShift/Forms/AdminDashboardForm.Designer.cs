@@ -553,6 +553,7 @@
             btnDeleteContainer.TabIndex = 15;
             btnDeleteContainer.Text = "Delete Container";
             btnDeleteContainer.UseVisualStyleBackColor = true;
+            btnDeleteContainer.Click += btnDeleteContainer_Click;
             // 
             // btnEditContainer
             // 
@@ -562,6 +563,7 @@
             btnEditContainer.TabIndex = 14;
             btnEditContainer.Text = "Edit Container";
             btnEditContainer.UseVisualStyleBackColor = true;
+            btnEditContainer.Click += btnEditContainer_Click;
             // 
             // btnAddContainer
             // 
@@ -571,6 +573,7 @@
             btnAddContainer.TabIndex = 13;
             btnAddContainer.Text = "Add Container";
             btnAddContainer.UseVisualStyleBackColor = true;
+            btnAddContainer.Click += btnAddContainer_Click;
             // 
             // dgvContainers
             // 
