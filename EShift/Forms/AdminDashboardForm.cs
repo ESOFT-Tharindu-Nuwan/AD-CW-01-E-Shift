@@ -18,22 +18,19 @@ namespace EShift.Forms
         private readonly IJobService _jobService;
         private readonly ILorryService _lorryService;
         private readonly IDriverService _driverService;
+        private readonly ITransportUnitService _transportUnitService;
         public AdminDashboardForm()
         {
             InitializeComponent();
             _jobService = new JobService();
             LoadDashboardOverview();
             LoadAllJobs();
-            // ... load other tabs
             _lorryService = new LorryService(); // Initialize LorryService
-
-            // ... existing Load methods ...
             LoadAllLorries();
-            // ... existing initializations ...
             _driverService = new DriverService(); // Initialize DriverService
-
-            // ... existing Load methods ...
             LoadAllDrivers();
+            _transportUnitService = new TransportUnitService(); // Initialize TransportUnitService
+            LoadAllTransportUnits();
         }
 
         public AdminDashboardForm(int adminUserId)
@@ -50,19 +47,14 @@ namespace EShift.Forms
             //SetupTabs();
             LoadDashboardOverview();
             LoadAllJobs();
-            // ... load other tabs
             _lorryService = new LorryService(); // Initialize LorryService
 
-            // ... existing Load methods ...
             LoadAllLorries();
-            // ... existing initializations ...
             _driverService = new DriverService(); // Initialize DriverService
-
-            // ... existing Load methods ...
             LoadAllDrivers();
+            _transportUnitService = new TransportUnitService(); // Initialize TransportUnitService
+            LoadAllTransportUnits();
         }
-
-        // ... (SetupTabs and other Load methods)
 
         private void LoadDashboardOverview()
         {
@@ -363,6 +355,86 @@ namespace EShift.Forms
             else
             {
                 MessageBox.Show("Please select a driver to delete.", "No Driver Selected", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void LoadAllTransportUnits()
+        {
+            try
+            {
+                List<TransportUnit> allUnits = _transportUnitService.GetAllTransportUnits();
+                dgvTransportUnits.DataSource = allUnits; // Assuming you have a DataGridView named 'dgvTransportUnits' on tabPageResources
+                dgvTransportUnits.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading transport units: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnAddTransportUnit_Click(object sender, EventArgs e)
+        {
+            AddEditTransportUnitForm addForm = new AddEditTransportUnitForm();
+            if (addForm.ShowDialog() == DialogResult.OK)
+            {
+                LoadAllTransportUnits(); // Refresh the list after adding
+                LoadDashboardOverview(); // Update counts
+            }
+        }
+
+        private void btnEditTransportUnit_Click(object sender, EventArgs e)
+        {
+            if (dgvTransportUnits.SelectedRows.Count > 0)
+            {
+                int selectedUnitId = (int)dgvTransportUnits.SelectedRows[0].Cells["TransportUnitID"].Value;
+                AddEditTransportUnitForm editForm = new AddEditTransportUnitForm(selectedUnitId);
+                if (editForm.ShowDialog() == DialogResult.OK)
+                {
+                    LoadAllTransportUnits(); // Refresh the list after editing
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a transport unit to edit.", "No Unit Selected", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void btnDeleteTransportUnit_Click(object sender, EventArgs e)
+        {
+            if (dgvTransportUnits.SelectedRows.Count > 0)
+            {
+                int selectedUnitId = (int)dgvTransportUnits.SelectedRows[0].Cells["TransportUnitID"].Value;
+                string unitName = dgvTransportUnits.SelectedRows[0].Cells["UnitName"].Value.ToString();
+
+                DialogResult confirm = MessageBox.Show($"Are you sure you want to delete transport unit '{unitName}'?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (confirm == DialogResult.Yes)
+                {
+                    try
+                    {
+                        if (_transportUnitService.DeleteTransportUnit(selectedUnitId))
+                        {
+                            MessageBox.Show("Transport Unit deleted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            LoadAllTransportUnits(); // Refresh the list
+                            LoadDashboardOverview(); // Update counts
+                        }
+                        else
+                        {
+                            MessageBox.Show("Failed to delete transport unit.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    catch (InvalidOperationException ex) // Catch if unit is in use
+                    {
+                        MessageBox.Show(ex.Message, "Deletion Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"An unexpected error occurred during deletion: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a transport unit to delete.", "No Unit Selected", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
     }

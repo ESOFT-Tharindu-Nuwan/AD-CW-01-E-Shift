@@ -1,6 +1,6 @@
 ﻿namespace EShift.Forms
 {
-    partial class AddEditTransportUnit
+    partial class AddEditTransportUnitForm
     {
         /// <summary>
         /// Required designer variable.
@@ -41,6 +41,7 @@
             btnSubmit = new Button();
             btnCancel = new Button();
             chkIsOperational = new CheckBox();
+            lblFormTitle = new Label();
             SuspendLayout();
             // 
             // lblUnitName
@@ -135,6 +136,7 @@
             btnSubmit.TabIndex = 10;
             btnSubmit.Text = "Submit";
             btnSubmit.UseVisualStyleBackColor = true;
+            btnSubmit.Click += btnSubmit_Click;
             // 
             // btnCancel
             // 
@@ -144,6 +146,7 @@
             btnCancel.TabIndex = 11;
             btnCancel.Text = "Cancel";
             btnCancel.UseVisualStyleBackColor = true;
+            btnCancel.Click += btnCancel_Click;
             // 
             // chkIsOperational
             // 
@@ -155,11 +158,21 @@
             chkIsOperational.Text = "Is Operational";
             chkIsOperational.UseVisualStyleBackColor = true;
             // 
-            // AddEditTransportUnit
+            // lblFormTitle
+            // 
+            lblFormTitle.AutoSize = true;
+            lblFormTitle.Location = new Point(602, 176);
+            lblFormTitle.Name = "lblFormTitle";
+            lblFormTitle.Size = new Size(50, 20);
+            lblFormTitle.TabIndex = 13;
+            lblFormTitle.Text = "label1";
+            // 
+            // AddEditTransportUnitForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(lblFormTitle);
             Controls.Add(chkIsOperational);
             Controls.Add(btnCancel);
             Controls.Add(btnSubmit);
@@ -173,7 +186,7 @@
             Controls.Add(lblLorry);
             Controls.Add(txtUnitName);
             Controls.Add(lblUnitName);
-            Name = "AddEditTransportUnit";
+            Name = "AddEditTransportUnitForm";
             Text = "Add Edit Transport Unit";
             ResumeLayout(false);
             PerformLayout();
@@ -194,5 +207,6 @@
         private Button btnSubmit;
         private Button btnCancel;
         private CheckBox chkIsOperational;
+        private Label lblFormTitle;
     }
 }

@@ -600,6 +600,7 @@
             btnDeleteTransportUnit.TabIndex = 19;
             btnDeleteTransportUnit.Text = "Delete Transport Unit";
             btnDeleteTransportUnit.UseVisualStyleBackColor = true;
+            btnDeleteTransportUnit.Click += btnDeleteTransportUnit_Click;
             // 
             // btnEditTransportUnit
             // 
@@ -609,6 +610,7 @@
             btnEditTransportUnit.TabIndex = 18;
             btnEditTransportUnit.Text = "Edit Transport Unit";
             btnEditTransportUnit.UseVisualStyleBackColor = true;
+            btnEditTransportUnit.Click += btnEditTransportUnit_Click;
             // 
             // btnAddTransportUnit
             // 
@@ -618,6 +620,7 @@
             btnAddTransportUnit.TabIndex = 17;
             btnAddTransportUnit.Text = "Add Transport Unit";
             btnAddTransportUnit.UseVisualStyleBackColor = true;
+            btnAddTransportUnit.Click += btnAddTransportUnit_Click;
             // 
             // dgvTransportUnits
             // 

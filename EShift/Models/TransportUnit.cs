@@ -15,5 +15,11 @@ namespace EShift.Models
         public int? ContainerID { get; set; } // Foreign Key to Container
         public string? UnitName { get; set; }
         public bool IsOperational { get; set; }
+
+        // Add these new properties for joined data
+        public string LorryRegistrationNumber { get; set; } // New property
+        public string DriverName { get; set; }             // New property
+        public string AssistantName { get; set; }          // New property
+        public string ContainerNumber { get; set; }        // New property
     }
 }
