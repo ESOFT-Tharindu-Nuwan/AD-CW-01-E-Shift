@@ -13,12 +13,21 @@ using System.Windows.Forms;
 
 namespace EShift.Forms
 {
-    public partial class AdminDashboardForm: Form
+    public partial class AdminDashboardForm : Form
     {
         private readonly IJobService _jobService;
+        private readonly ILorryService _lorryService;
         public AdminDashboardForm()
         {
             InitializeComponent();
+            _jobService = new JobService();
+            LoadDashboardOverview();
+            LoadAllJobs();
+            // ... load other tabs
+            _lorryService = new LorryService(); // Initialize LorryService
+
+            // ... existing Load methods ...
+            LoadAllLorries();
         }
 
         public AdminDashboardForm(int adminUserId)
@@ -36,6 +45,10 @@ namespace EShift.Forms
             LoadDashboardOverview();
             LoadAllJobs();
             // ... load other tabs
+            _lorryService = new LorryService(); // Initialize LorryService
+
+            // ... existing Load methods ...
+            LoadAllLorries();
         }
 
         // ... (SetupTabs and other Load methods)
@@ -181,6 +194,91 @@ namespace EShift.Forms
             return prompt.ShowDialog() == DialogResult.OK ? comboBox.SelectedItem?.ToString() : string.Empty;
         }
 
-        // ... (btnLogout_Click and other methods)
+        private void LoadAllLorries()
+        {
+            try
+            {
+                List<Lorry> allLorries = _lorryService.GetAllLorries();
+                dgvLorries.DataSource = allLorries; // Assuming you have a DataGridView named 'dgvLorries' on tabPageResources
+                dgvLorries.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading lorries: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        // Event handler for Add Lorry button
+        private void btnAddLorry_Click(object sender, EventArgs e)
+        {
+            AddEditLorryForm addForm = new AddEditLorryForm();
+            if (addForm.ShowDialog() == DialogResult.OK)
+            {
+                LoadAllLorries(); // Refresh the list after adding
+                LoadDashboardOverview(); // Update counts
+            }
+        }
+
+        // Event handler for Edit Lorry button
+
+
+        private void btnDeleteLorry_Click(object sender, EventArgs e)
+        {
+            if (dgvLorries.SelectedRows.Count > 0)
+            {
+                int selectedLorryId = (int)dgvLorries.SelectedRows[0].Cells["LorryID"].Value;
+                string registrationNumber = dgvLorries.SelectedRows[0].Cells["RegistrationNumber"].Value.ToString();
+
+                DialogResult confirm = MessageBox.Show($"Are you sure you want to delete lorry '{registrationNumber}'?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (confirm == DialogResult.Yes)
+                {
+                    try
+                    {
+                        if (_lorryService.DeleteLorry(selectedLorryId))
+                        {
+                            MessageBox.Show("Lorry deleted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            LoadAllLorries(); // Refresh the list
+                            LoadDashboardOverview(); // Update counts
+                        }
+                        else
+                        {
+                            MessageBox.Show("Failed to delete lorry.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    catch (InvalidOperationException ex) // Catch if lorry is in use
+                    {
+                        MessageBox.Show(ex.Message, "Deletion Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"An unexpected error occurred during deletion: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a lorry to delete.", "No Lorry Selected", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void btnEditLorry_Click(object sender, EventArgs e)
+        {
+            if (dgvLorries.SelectedRows.Count > 0)
+            {
+                int selectedLorryId = (int)dgvLorries.SelectedRows[0].Cells["LorryID"].Value;
+                AddEditLorryForm editForm = new AddEditLorryForm(selectedLorryId);
+                if (editForm.ShowDialog() == DialogResult.OK)
+                {
+                    LoadAllLorries(); // Refresh the list after editing
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a lorry to edit.", "No Lorry Selected", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        // Event handler for Delete Lorry button
+
     }
 }

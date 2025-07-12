@@ -38,9 +38,9 @@
             lblCapacity = new Label();
             txtFuelType = new TextBox();
             lblFuelType = new Label();
-            txtCurrentMilage = new TextBox();
+            txtCurrentMileage = new TextBox();
             lblCurrentMilage = new Label();
-            btnSubmit = new Button();
+            btnSave = new Button();
             btnCancel = new Button();
             lblFormTitle = new Label();
             chkIsAvailable = new CheckBox();
@@ -126,12 +126,12 @@
             lblFuelType.TabIndex = 8;
             lblFuelType.Text = "Fuel Type";
             // 
-            // txtCurrentMilage
+            // txtCurrentMileage
             // 
-            txtCurrentMilage.Location = new Point(220, 328);
-            txtCurrentMilage.Name = "txtCurrentMilage";
-            txtCurrentMilage.Size = new Size(277, 27);
-            txtCurrentMilage.TabIndex = 11;
+            txtCurrentMileage.Location = new Point(220, 328);
+            txtCurrentMileage.Name = "txtCurrentMileage";
+            txtCurrentMileage.Size = new Size(277, 27);
+            txtCurrentMileage.TabIndex = 11;
             // 
             // lblCurrentMilage
             // 
@@ -142,14 +142,15 @@
             lblCurrentMilage.TabIndex = 10;
             lblCurrentMilage.Text = "Current Milage";
             // 
-            // btnSubmit
+            // btnSave
             // 
-            btnSubmit.Location = new Point(76, 399);
-            btnSubmit.Name = "btnSubmit";
-            btnSubmit.Size = new Size(94, 29);
-            btnSubmit.TabIndex = 12;
-            btnSubmit.Text = "Submit";
-            btnSubmit.UseVisualStyleBackColor = true;
+            btnSave.Location = new Point(76, 399);
+            btnSave.Name = "btnSave";
+            btnSave.Size = new Size(94, 29);
+            btnSave.TabIndex = 12;
+            btnSave.Text = "Submit";
+            btnSave.UseVisualStyleBackColor = true;
+            btnSave.Click += btnSave_Click;
             // 
             // btnCancel
             // 
@@ -159,6 +160,7 @@
             btnCancel.TabIndex = 13;
             btnCancel.Text = "Cancel";
             btnCancel.UseVisualStyleBackColor = true;
+            btnCancel.Click += btnCancel_Click;
             // 
             // lblFormTitle
             // 
@@ -187,8 +189,8 @@
             Controls.Add(chkIsAvailable);
             Controls.Add(lblFormTitle);
             Controls.Add(btnCancel);
-            Controls.Add(btnSubmit);
-            Controls.Add(txtCurrentMilage);
+            Controls.Add(btnSave);
+            Controls.Add(txtCurrentMileage);
             Controls.Add(lblCurrentMilage);
             Controls.Add(txtFuelType);
             Controls.Add(lblFuelType);
@@ -218,9 +220,9 @@
         private Label lblCapacity;
         private TextBox txtFuelType;
         private Label lblFuelType;
-        private TextBox txtCurrentMilage;
+        private TextBox txtCurrentMileage;
         private Label lblCurrentMilage;
-        private Button btnSubmit;
+        private Button btnSave;
         private Button btnCancel;
         private Label lblFormTitle;
         private CheckBox chkIsAvailable;

@@ -28,7 +28,7 @@ namespace EShift
             //    splashForm.ShowDialog();
             //}
 
-            Application.Run(new LoginForm());
+            Application.Run(new AdminDashboardForm(3));
         }
     }
 }

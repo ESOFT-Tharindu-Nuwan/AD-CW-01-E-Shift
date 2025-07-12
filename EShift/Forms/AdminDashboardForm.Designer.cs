@@ -394,6 +394,7 @@
             btnDeleteLorry.TabIndex = 3;
             btnDeleteLorry.Text = "Delete Lorry";
             btnDeleteLorry.UseVisualStyleBackColor = true;
+            btnDeleteLorry.Click += btnDeleteLorry_Click;
             // 
             // btnEditLorry
             // 
@@ -403,6 +404,7 @@
             btnEditLorry.TabIndex = 2;
             btnEditLorry.Text = "Edit Lorry";
             btnEditLorry.UseVisualStyleBackColor = true;
+            btnEditLorry.Click += btnEditLorry_Click;
             // 
             // btnAddLorry
             // 
@@ -412,6 +414,7 @@
             btnAddLorry.TabIndex = 1;
             btnAddLorry.Text = "Add Lorry";
             btnAddLorry.UseVisualStyleBackColor = true;
+            btnAddLorry.Click += btnAddLorry_Click;
             // 
             // dgvLorries
             // 
