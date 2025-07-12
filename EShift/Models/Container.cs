@@ -9,7 +9,7 @@ namespace EShift.Models
     public class Container
     {
         public int ContainerID { get; set; }
-        public required string ContainerNumber { get; set; }
+        public string ContainerNumber { get; set; }
         public string? Type { get; set; }
         public decimal CapacityCBM { get; set; } // Cubic meters
         public bool IsAvailable { get; set; }

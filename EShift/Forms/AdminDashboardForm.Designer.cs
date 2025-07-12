@@ -447,6 +447,7 @@
             btnDeleteDriver.TabIndex = 7;
             btnDeleteDriver.Text = "Delete Driver";
             btnDeleteDriver.UseVisualStyleBackColor = true;
+            btnDeleteDriver.Click += btnDeleteDriver_Click;
             // 
             // btnEditDriver
             // 
@@ -456,6 +457,7 @@
             btnEditDriver.TabIndex = 6;
             btnEditDriver.Text = "Edit Driver";
             btnEditDriver.UseVisualStyleBackColor = true;
+            btnEditDriver.Click += btnEditDriver_Click;
             // 
             // btnAddDriver
             // 
@@ -465,6 +467,7 @@
             btnAddDriver.TabIndex = 5;
             btnAddDriver.Text = "Add Driver";
             btnAddDriver.UseVisualStyleBackColor = true;
+            btnAddDriver.Click += btnAddDriver_Click;
             // 
             // dgvDrivers
             // 

@@ -10,9 +10,9 @@ namespace EShift.Models
     {
         public int CustomerID { get; set; }
         public int UserID { get; set; }
-        public required string CustomerNumber { get; set; }
-        public required string FirstName { get; set; }
-        public required string LastName { get; set; }
+        public string CustomerNumber { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
         public string? AddressLine1 { get; set; }
         public string? AddressLine2 { get; set; }
         public string? City { get; set; }

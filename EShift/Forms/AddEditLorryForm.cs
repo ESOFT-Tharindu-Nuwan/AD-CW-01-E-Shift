@@ -102,7 +102,7 @@ namespace EShift.Forms
             }
 
             // 3. Create/Update Lorry object
-            Lorry lorryToSave = _currentLorry ?? new Lorry { RegistrationNumber = registrationNumber }; // Use existing object if editing, new if adding
+            Lorry lorryToSave = _currentLorry ?? new Lorry(); // Use existing object if editing, new if adding
             lorryToSave.RegistrationNumber = registrationNumber;
             lorryToSave.Make = make;
             lorryToSave.Model = model;

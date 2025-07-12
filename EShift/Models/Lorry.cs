@@ -9,7 +9,7 @@ namespace EShift.Models
     public class Lorry
     {
         public int LorryID { get; set; }
-        public required string RegistrationNumber { get; set; }
+        public string RegistrationNumber { get; set; }
         public string? Make { get; set; }
         public string? Model { get; set; }
         public decimal Capacity { get; set; }

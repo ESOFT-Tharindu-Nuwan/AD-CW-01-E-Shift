@@ -1,6 +1,6 @@
 ﻿namespace EShift.Forms
 {
-    partial class AddEditDriver
+    partial class AddEditDriverForm
     {
         /// <summary>
         /// Required designer variable.
@@ -73,6 +73,7 @@
             btnCancel.TabIndex = 29;
             btnCancel.Text = "Cancel";
             btnCancel.UseVisualStyleBackColor = true;
+            btnCancel.Click += btnCancel_Click;
             // 
             // btnSubmit
             // 
@@ -82,6 +83,7 @@
             btnSubmit.TabIndex = 28;
             btnSubmit.Text = "Submit";
             btnSubmit.UseVisualStyleBackColor = true;
+            btnSubmit.Click += btnSubmit_Click;
             // 
             // txtAddress
             // 
@@ -179,7 +181,7 @@
             lblFirstName.TabIndex = 16;
             lblFirstName.Text = "First Name";
             // 
-            // AddEditDriver
+            // AddEditDriverForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -200,7 +202,7 @@
             Controls.Add(lblLastName);
             Controls.Add(txtFirstName);
             Controls.Add(lblFirstName);
-            Name = "AddEditDriver";
+            Name = "AddEditDriverForm";
             Text = "AddEditDriver";
             ResumeLayout(false);
             PerformLayout();

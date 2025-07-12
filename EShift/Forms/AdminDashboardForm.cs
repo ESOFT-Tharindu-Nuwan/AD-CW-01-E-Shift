@@ -17,6 +17,7 @@ namespace EShift.Forms
     {
         private readonly IJobService _jobService;
         private readonly ILorryService _lorryService;
+        private readonly IDriverService _driverService;
         public AdminDashboardForm()
         {
             InitializeComponent();
@@ -28,6 +29,11 @@ namespace EShift.Forms
 
             // ... existing Load methods ...
             LoadAllLorries();
+            // ... existing initializations ...
+            _driverService = new DriverService(); // Initialize DriverService
+
+            // ... existing Load methods ...
+            LoadAllDrivers();
         }
 
         public AdminDashboardForm(int adminUserId)
@@ -49,6 +55,11 @@ namespace EShift.Forms
 
             // ... existing Load methods ...
             LoadAllLorries();
+            // ... existing initializations ...
+            _driverService = new DriverService(); // Initialize DriverService
+
+            // ... existing Load methods ...
+            LoadAllDrivers();
         }
 
         // ... (SetupTabs and other Load methods)
@@ -219,9 +230,6 @@ namespace EShift.Forms
             }
         }
 
-        // Event handler for Edit Lorry button
-
-
         private void btnDeleteLorry_Click(object sender, EventArgs e)
         {
             if (dgvLorries.SelectedRows.Count > 0)
@@ -277,8 +285,85 @@ namespace EShift.Forms
                 MessageBox.Show("Please select a lorry to edit.", "No Lorry Selected", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+        private void LoadAllDrivers()
+        {
+            try
+            {
+                List<Driver> allDrivers = _driverService.GetAllDrivers();
+                dgvDrivers.DataSource = allDrivers; // Assuming you have a DataGridView named 'dgvDrivers' on tabPageResources
+                dgvDrivers.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading drivers: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
-        // Event handler for Delete Lorry button
 
+        private void btnAddDriver_Click(object sender, EventArgs e)
+        {
+            AddEditDriverForm addForm = new AddEditDriverForm();
+            if (addForm.ShowDialog() == DialogResult.OK)
+            {
+                LoadAllDrivers(); // Refresh the list after adding
+                LoadDashboardOverview(); // Update counts
+            }
+        }
+
+        private void btnEditDriver_Click(object sender, EventArgs e)
+        {
+            if (dgvDrivers.SelectedRows.Count > 0)
+            {
+                int selectedDriverId = (int)dgvDrivers.SelectedRows[0].Cells["DriverID"].Value;
+                AddEditDriverForm editForm = new AddEditDriverForm(selectedDriverId);
+                if (editForm.ShowDialog() == DialogResult.OK)
+                {
+                    LoadAllDrivers(); // Refresh the list after editing
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a driver to edit.", "No Driver Selected", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void btnDeleteDriver_Click(object sender, EventArgs e)
+        {
+            if (dgvDrivers.SelectedRows.Count > 0)
+            {
+                int selectedDriverId = (int)dgvDrivers.SelectedRows[0].Cells["DriverID"].Value;
+                string driverName = $"{dgvDrivers.SelectedRows[0].Cells["FirstName"].Value} {dgvDrivers.SelectedRows[0].Cells["LastName"].Value}";
+
+                DialogResult confirm = MessageBox.Show($"Are you sure you want to delete driver '{driverName}'?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (confirm == DialogResult.Yes)
+                {
+                    try
+                    {
+                        if (_driverService.DeleteDriver(selectedDriverId))
+                        {
+                            MessageBox.Show("Driver deleted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            LoadAllDrivers(); // Refresh the list
+                            LoadDashboardOverview(); // Update counts
+                        }
+                        else
+                        {
+                            MessageBox.Show("Failed to delete driver.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    catch (InvalidOperationException ex) // Catch if driver is in use
+                    {
+                        MessageBox.Show(ex.Message, "Deletion Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"An unexpected error occurred during deletion: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a driver to delete.", "No Driver Selected", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
     }
 }

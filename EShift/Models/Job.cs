@@ -9,16 +9,16 @@ namespace EShift.Models
     public class Job
     {
         public int JobID { get; set; }
-        public required string JobNumber { get; set; }
+        public string JobNumber { get; set; }
         public int CustomerID { get; set; } // Foreign Key to Customer
         public DateTime RequestedDate { get; set; }
         public DateTime? ScheduledPickupDate { get; set; }
         public DateTime? ScheduledDeliveryDate { get; set; }
         public DateTime? ActualPickupDate { get; set; }
         public DateTime? ActualDeliveryDate { get; set; }
-        public required string PickupLocation { get; set; }
-        public required string DeliveryLocation { get; set; }
-        public required string JobStatus { get; set; } // e.g., "Pending", "Scheduled", "Completed"
+        public string PickupLocation { get; set; }
+        public string DeliveryLocation { get; set; }
+        public string JobStatus { get; set; } // e.g., "Pending", "Scheduled", "Completed"
         public int? TransportUnitID { get; set; } // Foreign Key to TransportUnit, nullable
         public decimal? QuotedPrice { get; set; }
         public decimal? FinalPrice { get; set; }

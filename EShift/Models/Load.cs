@@ -9,7 +9,7 @@ namespace EShift.Models
     public class Load
     {
         public int LoadID { get; set; }
-        public required string LoadNumber { get; set; }
+        public string LoadNumber { get; set; }
         public int JobID { get; set; } // Foreign Key to Job
         public string? Description { get; set; }
         public decimal WeightKG { get; set; }
