@@ -19,6 +19,7 @@ namespace EShift.Forms
         private readonly ILorryService _lorryService;
         private readonly IDriverService _driverService;
         private readonly ITransportUnitService _transportUnitService;
+        private readonly IAssistantService _assistantService;
         public AdminDashboardForm()
         {
             InitializeComponent();
@@ -31,6 +32,8 @@ namespace EShift.Forms
             LoadAllDrivers();
             _transportUnitService = new TransportUnitService(); // Initialize TransportUnitService
             LoadAllTransportUnits();
+            _assistantService = new AssistantService(); // Initialize AssistantService.
+            LoadAllAssistants();
         }
 
         public AdminDashboardForm(int adminUserId)
@@ -54,6 +57,8 @@ namespace EShift.Forms
             LoadAllDrivers();
             _transportUnitService = new TransportUnitService(); // Initialize TransportUnitService
             LoadAllTransportUnits();
+            _assistantService = new AssistantService(); // Initialize AssistantService.
+            LoadAllAssistants();
         }
 
         private void LoadDashboardOverview()
@@ -435,6 +440,86 @@ namespace EShift.Forms
             else
             {
                 MessageBox.Show("Please select a transport unit to delete.", "No Unit Selected", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void LoadAllAssistants()
+        {
+            try
+            {
+                List<Assistant> allAssistants = _assistantService.GetAllAssistants();
+                dgvAssistants.DataSource = allAssistants; // Assuming you have a DataGridView named 'dgvAssistants' on tabPageResources
+                dgvAssistants.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading assistants: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnAddAssistant_Click(object sender, EventArgs e)
+        {
+            AddEditAssistantForm addForm = new AddEditAssistantForm();
+            if (addForm.ShowDialog() == DialogResult.OK)
+            {
+                LoadAllAssistants(); // Refresh the list after adding
+                LoadDashboardOverview(); // Update counts
+            }
+        }
+
+        private void btnEditAssistant_Click(object sender, EventArgs e)
+        {
+            if (dgvAssistants.SelectedRows.Count > 0)
+            {
+                int selectedAssistantId = (int)dgvAssistants.SelectedRows[0].Cells["AssistantID"].Value;
+                AddEditAssistantForm editForm = new AddEditAssistantForm(selectedAssistantId);
+                if (editForm.ShowDialog() == DialogResult.OK)
+                {
+                    LoadAllAssistants(); // Refresh the list after editing
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select an assistant to edit.", "No Assistant Selected", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void btnDeleteAssistant_Click(object sender, EventArgs e)
+        {
+            if (dgvAssistants.SelectedRows.Count > 0)
+            {
+                int selectedAssistantId = (int)dgvAssistants.SelectedRows[0].Cells["AssistantID"].Value;
+                string assistantName = $"{dgvAssistants.SelectedRows[0].Cells["FirstName"].Value} {dgvAssistants.SelectedRows[0].Cells["LastName"].Value}";
+
+                DialogResult confirm = MessageBox.Show($"Are you sure you want to delete assistant '{assistantName}'?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (confirm == DialogResult.Yes)
+                {
+                    try
+                    {
+                        if (_assistantService.DeleteAssistant(selectedAssistantId))
+                        {
+                            MessageBox.Show("Assistant deleted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            LoadAllAssistants(); // Refresh the list
+                            LoadDashboardOverview(); // Update counts
+                        }
+                        else
+                        {
+                            MessageBox.Show("Failed to delete assistant.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    catch (InvalidOperationException ex) // Catch if assistant is in use
+                    {
+                        MessageBox.Show(ex.Message, "Deletion Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"An unexpected error occurred during deletion: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select an assistant to delete.", "No Assistant Selected", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
     }

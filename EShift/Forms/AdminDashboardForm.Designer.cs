@@ -500,6 +500,7 @@
             btnDeleteAssistant.TabIndex = 11;
             btnDeleteAssistant.Text = "Delete Assistant";
             btnDeleteAssistant.UseVisualStyleBackColor = true;
+            btnDeleteAssistant.Click += btnDeleteAssistant_Click;
             // 
             // btnEditAssistant
             // 
@@ -509,6 +510,7 @@
             btnEditAssistant.TabIndex = 10;
             btnEditAssistant.Text = "Edit Assistant";
             btnEditAssistant.UseVisualStyleBackColor = true;
+            btnEditAssistant.Click += btnEditAssistant_Click;
             // 
             // btnAddAssistant
             // 
@@ -518,6 +520,7 @@
             btnAddAssistant.TabIndex = 9;
             btnAddAssistant.Text = "Add Assistant";
             btnAddAssistant.UseVisualStyleBackColor = true;
+            btnAddAssistant.Click += btnAddAssistant_Click;
             // 
             // dgvAssistants
             // 

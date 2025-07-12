@@ -71,6 +71,7 @@
             btnCancel.TabIndex = 45;
             btnCancel.Text = "Cancel";
             btnCancel.UseVisualStyleBackColor = true;
+            btnCancel.Click += btnCancel_Click;
             // 
             // btnSubmit
             // 
@@ -80,6 +81,7 @@
             btnSubmit.TabIndex = 44;
             btnSubmit.Text = "Submit";
             btnSubmit.UseVisualStyleBackColor = true;
+            btnSubmit.Click += btnSubmit_Click;
             // 
             // txtAddress
             // 
