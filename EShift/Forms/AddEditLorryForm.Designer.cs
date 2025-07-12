@@ -34,12 +34,16 @@
             lblMake = new Label();
             txtModel = new TextBox();
             lblModel = new Label();
-            textBox1 = new TextBox();
-            label1 = new Label();
-            textBox2 = new TextBox();
-            label2 = new Label();
-            textBox3 = new TextBox();
-            label3 = new Label();
+            txtCapacity = new TextBox();
+            lblCapacity = new Label();
+            txtFuelType = new TextBox();
+            lblFuelType = new Label();
+            txtCurrentMilage = new TextBox();
+            lblCurrentMilage = new Label();
+            btnSubmit = new Button();
+            btnCancel = new Button();
+            lblFormTitle = new Label();
+            chkIsAvailable = new CheckBox();
             SuspendLayout();
             // 
             // lblRegistrationNumber
@@ -90,65 +94,106 @@
             lblModel.TabIndex = 4;
             lblModel.Text = "Model";
             // 
-            // textBox1
+            // txtCapacity
             // 
-            textBox1.Location = new Point(217, 212);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(277, 27);
-            textBox1.TabIndex = 7;
+            txtCapacity.Location = new Point(217, 212);
+            txtCapacity.Name = "txtCapacity";
+            txtCapacity.Size = new Size(277, 27);
+            txtCapacity.TabIndex = 7;
             // 
-            // label1
+            // lblCapacity
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(13, 219);
-            label1.Name = "label1";
-            label1.Size = new Size(52, 20);
-            label1.TabIndex = 6;
-            label1.Text = "Model";
+            lblCapacity.AutoSize = true;
+            lblCapacity.Location = new Point(13, 219);
+            lblCapacity.Name = "lblCapacity";
+            lblCapacity.Size = new Size(66, 20);
+            lblCapacity.TabIndex = 6;
+            lblCapacity.Text = "Capacity";
             // 
-            // textBox2
+            // txtFuelType
             // 
-            textBox2.Location = new Point(220, 270);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(277, 27);
-            textBox2.TabIndex = 9;
+            txtFuelType.Location = new Point(220, 270);
+            txtFuelType.Name = "txtFuelType";
+            txtFuelType.Size = new Size(277, 27);
+            txtFuelType.TabIndex = 9;
             // 
-            // label2
+            // lblFuelType
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(16, 277);
-            label2.Name = "label2";
-            label2.Size = new Size(52, 20);
-            label2.TabIndex = 8;
-            label2.Text = "Model";
+            lblFuelType.AutoSize = true;
+            lblFuelType.Location = new Point(16, 277);
+            lblFuelType.Name = "lblFuelType";
+            lblFuelType.Size = new Size(71, 20);
+            lblFuelType.TabIndex = 8;
+            lblFuelType.Text = "Fuel Type";
             // 
-            // textBox3
+            // txtCurrentMilage
             // 
-            textBox3.Location = new Point(220, 328);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(277, 27);
-            textBox3.TabIndex = 11;
+            txtCurrentMilage.Location = new Point(220, 328);
+            txtCurrentMilage.Name = "txtCurrentMilage";
+            txtCurrentMilage.Size = new Size(277, 27);
+            txtCurrentMilage.TabIndex = 11;
             // 
-            // label3
+            // lblCurrentMilage
             // 
-            label3.AutoSize = true;
-            label3.Location = new Point(16, 335);
-            label3.Name = "label3";
-            label3.Size = new Size(52, 20);
-            label3.TabIndex = 10;
-            label3.Text = "Model";
+            lblCurrentMilage.AutoSize = true;
+            lblCurrentMilage.Location = new Point(16, 335);
+            lblCurrentMilage.Name = "lblCurrentMilage";
+            lblCurrentMilage.Size = new Size(107, 20);
+            lblCurrentMilage.TabIndex = 10;
+            lblCurrentMilage.Text = "Current Milage";
+            // 
+            // btnSubmit
+            // 
+            btnSubmit.Location = new Point(76, 399);
+            btnSubmit.Name = "btnSubmit";
+            btnSubmit.Size = new Size(94, 29);
+            btnSubmit.TabIndex = 12;
+            btnSubmit.Text = "Submit";
+            btnSubmit.UseVisualStyleBackColor = true;
+            // 
+            // btnCancel
+            // 
+            btnCancel.Location = new Point(403, 399);
+            btnCancel.Name = "btnCancel";
+            btnCancel.Size = new Size(94, 29);
+            btnCancel.TabIndex = 13;
+            btnCancel.Text = "Cancel";
+            btnCancel.UseVisualStyleBackColor = true;
+            // 
+            // lblFormTitle
+            // 
+            lblFormTitle.AutoSize = true;
+            lblFormTitle.Location = new Point(549, 176);
+            lblFormTitle.Name = "lblFormTitle";
+            lblFormTitle.Size = new Size(50, 20);
+            lblFormTitle.TabIndex = 14;
+            lblFormTitle.Text = "label1";
+            // 
+            // chkIsAvailable
+            // 
+            chkIsAvailable.AutoSize = true;
+            chkIsAvailable.Location = new Point(568, 331);
+            chkIsAvailable.Name = "chkIsAvailable";
+            chkIsAvailable.Size = new Size(107, 24);
+            chkIsAvailable.TabIndex = 15;
+            chkIsAvailable.Text = "Is Available";
+            chkIsAvailable.UseVisualStyleBackColor = true;
             // 
             // AddEditLorryForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(textBox3);
-            Controls.Add(label3);
-            Controls.Add(textBox2);
-            Controls.Add(label2);
-            Controls.Add(textBox1);
-            Controls.Add(label1);
+            Controls.Add(chkIsAvailable);
+            Controls.Add(lblFormTitle);
+            Controls.Add(btnCancel);
+            Controls.Add(btnSubmit);
+            Controls.Add(txtCurrentMilage);
+            Controls.Add(lblCurrentMilage);
+            Controls.Add(txtFuelType);
+            Controls.Add(lblFuelType);
+            Controls.Add(txtCapacity);
+            Controls.Add(lblCapacity);
             Controls.Add(txtModel);
             Controls.Add(lblModel);
             Controls.Add(txtMake);
@@ -169,11 +214,15 @@
         private Label lblMake;
         private TextBox txtModel;
         private Label lblModel;
-        private TextBox textBox1;
-        private Label label1;
-        private TextBox textBox2;
-        private Label label2;
-        private TextBox textBox3;
-        private Label label3;
+        private TextBox txtCapacity;
+        private Label lblCapacity;
+        private TextBox txtFuelType;
+        private Label lblFuelType;
+        private TextBox txtCurrentMilage;
+        private Label lblCurrentMilage;
+        private Button btnSubmit;
+        private Button btnCancel;
+        private Label lblFormTitle;
+        private CheckBox chkIsAvailable;
     }
 }
