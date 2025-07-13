@@ -23,8 +23,8 @@ namespace EShift.Forms
             _userService = new UserService();
             _emailService = new EmailService();
 
-            // Set password textbox to use password char for security
             txtPassword.PasswordChar = '*';
+            this.MaximizeBox = false;
         }
 
         private void btnLogin_Click(object sender, EventArgs e)

@@ -33,7 +33,8 @@ namespace EShift
             //}
 
             //Application.Run(new AdminDashboardForm(3, emailService));
-            Application.Run(new CustomerDashboardForm(1));
+            //Application.Run(new CustomerDashboardForm(1));
+            Application.Run(new LoginForm());
         }
     }
 }
