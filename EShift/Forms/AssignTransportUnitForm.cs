@@ -1,4 +1,5 @@
 ﻿using EShift.Business.Interface;
+using EShift.Business.Service;
 using EShift.Models;
 using System;
 using System.Collections.Generic;
@@ -23,6 +24,7 @@ namespace EShift.Forms
         private IContainerService _containerService; // Still needed for updating individual container status
         private INotificationService _notificationService;
         private ICustomerService _customerService;
+        private IEmailService _emailService;
 
         private Job _currentJob;
         public AssignTransportUnitForm(int jobId,
@@ -45,6 +47,7 @@ namespace EShift.Forms
             _containerService = containerService;
             _notificationService = notificationService;
             _customerService = customerService;
+            _emailService = new EmailService();
 
             this.Load += AssignTransportUnitForm_Load;
         }
@@ -265,7 +268,6 @@ namespace EShift.Forms
             }
         }
 
-
         private void btnAssign_Click(object sender, EventArgs e)
         {
             if (_currentJob == null)
@@ -291,16 +293,6 @@ namespace EShift.Forms
 
             // Update Job with assigned TransportUnit and other fields
             _currentJob.TransportUnitID = selectedTransportUnitId;
-            // IMPORTANT: If your Job model has these foreign keys, uncomment and assign them:
-            //_currentJob.LorryID = assignedTransportUnit.LorryID;
-            //_currentJob.DriverID = assignedTransportUnit.DriverID;
-            //_currentJob.AssistantID = assignedTransportUnit.AssistantID;
-            //_currentJob.ContainerID = assignedTransportUnit.ContainerID;
-
-            // Retrieve Scheduled dates from the form (if they are intended to be editable here)
-            // If they are just for display, remove these lines.
-            //_currentJob.ScheduledPickupDate = dtpScheduledPickup.Value;
-            //_currentJob.ScheduledDeliveryDate = dtpScheduledDelivery.Value;
 
             // Get prices and remarks from inputs
             _currentJob.Remarks = txtRemarks.Text.Trim();
@@ -327,10 +319,8 @@ namespace EShift.Forms
             }
 
             // Set Actual Pickup/Delivery Dates (nullable if not set/cleared)
-            // THIS IS WHERE THE FIX IS FOR ACTUAL DATES
             _currentJob.ActualPickupDate = (dtpActualPickupDate.CustomFormat == " " || dtpActualPickupDate.Value == dtpActualPickupDate.MinDate) ? (DateTime?)null : dtpActualPickupDate.Value;
             _currentJob.ActualDeliveryDate = (dtpActualDeliveryDate.CustomFormat == " " || dtpActualDeliveryDate.Value == dtpActualDeliveryDate.MinDate) ? (DateTime?)null : dtpActualDeliveryDate.Value;
-
 
             // Set Admin Assigned Date and update Job Status
             _currentJob.AdminAssignedDate = DateTime.Now;
@@ -344,6 +334,8 @@ namespace EShift.Forms
                 if (jobUpdateSuccess)
                 {
                     // 2. Update IsAvailable status of the *components* of the assigned TransportUnit to false
+                    // These updates are still necessary for the individual components' availability,
+                    // even if the Job model doesn't store their IDs directly.
                     // Lorry
                     Lorry lorry = _lorryService.GetLorryById(assignedTransportUnit.LorryID);
                     if (lorry != null)
@@ -382,24 +374,52 @@ namespace EShift.Forms
                         }
                     }
 
-                    // 3. Send Notification to Customer about assignment
+                    // 3. Send Notification to Customer about assignment AND send Email
                     if (_currentJob.CustomerID.HasValue)
                     {
                         Customer customer = _customerService.GetCustomerById(_currentJob.CustomerID.Value);
                         if (customer != null && customer.UserID.HasValue)
                         {
+                            string notificationMessage = $"Your job '{_currentJob.JobNumber}' has been assigned a transport unit for pickup on {_currentJob.ScheduledPickupDate?.ToShortDateString()}. Quoted Price: {_currentJob.QuotedPrice?.ToString("C")}.";
+
+                            // Add record to Notifications table
                             _notificationService.AddNotification(new Notification
                             {
                                 UserID = customer.UserID.Value,
                                 MessageType = "Job_Assigned",
-                                MessageContent = $"Your job '{_currentJob.JobNumber}' has been assigned a transport unit for pickup on {_currentJob.ScheduledPickupDate?.ToShortDateString()}. Quoted Price: {_currentJob.QuotedPrice?.ToString("C")}.",
+                                MessageContent = notificationMessage,
                                 RelatedEntityID = _currentJob.JobID,
-                                RelatedEntityType = "Job"
+                                RelatedEntityType = "Job",
+                                Timestamp = DateTime.Now, // Ensure timestamp is set here
+                                IsRead = false // New notifications are unread by default
                             });
+
+                            // Send Email
+                            if (!string.IsNullOrEmpty(customer.Email))
+                            {
+                                string emailSubject = $"EShift: Job {_currentJob.JobNumber} Assigned!";
+                                string emailBody = $@"
+                                    <p>Dear {customer.FirstName},</p>
+                                    <p>Good news! Your job <b>{_currentJob.JobNumber}</b> has been successfully assigned a transport unit.</p>
+                                    <p><b>Details:</b></p>
+                                    <ul>
+                                        <li>Pickup Location: {_currentJob.PickupLocation}</li>
+                                        <li>Delivery Location: {_currentJob.DeliveryLocation}</li>
+                                        <li>Scheduled Pickup Date: {_currentJob.ScheduledPickupDate?.ToShortDateString() ?? "N/A"}</li>
+                                        <li>Scheduled Delivery Date: {_currentJob.ScheduledDeliveryDate?.ToShortDateString() ?? "N/A"}</li>
+                                        <li>Quoted Price: {_currentJob.QuotedPrice?.ToString("C") ?? "N/A"}</li>
+                                        <li>Remarks: {_currentJob.Remarks ?? "None"}</li>
+                                    </ul>
+                                    <p>We will keep you updated on the progress of your shipment.</p>
+                                    <p>Thank you for choosing EShift.</p>
+                                    <p>Best Regards,<br/>The EShift Team</p>";
+
+                                Task.Run(() => _emailService.SendEmailAsync(customer.Email, emailSubject, emailBody, customer.FullName));
+                            }
                         }
                     }
 
-                    MessageBox.Show("Job assigned successfully, resources updated!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Job assigned successfully, resources updated, and customer notified!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.DialogResult = DialogResult.OK;
                     this.Close();
                 }
@@ -410,7 +430,7 @@ namespace EShift.Forms
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"An error occurred during assignment: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"An error occurred during assignment or notification: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
