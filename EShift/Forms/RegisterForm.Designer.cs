@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RegisterForm));
             lblUsername = new Label();
             txtUsername = new TextBox();
             txtPassword = new TextBox();
@@ -56,277 +57,363 @@
             btnCancel = new Button();
             lblAlreadyRegister = new Label();
             lnkLogin = new LinkLabel();
+            panel1 = new Panel();
+            panel2 = new Panel();
+            pictureBox1 = new PictureBox();
+            pictureBox2 = new PictureBox();
+            panel1.SuspendLayout();
+            panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             SuspendLayout();
             // 
             // lblUsername
             // 
             lblUsername.AutoSize = true;
-            lblUsername.Location = new Point(28, 28);
+            lblUsername.Font = new Font("Calibri", 10.2F, FontStyle.Bold);
+            lblUsername.Location = new Point(16, 16);
             lblUsername.Name = "lblUsername";
-            lblUsername.Size = new Size(75, 20);
+            lblUsername.Size = new Size(83, 21);
             lblUsername.TabIndex = 0;
             lblUsername.Text = "Username";
             // 
             // txtUsername
             // 
-            txtUsername.Location = new Point(28, 51);
+            txtUsername.Location = new Point(16, 40);
             txtUsername.Name = "txtUsername";
+            txtUsername.PlaceholderText = "Username";
             txtUsername.Size = new Size(200, 27);
             txtUsername.TabIndex = 1;
             // 
             // txtPassword
             // 
-            txtPassword.Location = new Point(270, 51);
+            txtPassword.Location = new Point(234, 39);
             txtPassword.Name = "txtPassword";
+            txtPassword.PlaceholderText = "Password";
             txtPassword.Size = new Size(200, 27);
             txtPassword.TabIndex = 3;
             // 
             // lblPassword
             // 
             lblPassword.AutoSize = true;
-            lblPassword.Location = new Point(270, 28);
+            lblPassword.Font = new Font("Calibri", 10.2F, FontStyle.Bold);
+            lblPassword.Location = new Point(234, 16);
             lblPassword.Name = "lblPassword";
-            lblPassword.Size = new Size(70, 20);
+            lblPassword.Size = new Size(78, 21);
             lblPassword.TabIndex = 2;
             lblPassword.Text = "Password";
             // 
             // txtConfirmPassword
             // 
-            txtConfirmPassword.Location = new Point(530, 51);
+            txtConfirmPassword.Location = new Point(454, 39);
             txtConfirmPassword.Name = "txtConfirmPassword";
+            txtConfirmPassword.PlaceholderText = "Confirm password";
             txtConfirmPassword.Size = new Size(200, 27);
             txtConfirmPassword.TabIndex = 5;
             // 
             // lblConfirmPassword
             // 
             lblConfirmPassword.AutoSize = true;
-            lblConfirmPassword.Location = new Point(530, 28);
+            lblConfirmPassword.Font = new Font("Calibri", 10.2F, FontStyle.Bold);
+            lblConfirmPassword.Location = new Point(454, 16);
             lblConfirmPassword.Name = "lblConfirmPassword";
-            lblConfirmPassword.Size = new Size(129, 20);
+            lblConfirmPassword.Size = new Size(139, 21);
             lblConfirmPassword.TabIndex = 4;
             lblConfirmPassword.Text = "Confirm-Password";
             // 
             // txtLastName
             // 
-            txtLastName.Location = new Point(392, 124);
+            txtLastName.Location = new Point(354, 112);
             txtLastName.Name = "txtLastName";
-            txtLastName.Size = new Size(338, 27);
+            txtLastName.PlaceholderText = "Last Name";
+            txtLastName.Size = new Size(300, 27);
             txtLastName.TabIndex = 9;
             // 
             // lblLastName
             // 
             lblLastName.AutoSize = true;
-            lblLastName.Location = new Point(392, 101);
+            lblLastName.Font = new Font("Calibri", 10.2F, FontStyle.Bold);
+            lblLastName.Location = new Point(355, 89);
             lblLastName.Name = "lblLastName";
-            lblLastName.Size = new Size(79, 20);
+            lblLastName.Size = new Size(84, 21);
             lblLastName.TabIndex = 8;
             lblLastName.Text = "Last Name";
             // 
             // txtFirstName
             // 
-            txtFirstName.Location = new Point(28, 124);
+            txtFirstName.Location = new Point(16, 113);
             txtFirstName.Name = "txtFirstName";
-            txtFirstName.Size = new Size(312, 27);
+            txtFirstName.PlaceholderText = "First Name";
+            txtFirstName.Size = new Size(300, 27);
             txtFirstName.TabIndex = 7;
             // 
             // lblFirstName
             // 
             lblFirstName.AutoSize = true;
-            lblFirstName.Location = new Point(28, 101);
+            lblFirstName.Font = new Font("Calibri", 10.2F, FontStyle.Bold);
+            lblFirstName.Location = new Point(16, 89);
             lblFirstName.Name = "lblFirstName";
-            lblFirstName.Size = new Size(80, 20);
+            lblFirstName.Size = new Size(87, 21);
             lblFirstName.TabIndex = 6;
             lblFirstName.Text = "First Name";
             // 
             // txtAddressLine2
             // 
-            txtAddressLine2.Location = new Point(392, 196);
+            txtAddressLine2.Location = new Point(355, 184);
             txtAddressLine2.Name = "txtAddressLine2";
-            txtAddressLine2.Size = new Size(338, 27);
+            txtAddressLine2.PlaceholderText = "Address Line - 2";
+            txtAddressLine2.Size = new Size(300, 27);
             txtAddressLine2.TabIndex = 13;
             // 
             // lblAddressLine2
             // 
             lblAddressLine2.AutoSize = true;
-            lblAddressLine2.Location = new Point(392, 173);
+            lblAddressLine2.Font = new Font("Calibri", 10.2F, FontStyle.Bold);
+            lblAddressLine2.Location = new Point(355, 161);
             lblAddressLine2.Name = "lblAddressLine2";
-            lblAddressLine2.Size = new Size(105, 20);
+            lblAddressLine2.Size = new Size(113, 21);
             lblAddressLine2.TabIndex = 12;
             lblAddressLine2.Text = "Address Line 2";
             // 
             // txtAddressLine1
             // 
-            txtAddressLine1.Location = new Point(28, 196);
+            txtAddressLine1.Location = new Point(16, 184);
             txtAddressLine1.Name = "txtAddressLine1";
-            txtAddressLine1.Size = new Size(312, 27);
+            txtAddressLine1.PlaceholderText = "Address Line - 1";
+            txtAddressLine1.Size = new Size(300, 27);
             txtAddressLine1.TabIndex = 11;
             // 
             // lblAddressLine1
             // 
             lblAddressLine1.AutoSize = true;
-            lblAddressLine1.Location = new Point(28, 173);
+            lblAddressLine1.Font = new Font("Calibri", 10.2F, FontStyle.Bold);
+            lblAddressLine1.Location = new Point(16, 161);
             lblAddressLine1.Name = "lblAddressLine1";
-            lblAddressLine1.Size = new Size(105, 20);
+            lblAddressLine1.Size = new Size(113, 21);
             lblAddressLine1.TabIndex = 10;
             lblAddressLine1.Text = "Address Line 1";
             // 
             // txtPostalCode
             // 
-            txtPostalCode.Location = new Point(530, 272);
+            txtPostalCode.Location = new Point(455, 260);
             txtPostalCode.Name = "txtPostalCode";
+            txtPostalCode.PlaceholderText = "XXXXX";
             txtPostalCode.Size = new Size(200, 27);
             txtPostalCode.TabIndex = 19;
             // 
             // lblPostalCode
             // 
             lblPostalCode.AutoSize = true;
-            lblPostalCode.Location = new Point(530, 249);
+            lblPostalCode.Font = new Font("Calibri", 10.2F, FontStyle.Bold);
+            lblPostalCode.Location = new Point(454, 236);
             lblPostalCode.Name = "lblPostalCode";
-            lblPostalCode.Size = new Size(87, 20);
+            lblPostalCode.Size = new Size(93, 21);
             lblPostalCode.TabIndex = 18;
             lblPostalCode.Text = "Postal Code";
             // 
             // txtProvince
             // 
-            txtProvince.Location = new Point(270, 272);
+            txtProvince.Location = new Point(234, 260);
             txtProvince.Name = "txtProvince";
+            txtProvince.PlaceholderText = "Province";
             txtProvince.Size = new Size(200, 27);
             txtProvince.TabIndex = 17;
             // 
             // lblProvince
             // 
             lblProvince.AutoSize = true;
-            lblProvince.Location = new Point(270, 249);
+            lblProvince.Font = new Font("Calibri", 10.2F, FontStyle.Bold);
+            lblProvince.Location = new Point(234, 237);
             lblProvince.Name = "lblProvince";
-            lblProvince.Size = new Size(65, 20);
+            lblProvince.Size = new Size(71, 21);
             lblProvince.TabIndex = 16;
             lblProvince.Text = "Province";
             // 
             // txtCity
             // 
-            txtCity.Location = new Point(28, 272);
+            txtCity.Location = new Point(16, 260);
             txtCity.Name = "txtCity";
+            txtCity.PlaceholderText = "City";
             txtCity.Size = new Size(200, 27);
             txtCity.TabIndex = 15;
             // 
             // lblCity
             // 
             lblCity.AutoSize = true;
-            lblCity.Location = new Point(28, 249);
+            lblCity.Font = new Font("Calibri", 10.2F, FontStyle.Bold);
+            lblCity.Location = new Point(16, 236);
             lblCity.Name = "lblCity";
-            lblCity.Size = new Size(34, 20);
+            lblCity.Size = new Size(37, 21);
             lblCity.TabIndex = 14;
             lblCity.Text = "City";
             // 
             // txtEmail
             // 
-            txtEmail.Location = new Point(392, 342);
+            txtEmail.Location = new Point(355, 330);
             txtEmail.Name = "txtEmail";
-            txtEmail.Size = new Size(338, 27);
+            txtEmail.PlaceholderText = "example@test.com";
+            txtEmail.Size = new Size(300, 27);
             txtEmail.TabIndex = 23;
             // 
             // lblEmail
             // 
             lblEmail.AutoSize = true;
-            lblEmail.Location = new Point(392, 319);
+            lblEmail.Font = new Font("Calibri", 10.2F, FontStyle.Bold);
+            lblEmail.Location = new Point(355, 306);
             lblEmail.Name = "lblEmail";
-            lblEmail.Size = new Size(46, 20);
+            lblEmail.Size = new Size(48, 21);
             lblEmail.TabIndex = 22;
             lblEmail.Text = "Email";
             // 
             // txtPhoneNumber
             // 
-            txtPhoneNumber.Location = new Point(28, 342);
+            txtPhoneNumber.Location = new Point(16, 330);
             txtPhoneNumber.Name = "txtPhoneNumber";
-            txtPhoneNumber.Size = new Size(312, 27);
+            txtPhoneNumber.PlaceholderText = "077-1234567";
+            txtPhoneNumber.Size = new Size(300, 27);
             txtPhoneNumber.TabIndex = 21;
             // 
             // lblPhoneNumber
             // 
             lblPhoneNumber.AutoSize = true;
-            lblPhoneNumber.Location = new Point(28, 319);
+            lblPhoneNumber.Font = new Font("Calibri", 10.2F, FontStyle.Bold);
+            lblPhoneNumber.Location = new Point(16, 306);
             lblPhoneNumber.Name = "lblPhoneNumber";
-            lblPhoneNumber.Size = new Size(108, 20);
+            lblPhoneNumber.Size = new Size(117, 21);
             lblPhoneNumber.TabIndex = 20;
             lblPhoneNumber.Text = "Phone Number";
             // 
             // btnRegister
             // 
-            btnRegister.Location = new Point(164, 389);
+            btnRegister.BackColor = SystemColors.Highlight;
+            btnRegister.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnRegister.ForeColor = SystemColors.ControlLightLight;
+            btnRegister.Location = new Point(16, 377);
             btnRegister.Name = "btnRegister";
-            btnRegister.Size = new Size(94, 29);
+            btnRegister.Size = new Size(122, 42);
             btnRegister.TabIndex = 24;
             btnRegister.Text = "REGISTER";
-            btnRegister.UseVisualStyleBackColor = true;
+            btnRegister.UseVisualStyleBackColor = false;
             btnRegister.Click += btnRegister_Click;
             // 
             // btnCancel
             // 
-            btnCancel.Location = new Point(489, 389);
+            btnCancel.BackColor = SystemColors.Highlight;
+            btnCancel.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnCancel.ForeColor = SystemColors.ControlLightLight;
+            btnCancel.Location = new Point(532, 377);
             btnCancel.Name = "btnCancel";
-            btnCancel.Size = new Size(94, 29);
+            btnCancel.Size = new Size(122, 42);
             btnCancel.TabIndex = 25;
             btnCancel.Text = "CANCEL";
-            btnCancel.UseVisualStyleBackColor = true;
+            btnCancel.UseVisualStyleBackColor = false;
             btnCancel.Click += btnCancel_Click;
             // 
             // lblAlreadyRegister
             // 
             lblAlreadyRegister.AutoSize = true;
-            lblAlreadyRegister.Location = new Point(164, 434);
+            lblAlreadyRegister.Font = new Font("Calibri", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblAlreadyRegister.Location = new Point(168, 399);
             lblAlreadyRegister.Name = "lblAlreadyRegister";
-            lblAlreadyRegister.Size = new Size(205, 20);
+            lblAlreadyRegister.Size = new Size(221, 21);
             lblAlreadyRegister.TabIndex = 26;
             lblAlreadyRegister.Text = "If you have already registered";
             // 
             // lnkLogin
             // 
             lnkLogin.AutoSize = true;
-            lnkLogin.Location = new Point(395, 434);
+            lnkLogin.Font = new Font("Calibri", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lnkLogin.Location = new Point(403, 399);
             lnkLogin.Name = "lnkLogin";
-            lnkLogin.Size = new Size(51, 20);
+            lnkLogin.Size = new Size(56, 21);
             lnkLogin.TabIndex = 27;
             lnkLogin.TabStop = true;
             lnkLogin.Text = "LOGIN";
             lnkLogin.LinkClicked += lnkLogin_LinkClicked;
             // 
+            // panel1
+            // 
+            panel1.BackColor = SystemColors.ActiveCaption;
+            panel1.Controls.Add(txtPhoneNumber);
+            panel1.Controls.Add(txtEmail);
+            panel1.Controls.Add(btnRegister);
+            panel1.Controls.Add(lblEmail);
+            panel1.Controls.Add(txtPostalCode);
+            panel1.Controls.Add(lnkLogin);
+            panel1.Controls.Add(txtProvince);
+            panel1.Controls.Add(btnCancel);
+            panel1.Controls.Add(txtCity);
+            panel1.Controls.Add(lblPhoneNumber);
+            panel1.Controls.Add(txtAddressLine2);
+            panel1.Controls.Add(lblAlreadyRegister);
+            panel1.Controls.Add(txtAddressLine1);
+            panel1.Controls.Add(lblUsername);
+            panel1.Controls.Add(txtFirstName);
+            panel1.Controls.Add(txtLastName);
+            panel1.Controls.Add(lblPostalCode);
+            panel1.Controls.Add(lblPassword);
+            panel1.Controls.Add(txtConfirmPassword);
+            panel1.Controls.Add(lblConfirmPassword);
+            panel1.Controls.Add(txtPassword);
+            panel1.Controls.Add(lblProvince);
+            panel1.Controls.Add(txtUsername);
+            panel1.Controls.Add(lblFirstName);
+            panel1.Controls.Add(lblLastName);
+            panel1.Controls.Add(lblCity);
+            panel1.Controls.Add(lblAddressLine2);
+            panel1.Controls.Add(lblAddressLine1);
+            panel1.Location = new Point(400, 24);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(676, 448);
+            panel1.TabIndex = 28;
+            // 
+            // panel2
+            // 
+            panel2.BackColor = SystemColors.ActiveCaption;
+            panel2.Controls.Add(pictureBox2);
+            panel2.Controls.Add(pictureBox1);
+            panel2.Location = new Point(12, 24);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(382, 448);
+            panel2.TabIndex = 29;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.BackgroundImage = (Image)resources.GetObject("pictureBox1.BackgroundImage");
+            pictureBox1.BackgroundImageLayout = ImageLayout.Zoom;
+            pictureBox1.Location = new Point(3, 3);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(137, 136);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 0;
+            pictureBox1.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            pictureBox2.BackgroundImage = (Image)resources.GetObject("pictureBox2.BackgroundImage");
+            pictureBox2.BackgroundImageLayout = ImageLayout.Center;
+            pictureBox2.Location = new Point(16, 89);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(366, 320);
+            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox2.TabIndex = 1;
+            pictureBox2.TabStop = false;
+            // 
             // RegisterForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 478);
-            Controls.Add(lnkLogin);
-            Controls.Add(lblAlreadyRegister);
-            Controls.Add(btnCancel);
-            Controls.Add(btnRegister);
-            Controls.Add(txtEmail);
-            Controls.Add(lblEmail);
-            Controls.Add(txtPhoneNumber);
-            Controls.Add(lblPhoneNumber);
-            Controls.Add(txtPostalCode);
-            Controls.Add(lblPostalCode);
-            Controls.Add(txtProvince);
-            Controls.Add(lblProvince);
-            Controls.Add(txtCity);
-            Controls.Add(lblCity);
-            Controls.Add(txtAddressLine2);
-            Controls.Add(lblAddressLine2);
-            Controls.Add(txtAddressLine1);
-            Controls.Add(lblAddressLine1);
-            Controls.Add(txtLastName);
-            Controls.Add(lblLastName);
-            Controls.Add(txtFirstName);
-            Controls.Add(lblFirstName);
-            Controls.Add(txtConfirmPassword);
-            Controls.Add(lblConfirmPassword);
-            Controls.Add(txtPassword);
-            Controls.Add(lblPassword);
-            Controls.Add(txtUsername);
-            Controls.Add(lblUsername);
+            ClientSize = new Size(1095, 501);
+            Controls.Add(panel2);
+            Controls.Add(panel1);
             Name = "RegisterForm";
             Text = "RegisterForm";
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
+            panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -359,5 +446,9 @@
         private Button btnCancel;
         private Label lblAlreadyRegister;
         private LinkLabel lnkLogin;
+        private Panel panel1;
+        private Panel panel2;
+        private PictureBox pictureBox2;
+        private PictureBox pictureBox1;
     }
 }

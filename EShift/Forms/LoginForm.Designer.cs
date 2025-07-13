@@ -50,6 +50,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBoxUsername).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             groupBoxPassword.SuspendLayout();
+            panel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             SuspendLayout();
@@ -79,36 +80,43 @@
             // 
             // txtUsername
             // 
+            txtUsername.BackColor = SystemColors.ActiveCaption;
+            txtUsername.BorderStyle = BorderStyle.FixedSingle;
             txtUsername.Location = new Point(56, 43);
             txtUsername.Name = "txtUsername";
             txtUsername.PlaceholderText = "Enter Username here...";
-            txtUsername.Size = new Size(282, 27);
+            txtUsername.Size = new Size(282, 28);
             txtUsername.TabIndex = 3;
             // 
             // txtPassword
             // 
+            txtPassword.BackColor = SystemColors.ActiveCaption;
+            txtPassword.BorderStyle = BorderStyle.FixedSingle;
             txtPassword.Location = new Point(56, 43);
             txtPassword.Name = "txtPassword";
             txtPassword.PasswordChar = '*';
             txtPassword.PlaceholderText = "Enter Password here...";
-            txtPassword.Size = new Size(282, 27);
+            txtPassword.Size = new Size(282, 28);
             txtPassword.TabIndex = 4;
             // 
             // lblRegister
             // 
             lblRegister.AutoSize = true;
-            lblRegister.Location = new Point(452, 350);
+            lblRegister.Font = new Font("Calibri", 10.2F, FontStyle.Bold);
+            lblRegister.Location = new Point(66, 309);
             lblRegister.Name = "lblRegister";
-            lblRegister.Size = new Size(184, 20);
+            lblRegister.Size = new Size(208, 21);
             lblRegister.TabIndex = 5;
             lblRegister.Text = "If you haven't register yet...";
             // 
             // lnkRegister
             // 
             lnkRegister.AutoSize = true;
+            lnkRegister.BackColor = SystemColors.ActiveCaption;
+            lnkRegister.Font = new Font("Calibri", 10.2F, FontStyle.Bold);
             lnkRegister.Location = new Point(650, 350);
             lnkRegister.Name = "lnkRegister";
-            lnkRegister.Size = new Size(73, 20);
+            lnkRegister.Size = new Size(78, 21);
             lnkRegister.TabIndex = 6;
             lnkRegister.TabStop = true;
             lnkRegister.Text = "REGISTER";
@@ -146,8 +154,11 @@
             // 
             // groupBoxUsername
             // 
+            groupBoxUsername.BackColor = SystemColors.ActiveCaption;
             groupBoxUsername.Controls.Add(pictureBoxUsername);
             groupBoxUsername.Controls.Add(txtUsername);
+            groupBoxUsername.FlatStyle = FlatStyle.Popup;
+            groupBoxUsername.Font = new Font("Calibri", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             groupBoxUsername.Location = new Point(385, 49);
             groupBoxUsername.Name = "groupBoxUsername";
             groupBoxUsername.Size = new Size(344, 79);
@@ -181,8 +192,11 @@
             // 
             // groupBoxPassword
             // 
+            groupBoxPassword.BackColor = SystemColors.ActiveCaption;
             groupBoxPassword.Controls.Add(pictureBox2);
             groupBoxPassword.Controls.Add(txtPassword);
+            groupBoxPassword.FlatStyle = FlatStyle.Popup;
+            groupBoxPassword.Font = new Font("Calibri", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             groupBoxPassword.Location = new Point(385, 163);
             groupBoxPassword.Name = "groupBoxPassword";
             groupBoxPassword.Size = new Size(344, 79);
@@ -192,6 +206,8 @@
             // 
             // panel1
             // 
+            panel1.BackColor = SystemColors.ActiveCaption;
+            panel1.Controls.Add(lblRegister);
             panel1.Location = new Point(370, 41);
             panel1.Name = "panel1";
             panel1.Size = new Size(369, 347);
@@ -199,6 +215,7 @@
             // 
             // panel2
             // 
+            panel2.BackColor = SystemColors.ActiveCaption;
             panel2.Controls.Add(pictureBox3);
             panel2.Controls.Add(pictureBox1);
             panel2.Controls.Add(lblDescription);
@@ -229,7 +246,6 @@
             ClientSize = new Size(760, 418);
             Controls.Add(groupBoxPassword);
             Controls.Add(lnkRegister);
-            Controls.Add(lblRegister);
             Controls.Add(lblUsername);
             Controls.Add(btnLogin);
             Controls.Add(groupBoxUsername);
@@ -247,6 +263,8 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             groupBoxPassword.ResumeLayout(false);
             groupBoxPassword.PerformLayout();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
