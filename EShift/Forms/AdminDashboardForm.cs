@@ -22,35 +22,32 @@ namespace EShift.Forms
         private readonly IAssistantService _assistantService;
         private readonly IContainerService _containerService;
 
-        private readonly IUserService _userService; // ADDED: For admin user details and potentially notifications
-        private readonly INotificationService _notificationService; // ADDED: For handling notifications
-        private readonly ICustomerService _customerService; // ADDED: To get customer email for notifications
+        private readonly IUserService _userService;
+        private readonly INotificationService _notificationService;
+        private readonly ICustomerService _customerService;
         private readonly IEmailService _emailService;
 
-        private int _currentAdminUserId; // To store the logged-in admin's ID
-        public AdminDashboardForm()
-        {
-            InitializeComponent();
-        }
+        private readonly IReportService _reportService;
+
+        private int _currentAdminUserId;
 
         public AdminDashboardForm(int adminUserId, IEmailService emailService)
         {
             InitializeComponent();
 
-            _currentAdminUserId = adminUserId; // Store the admin ID
+            _currentAdminUserId = adminUserId;
 
-            // Initialize all services here to ensure they are available in both constructors
             _jobService = new JobService();
             _lorryService = new LorryService();
             _driverService = new DriverService();
             _transportUnitService = new TransportUnitService();
             _assistantService = new AssistantService();
             _containerService = new ContainerService();
-            _userService = new UserService(); // Initialize UserService
-            _notificationService = new NotificationService(); // Initialize NotificationService
-            _customerService = new CustomerService(); // Initialize CustomerService
-            _emailService = new EmailService();
-            // Load initial data
+            _userService = new UserService();
+            _notificationService = new NotificationService();
+            _customerService = new CustomerService();
+            _reportService = new ReportService(_jobService, _customerService);
+
             LoadDashboardOverview();
             LoadAllJobs();
             LoadAllLorries();
@@ -116,12 +113,10 @@ namespace EShift.Forms
             try
             {
                 List<Job> allJobs = _jobService.GetAllJobs();
-                dgvJobs.DataSource = allJobs; // Assuming you named your DataGridView 'dgvJobs'
+                dgvJobs.DataSource = allJobs;
 
-                // Optional: Auto-resize columns
                 dgvJobs.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
 
-                // Populate job status filter ComboBox
                 if (cmbJobStatusFilter.Items.Count == 0)
                 {
                     cmbJobStatusFilter.Items.Add("All");
@@ -131,8 +126,8 @@ namespace EShift.Forms
                     cmbJobStatusFilter.Items.Add("In Progress");
                     cmbJobStatusFilter.Items.Add("Completed");
                     cmbJobStatusFilter.Items.Add("Cancelled");
-                    cmbJobStatusFilter.Items.Add("Delivered"); // If you differentiate Delivered from Completed
-                    cmbJobStatusFilter.SelectedIndex = 0; // Select "All" by default
+                    cmbJobStatusFilter.Items.Add("Delivered");
+                    cmbJobStatusFilter.SelectedIndex = 0;
                 }
             }
             catch (Exception ex)
@@ -146,7 +141,7 @@ namespace EShift.Forms
             try
             {
                 List<Lorry> allLorries = _lorryService.GetAllLorries();
-                dgvLorries.DataSource = allLorries; // Assuming you have a DataGridView named 'dgvLorries' on tabPageResources
+                dgvLorries.DataSource = allLorries;
                 dgvLorries.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
             }
             catch (Exception ex)
@@ -155,7 +150,6 @@ namespace EShift.Forms
             }
         }
 
-        // Event handler for Add Lorry button
         private void btnAddLorry_Click(object sender, EventArgs e)
         {
             AddEditLorryForm addForm = new AddEditLorryForm();
@@ -226,7 +220,7 @@ namespace EShift.Forms
             try
             {
                 List<Driver> allDrivers = _driverService.GetAllDrivers();
-                dgvDrivers.DataSource = allDrivers; // Assuming you have a DataGridView named 'dgvDrivers' on tabPageResources
+                dgvDrivers.DataSource = allDrivers;
                 dgvDrivers.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
             }
             catch (Exception ex)
@@ -307,7 +301,7 @@ namespace EShift.Forms
             try
             {
                 List<TransportUnit> allUnits = _transportUnitService.GetAllTransportUnits();
-                dgvTransportUnits.DataSource = allUnits; // Assuming you have a DataGridView named 'dgvTransportUnits' on tabPageResources
+                dgvTransportUnits.DataSource = allUnits;
                 dgvTransportUnits.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
             }
             catch (Exception ex)
@@ -366,7 +360,7 @@ namespace EShift.Forms
                             MessageBox.Show("Failed to delete transport unit.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
-                    catch (InvalidOperationException ex) // Catch if unit is in use
+                    catch (InvalidOperationException ex)
                     {
                         MessageBox.Show(ex.Message, "Deletion Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
@@ -387,7 +381,7 @@ namespace EShift.Forms
             try
             {
                 List<Assistant> allAssistants = _assistantService.GetAllAssistants();
-                dgvAssistants.DataSource = allAssistants; // Assuming you have a DataGridView named 'dgvAssistants' on tabPageResources
+                dgvAssistants.DataSource = allAssistants;
                 dgvAssistants.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
             }
             catch (Exception ex)
@@ -467,7 +461,7 @@ namespace EShift.Forms
             try
             {
                 List<Models.Container> allContainers = _containerService.GetAllContainers();
-                dgvContainers.DataSource = allContainers; // Assuming you have a DataGridView named 'dgvContainers' on tabPageResources
+                dgvContainers.DataSource = allContainers;
                 dgvContainers.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
             }
             catch (Exception ex)
@@ -525,7 +519,7 @@ namespace EShift.Forms
                             MessageBox.Show("Failed to delete container.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
-                    catch (InvalidOperationException ex) // Catch if container is in use
+                    catch (InvalidOperationException ex)
                     {
                         MessageBox.Show(ex.Message, "Deletion Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
@@ -546,12 +540,11 @@ namespace EShift.Forms
             if (dgvJobs.SelectedRows.Count > 0)
             {
                 int selectedJobId = (int)dgvJobs.SelectedRows[0].Cells["JobID"].Value;
-                // Open JobDetailsForm
                 JobDetailsForm jobDetailsForm = new JobDetailsForm(selectedJobId, _jobService, _customerService);
                 if (jobDetailsForm.ShowDialog() == DialogResult.OK)
                 {
-                    LoadAllJobs(); // Refresh job list after potential edits
-                    LoadDashboardOverview(); // Update overview if job status/counts changed
+                    LoadAllJobs();
+                    LoadDashboardOverview();
                 }
             }
             else
@@ -565,12 +558,11 @@ namespace EShift.Forms
             if (dgvJobs.SelectedRows.Count > 0)
             {
                 int selectedJobId = (int)dgvJobs.SelectedRows[0].Cells["JobID"].Value;
-                // Open AssignTransportUnitForm
                 AssignTransportUnitForm assignForm = new AssignTransportUnitForm(selectedJobId, _jobService, _transportUnitService, _lorryService, _driverService, _assistantService, _containerService, _notificationService, _customerService, _emailService);
                 if (assignForm.ShowDialog() == DialogResult.OK)
                 {
-                    LoadAllJobs(); // Refresh job list
-                    LoadDashboardOverview(); // Update overview if job status/counts changed
+                    LoadAllJobs();
+                    LoadDashboardOverview();
                 }
             }
             else
@@ -584,20 +576,19 @@ namespace EShift.Forms
             if (dgvJobs.SelectedRows.Count > 0)
             {
                 int selectedJobId = (int)dgvJobs.SelectedRows[0].Cells["JobID"].Value;
-                string currentJobStatus = dgvJobs.SelectedRows[0].Cells["JobStatus"].Value.ToString(); // Get current status
+                string currentJobStatus = dgvJobs.SelectedRows[0].Cells["JobStatus"].Value.ToString();
 
-                string newStatus = PromptForNewJobStatus(currentJobStatus); // Pass current status to prompt
-                if (!string.IsNullOrEmpty(newStatus) && newStatus != currentJobStatus) // Only update if status changed
+                string newStatus = PromptForNewJobStatus(currentJobStatus);
+                if (!string.IsNullOrEmpty(newStatus) && newStatus != currentJobStatus)
                 {
                     try
                     {
                         if (_jobService.UpdateJobStatus(selectedJobId, newStatus))
                         {
                             MessageBox.Show("Job status updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            LoadAllJobs(); // Refresh list
-                            LoadDashboardOverview(); // Update overview
+                            LoadAllJobs();
+                            LoadDashboardOverview();
 
-                            // Notify customer about status change
                             Job updatedJob = _jobService.GetJobById(selectedJobId);
                             if (updatedJob != null && updatedJob.CustomerID.HasValue)
                             {
@@ -606,7 +597,7 @@ namespace EShift.Forms
                                 {
                                     _notificationService.AddNotification(new Notification
                                     {
-                                        UserID = customer.UserID.Value, // Customer's UserID
+                                        UserID = customer.UserID.Value,
                                         MessageType = "Job_StatusUpdate",
                                         MessageContent = $"Your job '{updatedJob.JobNumber}' has been updated to status: '{newStatus}'.",
                                         RelatedEntityID = selectedJobId,
@@ -648,7 +639,7 @@ namespace EShift.Forms
             comboBox.Items.AddRange(statuses);
             comboBox.SelectedItem = currentStatus;
 
-            Button confirmation = new Button() { Text = "Ok", Left = 150, Width = 100, Top = 80, Height = 30, DialogResult = DialogResult.OK };
+            Button confirmation = new Button() { Text = "Change", Left = 150, Width = 100, Top = 90, Height = 40, DialogResult = DialogResult.OK };
             confirmation.Click += (sender, e) => { prompt.Close(); };
             prompt.Controls.Add(comboBox);
             prompt.Controls.Add(textLabel);
@@ -727,5 +718,120 @@ namespace EShift.Forms
             this.Close();
         }
 
+        private async void btnJobsPDF_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (var stream = await _reportService.GenerateJobsPdfReportAsync())
+                {
+                    SaveFileDialog saveFileDialog = new SaveFileDialog
+                    {
+                        Filter = "PDF Files (*.pdf)|*.pdf",
+                        FileName = "JobsReport_" + DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".pdf",
+                        Title = "Save Jobs PDF Report"
+                    };
+
+                    if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        using (var fileStream = new FileStream(saveFileDialog.FileName, FileMode.Create, FileAccess.Write))
+                        {
+                            stream.CopyTo(fileStream);
+                        }
+                        MessageBox.Show("Jobs PDF report saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error generating or saving PDF report: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private async void btnJobsExcel_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (var stream = await _reportService.GenerateJobsExcelReportAsync())
+                {
+                    SaveFileDialog saveFileDialog = new SaveFileDialog
+                    {
+                        Filter = "Excel Files (*.xlsx)|*.xlsx",
+                        FileName = "JobsReport_" + DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".xlsx",
+                        Title = "Save Jobs Excel Report"
+                    };
+
+                    if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        using (var fileStream = new FileStream(saveFileDialog.FileName, FileMode.Create, FileAccess.Write))
+                        {
+                            stream.CopyTo(fileStream);
+                        }
+                        MessageBox.Show("Jobs Excel report saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error generating or saving Excel report: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private async void btnCustomersPDF_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (var stream = await _reportService.GenerateCustomersPdfReportAsync())
+                {
+                    SaveFileDialog saveFileDialog = new SaveFileDialog
+                    {
+                        Filter = "PDF Files (*.pdf)|*.pdf",
+                        FileName = "CustomersReport_" + DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".pdf",
+                        Title = "Save Customers PDF Report"
+                    };
+
+                    if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        using (var fileStream = new FileStream(saveFileDialog.FileName, FileMode.Create, FileAccess.Write))
+                        {
+                            stream.CopyTo(fileStream);
+                        }
+                        MessageBox.Show("Customers PDF report saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error generating or saving Customer PDF report: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private async void btnCustomersExcel_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (var stream = await _reportService.GenerateCustomersExcelReportAsync())
+                {
+                    SaveFileDialog saveFileDialog = new SaveFileDialog
+                    {
+                        Filter = "Excel Files (*.xlsx)|*.xlsx",
+                        FileName = "CustomersReport_" + DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".xlsx",
+                        Title = "Save Customers Excel Report"
+                    };
+
+                    if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        using (var fileStream = new FileStream(saveFileDialog.FileName, FileMode.Create, FileAccess.Write))
+                        {
+                            stream.CopyTo(fileStream);
+                        }
+                        MessageBox.Show("Customers Excel report saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error generating or saving Customer Excel report: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

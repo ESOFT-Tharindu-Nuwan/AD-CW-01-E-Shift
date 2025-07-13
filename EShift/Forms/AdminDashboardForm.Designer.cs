@@ -101,6 +101,10 @@
             label1 = new Label();
             label2 = new Label();
             pictureBox1 = new PictureBox();
+            btnJobsPDF = new Button();
+            btnJobsExcel = new Button();
+            btnCustomersPDF = new Button();
+            btnCustomersExcel = new Button();
             tbvAdmin.SuspendLayout();
             tabPageDashboard.SuspendLayout();
             groupBoxTotalCustomers.SuspendLayout();
@@ -159,6 +163,10 @@
             // 
             tabPageDashboard.BackgroundImage = (Image)resources.GetObject("tabPageDashboard.BackgroundImage");
             tabPageDashboard.BackgroundImageLayout = ImageLayout.Stretch;
+            tabPageDashboard.Controls.Add(btnCustomersExcel);
+            tabPageDashboard.Controls.Add(btnCustomersPDF);
+            tabPageDashboard.Controls.Add(btnJobsExcel);
+            tabPageDashboard.Controls.Add(btnJobsPDF);
             tabPageDashboard.Controls.Add(groupBoxTotalCustomers);
             tabPageDashboard.Controls.Add(groupBoxAvailableDrivers);
             tabPageDashboard.Controls.Add(groupBoxAvailableLorries);
@@ -921,6 +929,46 @@
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
+            // btnJobsPDF
+            // 
+            btnJobsPDF.Location = new Point(303, 513);
+            btnJobsPDF.Name = "btnJobsPDF";
+            btnJobsPDF.Size = new Size(94, 29);
+            btnJobsPDF.TabIndex = 3;
+            btnJobsPDF.Text = "Jobs PDF";
+            btnJobsPDF.UseVisualStyleBackColor = true;
+            btnJobsPDF.Click += btnJobsPDF_Click;
+            // 
+            // btnJobsExcel
+            // 
+            btnJobsExcel.Location = new Point(460, 513);
+            btnJobsExcel.Name = "btnJobsExcel";
+            btnJobsExcel.Size = new Size(94, 29);
+            btnJobsExcel.TabIndex = 4;
+            btnJobsExcel.Text = "Jobs Excel";
+            btnJobsExcel.UseVisualStyleBackColor = true;
+            btnJobsExcel.Click += btnJobsExcel_Click;
+            // 
+            // btnCustomersPDF
+            // 
+            btnCustomersPDF.Location = new Point(612, 513);
+            btnCustomersPDF.Name = "btnCustomersPDF";
+            btnCustomersPDF.Size = new Size(145, 29);
+            btnCustomersPDF.TabIndex = 5;
+            btnCustomersPDF.Text = "Customers PDF";
+            btnCustomersPDF.UseVisualStyleBackColor = true;
+            btnCustomersPDF.Click += btnCustomersPDF_Click;
+            // 
+            // btnCustomersExcel
+            // 
+            btnCustomersExcel.Location = new Point(821, 513);
+            btnCustomersExcel.Name = "btnCustomersExcel";
+            btnCustomersExcel.Size = new Size(161, 29);
+            btnCustomersExcel.TabIndex = 6;
+            btnCustomersExcel.Text = "Customers Excel";
+            btnCustomersExcel.UseVisualStyleBackColor = true;
+            btnCustomersExcel.Click += btnCustomersExcel_Click;
+            // 
             // AdminDashboardForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -1054,5 +1102,9 @@
         private PictureBox pictureBox5;
         private PictureBox pictureBox4;
         private PictureBox pictureBox3;
+        private Button btnCustomersExcel;
+        private Button btnCustomersPDF;
+        private Button btnJobsExcel;
+        private Button btnJobsPDF;
     }
 }
