@@ -35,7 +35,8 @@ namespace EShift.Forms
             IAssistantService assistantService,
             IContainerService containerService,
             INotificationService notificationService,
-            ICustomerService customerService)
+            ICustomerService customerService,
+            IEmailService emailService)
         {
             InitializeComponent();
             _selectedJobId = jobId;
@@ -47,7 +48,7 @@ namespace EShift.Forms
             _containerService = containerService;
             _notificationService = notificationService;
             _customerService = customerService;
-            _emailService = new EmailService();
+            _emailService = emailService;
 
             this.Load += AssignTransportUnitForm_Load;
         }

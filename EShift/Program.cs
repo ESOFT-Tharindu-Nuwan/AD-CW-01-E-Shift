@@ -1,3 +1,5 @@
+using EShift.Business.Interface;
+using EShift.Business.Service;
 using EShift.Forms;
 using Microsoft.Extensions.Configuration;
 
@@ -23,12 +25,14 @@ namespace EShift
             Configuration = builder.Build();
             ApplicationConfiguration.Initialize();
 
+            IEmailService emailService = new EmailService(Configuration);
+
             //using (SplashScreen splashForm = new SplashScreen())
             //{
             //    splashForm.ShowDialog();
             //}
 
-            Application.Run(new AdminDashboardForm(3));
+            Application.Run(new AdminDashboardForm(3, emailService));
         }
     }
 }

@@ -25,6 +25,7 @@ namespace EShift.Forms
         private readonly IUserService _userService; // ADDED: For admin user details and potentially notifications
         private readonly INotificationService _notificationService; // ADDED: For handling notifications
         private readonly ICustomerService _customerService; // ADDED: To get customer email for notifications
+        private readonly IEmailService _emailService;
 
         private int _currentAdminUserId; // To store the logged-in admin's ID
         public AdminDashboardForm()
@@ -32,7 +33,7 @@ namespace EShift.Forms
             InitializeComponent();
         }
 
-        public AdminDashboardForm(int adminUserId)
+        public AdminDashboardForm(int adminUserId, IEmailService emailService)
         {
             InitializeComponent();
 
@@ -48,7 +49,7 @@ namespace EShift.Forms
             _userService = new UserService(); // Initialize UserService
             _notificationService = new NotificationService(); // Initialize NotificationService
             _customerService = new CustomerService(); // Initialize CustomerService
-
+            _emailService = new EmailService();
             // Load initial data
             LoadDashboardOverview();
             LoadAllJobs();
@@ -561,7 +562,7 @@ namespace EShift.Forms
             {
                 int selectedJobId = (int)dgvJobs.SelectedRows[0].Cells["JobID"].Value;
                 // Open AssignTransportUnitForm
-                AssignTransportUnitForm assignForm = new AssignTransportUnitForm(selectedJobId, _jobService, _transportUnitService, _lorryService, _driverService, _assistantService, _containerService, _notificationService, _customerService);
+                AssignTransportUnitForm assignForm = new AssignTransportUnitForm(selectedJobId, _jobService, _transportUnitService, _lorryService, _driverService, _assistantService, _containerService, _notificationService, _customerService, _emailService);
                 if (assignForm.ShowDialog() == DialogResult.OK)
                 {
                     LoadAllJobs(); // Refresh job list
