@@ -406,8 +406,8 @@ namespace EShift.Forms
                                     <ul>
                                         <li>Pickup Location: {_currentJob.PickupLocation}</li>
                                         <li>Delivery Location: {_currentJob.DeliveryLocation}</li>
-                                        <li>Scheduled Pickup Date: {_currentJob.ScheduledPickupDate?.ToShortDateString() ?? "N/A"}</li>
-                                        <li>Scheduled Delivery Date: {_currentJob.ScheduledDeliveryDate?.ToShortDateString() ?? "N/A"}</li>
+                                        <li>Actual Pickup Date: {_currentJob.ActualPickupDate?.ToShortDateString() ?? "N/A"}</li>
+                                        <li>Actual Delivery Date: {_currentJob.ActualDeliveryDate?.ToShortDateString() ?? "N/A"}</li>
                                         <li>Quoted Price: {_currentJob.QuotedPrice?.ToString("C") ?? "N/A"}</li>
                                         <li>Remarks: {_currentJob.Remarks ?? "None"}</li>
                                     </ul>

@@ -19,5 +19,6 @@ namespace EShift.Business.Interface
         bool AddJob(Job job, Load initialLoad);
         string GenerateJobNumber();
         string GenerateLoadNumber();
+        List<Job> GetJobsByCustomerId(int customerId);
     }
 }

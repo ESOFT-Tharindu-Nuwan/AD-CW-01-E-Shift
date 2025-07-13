@@ -19,5 +19,7 @@ namespace EShift.Business.Interface
         User GetUserByUsername(string username);
 
         List<User> GetAllUsers();
+
+        User GetByUserId(int userId);
     }
 }

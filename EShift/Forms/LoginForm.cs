@@ -16,10 +16,12 @@ namespace EShift.Forms
     public partial class LoginForm : Form
     {
         private readonly IUserService _userService;
+        private readonly IEmailService _emailService;
         public LoginForm()
         {
             InitializeComponent();
             _userService = new UserService();
+            _emailService = new EmailService();
 
             // Set password textbox to use password char for security
             txtPassword.PasswordChar = '*';
@@ -51,7 +53,7 @@ namespace EShift.Forms
                     if (authenticatedUser.UserRole == "Admin")
                     {
                         // Assuming you have an AdminDashboardForm
-                        AdminDashboardForm adminDashboard = new AdminDashboardForm();
+                        AdminDashboardForm adminDashboard = new AdminDashboardForm(authenticatedUser.UserID, _emailService);
                         adminDashboard.Show();
                     }
                     else if (authenticatedUser.UserRole == "Customer")

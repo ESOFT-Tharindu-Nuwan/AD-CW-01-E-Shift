@@ -17,6 +17,9 @@ namespace EShift.Forms
     {
         private readonly IJobService _jobService;
         private readonly int _loggedInCustomerId;
+        private readonly INotificationService _notificationService;
+        private readonly ICustomerService _customerService;
+        private readonly IUserService _userService;
         public CustomerDashboardForm()
         {
             InitializeComponent();
@@ -26,12 +29,69 @@ namespace EShift.Forms
         {
             InitializeComponent();
             _loggedInCustomerId = customerId;
-            _jobService = new JobService(); // Initialize JobService
+            _jobService = new JobService();
+            _notificationService = new NotificationService();
+            _customerService = new CustomerService();
+            _userService = new UserService();
 
             // Optional: Set default values for new job request form
             dateScheduledPickupDate.MinDate = DateTime.Today; // Cannot schedule for past dates
             dateScheduledPickupDate.Value = DateTime.Today.AddDays(1); // Default to tomorrow
             ClearNewJobForm();
+            LoadAllNotifications();
+            LoadAllJobs();
+            LoadCustomerDetails();
+        }
+
+        private void LoadCustomerDetails()
+        {
+            try
+            {
+                Customer customer = _customerService.GetCustomerById(_loggedInCustomerId);
+                User user = _userService.GetByUserId(_loggedInCustomerId);
+                txtFirstName.Text = customer.FirstName;
+                txtLastName.Text = customer.LastName;
+                txtAddressLine1.Text = customer.AddressLine1;
+                txtAddressLine2.Text = customer.AddressLine2;
+                txtCity.Text = customer.City;
+                txtProvince.Text = customer.Province;
+                txtPostalCode.Text = customer.PostalCode;
+                txtEmail.Text = customer.Email;
+                txtPhoneNumber.Text = customer.PhoneNumber;
+                txtUsername.Text = user.Username;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading customer details: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void LoadAllJobs()
+        {
+            try
+            {
+                List<Job> allJobs = _jobService.GetJobsByCustomerId(_loggedInCustomerId);
+                dgvMyJobs.DataSource = allJobs;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading jobs: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
+        }
+
+        private void LoadAllNotifications()
+        {
+            try
+            {
+                List<Notification> customerNotifications = _notificationService.GetUnreadNotificationsForUser(_loggedInCustomerId);
+                dgvCustomerNotifications.DataSource = customerNotifications;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading notifications: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
         }
 
         private void btnSubmit_Click(object sender, EventArgs e)
