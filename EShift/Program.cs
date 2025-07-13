@@ -32,9 +32,9 @@ namespace EShift
             //    splashForm.ShowDialog();
             //}
 
-            //Application.Run(new AdminDashboardForm(3, emailService));
+            Application.Run(new AdminDashboardForm(3, emailService));
             //Application.Run(new CustomerDashboardForm(1));
-            Application.Run(new LoginForm());
+            //Application.Run(new LoginForm());
         }
     }
 }

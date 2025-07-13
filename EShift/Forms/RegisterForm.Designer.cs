@@ -59,12 +59,15 @@
             lnkLogin = new LinkLabel();
             panel1 = new Panel();
             panel2 = new Panel();
-            pictureBox1 = new PictureBox();
+            lblDescription = new Label();
+            label2 = new Label();
+            label1 = new Label();
             pictureBox2 = new PictureBox();
+            pictureBox1 = new PictureBox();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // lblUsername
@@ -313,7 +316,7 @@
             // 
             lblAlreadyRegister.AutoSize = true;
             lblAlreadyRegister.Font = new Font("Calibri", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblAlreadyRegister.Location = new Point(168, 399);
+            lblAlreadyRegister.Location = new Point(182, 388);
             lblAlreadyRegister.Name = "lblAlreadyRegister";
             lblAlreadyRegister.Size = new Size(221, 21);
             lblAlreadyRegister.TabIndex = 26;
@@ -323,7 +326,7 @@
             // 
             lnkLogin.AutoSize = true;
             lnkLogin.Font = new Font("Calibri", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lnkLogin.Location = new Point(403, 399);
+            lnkLogin.Location = new Point(417, 388);
             lnkLogin.Name = "lnkLogin";
             lnkLogin.Size = new Size(56, 21);
             lnkLogin.TabIndex = 27;
@@ -370,12 +373,56 @@
             // panel2
             // 
             panel2.BackColor = SystemColors.ActiveCaption;
+            panel2.Controls.Add(lblDescription);
+            panel2.Controls.Add(label2);
+            panel2.Controls.Add(label1);
             panel2.Controls.Add(pictureBox2);
             panel2.Controls.Add(pictureBox1);
             panel2.Location = new Point(12, 24);
             panel2.Name = "panel2";
             panel2.Size = new Size(382, 448);
             panel2.TabIndex = 29;
+            // 
+            // lblDescription
+            // 
+            lblDescription.AutoSize = true;
+            lblDescription.Font = new Font("Lucida Handwriting", 7.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblDescription.Location = new Point(45, 428);
+            lblDescription.Name = "lblDescription";
+            lblDescription.Size = new Size(280, 17);
+            lblDescription.TabIndex = 30;
+            lblDescription.Text = "Powered by Trust, Driven by Tech";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.Location = new Point(156, 89);
+            label2.Name = "label2";
+            label2.Size = new Size(207, 23);
+            label2.TabIndex = 31;
+            label2.Text = "Register as a Customer";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Showcard Gothic", 25.8000011F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.Location = new Point(165, 16);
+            label1.Name = "label1";
+            label1.Size = new Size(189, 54);
+            label1.TabIndex = 30;
+            label1.Text = "E-SHIFT";
+            // 
+            // pictureBox2
+            // 
+            pictureBox2.BackgroundImage = (Image)resources.GetObject("pictureBox2.BackgroundImage");
+            pictureBox2.BackgroundImageLayout = ImageLayout.Zoom;
+            pictureBox2.Location = new Point(3, 135);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(379, 310);
+            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox2.TabIndex = 1;
+            pictureBox2.TabStop = false;
             // 
             // pictureBox1
             // 
@@ -388,31 +435,23 @@
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
-            // pictureBox2
-            // 
-            pictureBox2.BackgroundImage = (Image)resources.GetObject("pictureBox2.BackgroundImage");
-            pictureBox2.BackgroundImageLayout = ImageLayout.Center;
-            pictureBox2.Location = new Point(16, 89);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(366, 320);
-            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox2.TabIndex = 1;
-            pictureBox2.TabStop = false;
-            // 
             // RegisterForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             ClientSize = new Size(1095, 501);
             Controls.Add(panel2);
             Controls.Add(panel1);
             Name = "RegisterForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "RegisterForm";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
 
@@ -448,7 +487,10 @@
         private LinkLabel lnkLogin;
         private Panel panel1;
         private Panel panel2;
-        private PictureBox pictureBox2;
         private PictureBox pictureBox1;
+        private Label label2;
+        private Label label1;
+        private PictureBox pictureBox2;
+        private Label lblDescription;
     }
 }

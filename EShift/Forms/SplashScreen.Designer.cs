@@ -40,7 +40,7 @@
             // progressBarLoader
             // 
             progressBarLoader.Anchor = AnchorStyles.Bottom;
-            progressBarLoader.Location = new Point(167, 327);
+            progressBarLoader.Location = new Point(134, 291);
             progressBarLoader.Name = "progressBarLoader";
             progressBarLoader.Size = new Size(301, 19);
             progressBarLoader.Style = ProgressBarStyle.Continuous;
@@ -48,11 +48,12 @@
             // 
             // pictureBox1
             // 
+            pictureBox1.BackColor = Color.Transparent;
             pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
             pictureBox1.Location = new Point(0, 0);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(189, 181);
+            pictureBox1.Size = new Size(305, 284);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 1;
             pictureBox1.TabStop = false;
@@ -60,8 +61,9 @@
             // label1
             // 
             label1.AutoSize = true;
+            label1.BackColor = Color.Transparent;
             label1.Font = new Font("Showcard Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(0, 184);
+            label1.Location = new Point(12, 243);
             label1.Name = "label1";
             label1.Size = new Size(282, 18);
             label1.TabIndex = 2;
@@ -70,16 +72,17 @@
             // splashTimer
             // 
             splashTimer.Enabled = true;
-            splashTimer.Interval = 5000;
+            splashTimer.Interval = 8000;
             splashTimer.Tick += splashTimer_Tick;
             // 
             // SplashScreen
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.White;
+            BackColor = Color.WhiteSmoke;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
-            ClientSize = new Size(631, 358);
+            BackgroundImageLayout = ImageLayout.Zoom;
+            ClientSize = new Size(564, 322);
             Controls.Add(label1);
             Controls.Add(pictureBox1);
             Controls.Add(progressBarLoader);

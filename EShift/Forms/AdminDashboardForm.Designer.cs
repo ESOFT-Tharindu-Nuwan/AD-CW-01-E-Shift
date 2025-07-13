@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminDashboardForm));
             tbvAdmin = new TabControl();
             tabPageDashboard = new TabPage();
             groupBoxTotalCustomers = new GroupBox();
@@ -79,6 +80,7 @@
             btnAddTransportUnit = new Button();
             dgvTransportUnits = new DataGridView();
             tabPageAdminNotifications = new TabPage();
+            lblNotificationCount = new Label();
             btnRefreshNotifications = new Button();
             btnMarkAsRead = new Button();
             dgvNotifications = new DataGridView();
@@ -88,7 +90,13 @@
             btnEditUserRole = new Button();
             btnAddUser = new Button();
             dgvUsers = new DataGridView();
-            lblNotificationCount = new Label();
+            panel1 = new Panel();
+            pbLogout = new PictureBox();
+            lblLoggedUsername = new Label();
+            pictureBox2 = new PictureBox();
+            label1 = new Label();
+            label2 = new Label();
+            pictureBox1 = new PictureBox();
             tbvAdmin.SuspendLayout();
             tabPageDashboard.SuspendLayout();
             groupBoxTotalCustomers.SuspendLayout();
@@ -116,6 +124,10 @@
             ((System.ComponentModel.ISupportInitialize)dgvNotifications).BeginInit();
             tabPageUserManagement.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvUsers).BeginInit();
+            panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pbLogout).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // tbvAdmin
@@ -126,7 +138,7 @@
             tbvAdmin.Controls.Add(tabPageResources);
             tbvAdmin.Controls.Add(tabPageAdminNotifications);
             tbvAdmin.Controls.Add(tabPageUserManagement);
-            tbvAdmin.Location = new Point(0, 0);
+            tbvAdmin.Location = new Point(1, 183);
             tbvAdmin.Name = "tbvAdmin";
             tbvAdmin.SelectedIndex = 0;
             tbvAdmin.Size = new Size(1165, 578);
@@ -655,6 +667,15 @@
             tabPageAdminNotifications.Text = "Admin Notifications";
             tabPageAdminNotifications.UseVisualStyleBackColor = true;
             // 
+            // lblNotificationCount
+            // 
+            lblNotificationCount.AutoSize = true;
+            lblNotificationCount.Location = new Point(621, 469);
+            lblNotificationCount.Name = "lblNotificationCount";
+            lblNotificationCount.Size = new Size(50, 20);
+            lblNotificationCount.TabIndex = 3;
+            lblNotificationCount.Text = "label1";
+            // 
             // btnRefreshNotifications
             // 
             btnRefreshNotifications.Location = new Point(17, 495);
@@ -744,21 +765,92 @@
             dgvUsers.Size = new Size(1157, 375);
             dgvUsers.TabIndex = 0;
             // 
-            // lblNotificationCount
+            // panel1
             // 
-            lblNotificationCount.AutoSize = true;
-            lblNotificationCount.Location = new Point(621, 469);
-            lblNotificationCount.Name = "lblNotificationCount";
-            lblNotificationCount.Size = new Size(50, 20);
-            lblNotificationCount.TabIndex = 3;
-            lblNotificationCount.Text = "label1";
+            panel1.BackColor = SystemColors.ActiveCaption;
+            panel1.Controls.Add(pbLogout);
+            panel1.Controls.Add(lblLoggedUsername);
+            panel1.Controls.Add(pictureBox2);
+            panel1.Controls.Add(label1);
+            panel1.Controls.Add(label2);
+            panel1.Controls.Add(pictureBox1);
+            panel1.Location = new Point(0, 0);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(1166, 90);
+            panel1.TabIndex = 1;
+            // 
+            // pbLogout
+            // 
+            pbLogout.BackgroundImage = (Image)resources.GetObject("pbLogout.BackgroundImage");
+            pbLogout.BackgroundImageLayout = ImageLayout.Zoom;
+            pbLogout.Location = new Point(1112, 18);
+            pbLogout.Name = "pbLogout";
+            pbLogout.Size = new Size(43, 50);
+            pbLogout.SizeMode = PictureBoxSizeMode.StretchImage;
+            pbLogout.TabIndex = 6;
+            pbLogout.TabStop = false;
+            pbLogout.Click += pbLogout_Click;
+            // 
+            // lblLoggedUsername
+            // 
+            lblLoggedUsername.AutoSize = true;
+            lblLoggedUsername.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblLoggedUsername.Location = new Point(973, 18);
+            lblLoggedUsername.Name = "lblLoggedUsername";
+            lblLoggedUsername.Size = new Size(78, 20);
+            lblLoggedUsername.TabIndex = 5;
+            lblLoggedUsername.Text = "username";
+            // 
+            // pictureBox2
+            // 
+            pictureBox2.BackgroundImage = (Image)resources.GetObject("pictureBox2.BackgroundImage");
+            pictureBox2.BackgroundImageLayout = ImageLayout.Zoom;
+            pictureBox2.Location = new Point(917, 18);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(50, 50);
+            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox2.TabIndex = 4;
+            pictureBox2.TabStop = false;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Showcard Gothic", 28.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.Location = new Point(96, 18);
+            label1.Name = "label1";
+            label1.Size = new Size(205, 59);
+            label1.TabIndex = 2;
+            label1.Text = "E-SHIFT";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Tempus Sans ITC", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.Location = new Point(416, 36);
+            label2.Name = "label2";
+            label2.Size = new Size(323, 26);
+            label2.TabIndex = 3;
+            label2.Text = "Powered by Trust, Driven by Tech";
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.BackgroundImage = (Image)resources.GetObject("pictureBox1.BackgroundImage");
+            pictureBox1.BackgroundImageLayout = ImageLayout.Zoom;
+            pictureBox1.Location = new Point(0, 0);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(90, 90);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 0;
+            pictureBox1.TabStop = false;
             // 
             // AdminDashboardForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1167, 580);
+            ClientSize = new Size(1167, 764);
+            Controls.Add(panel1);
             Controls.Add(tbvAdmin);
+            Cursor = Cursors.Hand;
             Name = "AdminDashboardForm";
             Text = "Admin Dashboard Form";
             tbvAdmin.ResumeLayout(false);
@@ -796,6 +888,11 @@
             ((System.ComponentModel.ISupportInitialize)dgvNotifications).EndInit();
             tabPageUserManagement.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvUsers).EndInit();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pbLogout).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
 
@@ -862,5 +959,12 @@
         private Button btnAddUser;
         private DataGridView dgvUsers;
         private Label lblNotificationCount;
+        private Panel panel1;
+        private PictureBox pictureBox1;
+        private Label label1;
+        private Label label2;
+        private PictureBox pbLogout;
+        private Label lblLoggedUsername;
+        private PictureBox pictureBox2;
     }
 }

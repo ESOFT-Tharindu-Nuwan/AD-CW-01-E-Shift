@@ -24,6 +24,7 @@ namespace EShift.Forms
             // Set password textboxes to use password char for security
             txtPassword.PasswordChar = '*';
             txtConfirmPassword.PasswordChar = '*';
+            this.MaximizeBox = false;
         }
 
         private void btnRegister_Click(object sender, EventArgs e)

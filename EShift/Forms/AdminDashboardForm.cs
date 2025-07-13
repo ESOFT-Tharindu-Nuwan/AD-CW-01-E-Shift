@@ -100,6 +100,9 @@ namespace EShift.Forms
                 lblAvailableLorries.Text = new LorryService().GetAvailableLorriesCount().ToString();
                 lblAvailableDrivers.Text = new DriverService().GetAvailableDriversCount().ToString();
                 lblTotalCustomers.Text = new CustomerService().GetTotalCustomersCount().ToString();
+
+                User loggedUser = _userService.GetByUserId(_currentAdminUserId);
+                lblLoggedUsername.Text = loggedUser.Username;
             }
             catch (Exception ex)
             {
@@ -717,6 +720,18 @@ namespace EShift.Forms
         {
             LoadAdminNotifications(); // Simply refresh the notifications list
             MessageBox.Show("Notifications refreshed.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void pbLogout_Click(object sender, EventArgs e)
+        {
+            DialogResult confirm = MessageBox.Show("Are you sure you want to log out?", "Confirm Logout", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (confirm == DialogResult.Yes)
+            {
+                LoginForm loginForm = new LoginForm();
+                loginForm.Show();
+            }
+            this.Close();
         }
     }
 }
