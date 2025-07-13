@@ -85,7 +85,6 @@
             btnMarkAsRead = new Button();
             dgvNotifications = new DataGridView();
             tabPageUserManagement = new TabPage();
-            btnLogout = new Button();
             btnToggleUserActiveStatus = new Button();
             btnEditUserRole = new Button();
             btnAddUser = new Button();
@@ -138,23 +137,27 @@
             tbvAdmin.Controls.Add(tabPageResources);
             tbvAdmin.Controls.Add(tabPageAdminNotifications);
             tbvAdmin.Controls.Add(tabPageUserManagement);
-            tbvAdmin.Location = new Point(1, 183);
+            tbvAdmin.Font = new Font("Calibri", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            tbvAdmin.ItemSize = new Size(161, 40);
+            tbvAdmin.Location = new Point(1, 96);
             tbvAdmin.Name = "tbvAdmin";
             tbvAdmin.SelectedIndex = 0;
-            tbvAdmin.Size = new Size(1165, 578);
+            tbvAdmin.Size = new Size(1165, 617);
             tbvAdmin.TabIndex = 0;
             // 
             // tabPageDashboard
             // 
+            tabPageDashboard.BackgroundImage = (Image)resources.GetObject("tabPageDashboard.BackgroundImage");
+            tabPageDashboard.BackgroundImageLayout = ImageLayout.Stretch;
             tabPageDashboard.Controls.Add(groupBoxTotalCustomers);
             tabPageDashboard.Controls.Add(groupBoxAvailableDrivers);
             tabPageDashboard.Controls.Add(groupBoxAvailableLorries);
             tabPageDashboard.Controls.Add(groupBoxJobRequests);
             tabPageDashboard.Controls.Add(groupBoxActiveJobs);
-            tabPageDashboard.Location = new Point(4, 29);
+            tabPageDashboard.Location = new Point(4, 44);
             tabPageDashboard.Name = "tabPageDashboard";
             tabPageDashboard.Padding = new Padding(3);
-            tabPageDashboard.Size = new Size(1157, 545);
+            tabPageDashboard.Size = new Size(1157, 569);
             tabPageDashboard.TabIndex = 0;
             tabPageDashboard.Text = "Dashboard Overview";
             tabPageDashboard.UseVisualStyleBackColor = true;
@@ -162,6 +165,8 @@
             // groupBoxTotalCustomers
             // 
             groupBoxTotalCustomers.Controls.Add(lblTotalCustomers);
+            groupBoxTotalCustomers.Font = new Font("Calibri", 10.2F, FontStyle.Bold);
+            groupBoxTotalCustomers.ForeColor = SystemColors.HighlightText;
             groupBoxTotalCustomers.Location = new Point(678, 288);
             groupBoxTotalCustomers.Name = "groupBoxTotalCustomers";
             groupBoxTotalCustomers.Size = new Size(185, 108);
@@ -174,13 +179,15 @@
             lblTotalCustomers.AutoSize = true;
             lblTotalCustomers.Location = new Point(36, 49);
             lblTotalCustomers.Name = "lblTotalCustomers";
-            lblTotalCustomers.Size = new Size(115, 20);
+            lblTotalCustomers.Size = new Size(124, 21);
             lblTotalCustomers.TabIndex = 1;
             lblTotalCustomers.Text = "Total Customers";
             // 
             // groupBoxAvailableDrivers
             // 
             groupBoxAvailableDrivers.Controls.Add(lblAvailableDrivers);
+            groupBoxAvailableDrivers.Font = new Font("Calibri", 10.2F, FontStyle.Bold);
+            groupBoxAvailableDrivers.ForeColor = SystemColors.HighlightText;
             groupBoxAvailableDrivers.Location = new Point(260, 288);
             groupBoxAvailableDrivers.Name = "groupBoxAvailableDrivers";
             groupBoxAvailableDrivers.Size = new Size(185, 108);
@@ -193,13 +200,15 @@
             lblAvailableDrivers.AutoSize = true;
             lblAvailableDrivers.Location = new Point(31, 49);
             lblAvailableDrivers.Name = "lblAvailableDrivers";
-            lblAvailableDrivers.Size = new Size(121, 20);
+            lblAvailableDrivers.Size = new Size(129, 21);
             lblAvailableDrivers.TabIndex = 1;
             lblAvailableDrivers.Text = "Available Drivers";
             // 
             // groupBoxAvailableLorries
             // 
             groupBoxAvailableLorries.Controls.Add(lblAvailableLorries);
+            groupBoxAvailableLorries.Font = new Font("Calibri", 10.2F, FontStyle.Bold);
+            groupBoxAvailableLorries.ForeColor = SystemColors.HighlightText;
             groupBoxAvailableLorries.Location = new Point(881, 87);
             groupBoxAvailableLorries.Name = "groupBoxAvailableLorries";
             groupBoxAvailableLorries.Size = new Size(185, 108);
@@ -212,13 +221,15 @@
             lblAvailableLorries.AutoSize = true;
             lblAvailableLorries.Location = new Point(31, 49);
             lblAvailableLorries.Name = "lblAvailableLorries";
-            lblAvailableLorries.Size = new Size(119, 20);
+            lblAvailableLorries.Size = new Size(126, 21);
             lblAvailableLorries.TabIndex = 1;
             lblAvailableLorries.Text = "Available Lorries";
             // 
             // groupBoxJobRequests
             // 
             groupBoxJobRequests.Controls.Add(lblPendingRequests);
+            groupBoxJobRequests.Font = new Font("Calibri", 10.2F, FontStyle.Bold);
+            groupBoxJobRequests.ForeColor = SystemColors.HighlightText;
             groupBoxJobRequests.Location = new Point(457, 87);
             groupBoxJobRequests.Name = "groupBoxJobRequests";
             groupBoxJobRequests.Size = new Size(185, 108);
@@ -231,13 +242,15 @@
             lblPendingRequests.AutoSize = true;
             lblPendingRequests.Location = new Point(18, 49);
             lblPendingRequests.Name = "lblPendingRequests";
-            lblPendingRequests.Size = new Size(152, 20);
+            lblPendingRequests.Size = new Size(19, 21);
             lblPendingRequests.TabIndex = 1;
-            lblPendingRequests.Text = "Pending Job Requests";
+            lblPendingRequests.Text = "0";
             // 
             // groupBoxActiveJobs
             // 
             groupBoxActiveJobs.Controls.Add(lblTotalActiveJobs);
+            groupBoxActiveJobs.Font = new Font("Calibri", 10.2F, FontStyle.Bold);
+            groupBoxActiveJobs.ForeColor = SystemColors.HighlightText;
             groupBoxActiveJobs.Location = new Point(60, 87);
             groupBoxActiveJobs.Name = "groupBoxActiveJobs";
             groupBoxActiveJobs.Size = new Size(185, 108);
@@ -250,9 +263,9 @@
             lblTotalActiveJobs.AutoSize = true;
             lblTotalActiveJobs.Location = new Point(31, 49);
             lblTotalActiveJobs.Name = "lblTotalActiveJobs";
-            lblTotalActiveJobs.Size = new Size(120, 20);
+            lblTotalActiveJobs.Size = new Size(19, 21);
             lblTotalActiveJobs.TabIndex = 1;
-            lblTotalActiveJobs.Text = "Total Active Jobs";
+            lblTotalActiveJobs.Text = "0";
             // 
             // tabPageJobs
             // 
@@ -262,10 +275,10 @@
             tabPageJobs.Controls.Add(cmbJobStatusFilter);
             tabPageJobs.Controls.Add(txtSearchJobs);
             tabPageJobs.Controls.Add(dgvJobs);
-            tabPageJobs.Location = new Point(4, 29);
+            tabPageJobs.Location = new Point(4, 44);
             tabPageJobs.Name = "tabPageJobs";
             tabPageJobs.Padding = new Padding(3);
-            tabPageJobs.Size = new Size(1157, 545);
+            tabPageJobs.Size = new Size(1157, 569);
             tabPageJobs.TabIndex = 1;
             tabPageJobs.Text = "Job Management";
             tabPageJobs.UseVisualStyleBackColor = true;
@@ -305,7 +318,7 @@
             cmbJobStatusFilter.FormattingEnabled = true;
             cmbJobStatusFilter.Location = new Point(304, 379);
             cmbJobStatusFilter.Name = "cmbJobStatusFilter";
-            cmbJobStatusFilter.Size = new Size(282, 28);
+            cmbJobStatusFilter.Size = new Size(282, 29);
             cmbJobStatusFilter.TabIndex = 2;
             // 
             // txtSearchJobs
@@ -313,7 +326,7 @@
             txtSearchJobs.Location = new Point(8, 380);
             txtSearchJobs.Name = "txtSearchJobs";
             txtSearchJobs.PlaceholderText = "Enter keyword here to search jobs....";
-            txtSearchJobs.Size = new Size(274, 27);
+            txtSearchJobs.Size = new Size(274, 28);
             txtSearchJobs.TabIndex = 1;
             // 
             // dgvJobs
@@ -330,10 +343,10 @@
             tabPageCustomers.Controls.Add(txtSearchCustomers);
             tabPageCustomers.Controls.Add(btnViewCustomerDetails);
             tabPageCustomers.Controls.Add(dgvCustomers);
-            tabPageCustomers.Location = new Point(4, 29);
+            tabPageCustomers.Location = new Point(4, 44);
             tabPageCustomers.Name = "tabPageCustomers";
             tabPageCustomers.Padding = new Padding(3);
-            tabPageCustomers.Size = new Size(1157, 545);
+            tabPageCustomers.Size = new Size(1157, 569);
             tabPageCustomers.TabIndex = 2;
             tabPageCustomers.Text = "Customer Management";
             tabPageCustomers.UseVisualStyleBackColor = true;
@@ -343,7 +356,7 @@
             txtSearchCustomers.Location = new Point(8, 368);
             txtSearchCustomers.Name = "txtSearchCustomers";
             txtSearchCustomers.PlaceholderText = "Search...";
-            txtSearchCustomers.Size = new Size(333, 27);
+            txtSearchCustomers.Size = new Size(333, 28);
             txtSearchCustomers.TabIndex = 2;
             // 
             // btnViewCustomerDetails
@@ -367,10 +380,10 @@
             // tabPageResources
             // 
             tabPageResources.Controls.Add(tabControl2);
-            tabPageResources.Location = new Point(4, 29);
+            tabPageResources.Location = new Point(4, 44);
             tabPageResources.Name = "tabPageResources";
             tabPageResources.Padding = new Padding(3);
-            tabPageResources.Size = new Size(1157, 545);
+            tabPageResources.Size = new Size(1157, 569);
             tabPageResources.TabIndex = 3;
             tabPageResources.Text = "Resource Management";
             tabPageResources.UseVisualStyleBackColor = true;
@@ -385,7 +398,7 @@
             tabControl2.Location = new Point(0, 3);
             tabControl2.Name = "tabControl2";
             tabControl2.SelectedIndex = 0;
-            tabControl2.Size = new Size(1154, 539);
+            tabControl2.Size = new Size(1154, 569);
             tabControl2.TabIndex = 0;
             // 
             // tabPageLorries
@@ -394,10 +407,10 @@
             tabPageLorries.Controls.Add(btnEditLorry);
             tabPageLorries.Controls.Add(btnAddLorry);
             tabPageLorries.Controls.Add(dgvLorries);
-            tabPageLorries.Location = new Point(4, 29);
+            tabPageLorries.Location = new Point(4, 30);
             tabPageLorries.Name = "tabPageLorries";
             tabPageLorries.Padding = new Padding(3);
-            tabPageLorries.Size = new Size(1146, 506);
+            tabPageLorries.Size = new Size(1146, 535);
             tabPageLorries.TabIndex = 0;
             tabPageLorries.Text = "Lorries";
             tabPageLorries.UseVisualStyleBackColor = true;
@@ -450,7 +463,7 @@
             tabPageDrivers.Location = new Point(4, 29);
             tabPageDrivers.Name = "tabPageDrivers";
             tabPageDrivers.Padding = new Padding(3);
-            tabPageDrivers.Size = new Size(1146, 506);
+            tabPageDrivers.Size = new Size(1146, 536);
             tabPageDrivers.TabIndex = 1;
             tabPageDrivers.Text = "Drivers";
             tabPageDrivers.UseVisualStyleBackColor = true;
@@ -503,7 +516,7 @@
             tabPageAssistants.Location = new Point(4, 29);
             tabPageAssistants.Name = "tabPageAssistants";
             tabPageAssistants.Padding = new Padding(3);
-            tabPageAssistants.Size = new Size(1146, 506);
+            tabPageAssistants.Size = new Size(1146, 536);
             tabPageAssistants.TabIndex = 2;
             tabPageAssistants.Text = "Assistants";
             tabPageAssistants.UseVisualStyleBackColor = true;
@@ -556,7 +569,7 @@
             tabPageContainers.Location = new Point(4, 29);
             tabPageContainers.Name = "tabPageContainers";
             tabPageContainers.Padding = new Padding(3);
-            tabPageContainers.Size = new Size(1146, 506);
+            tabPageContainers.Size = new Size(1146, 536);
             tabPageContainers.TabIndex = 3;
             tabPageContainers.Text = "Containers";
             tabPageContainers.UseVisualStyleBackColor = true;
@@ -609,7 +622,7 @@
             tabPageTransportUnits.Location = new Point(4, 29);
             tabPageTransportUnits.Name = "tabPageTransportUnits";
             tabPageTransportUnits.Padding = new Padding(3);
-            tabPageTransportUnits.Size = new Size(1146, 506);
+            tabPageTransportUnits.Size = new Size(1146, 536);
             tabPageTransportUnits.TabIndex = 4;
             tabPageTransportUnits.Text = "Transport Units";
             tabPageTransportUnits.UseVisualStyleBackColor = true;
@@ -659,10 +672,10 @@
             tabPageAdminNotifications.Controls.Add(btnRefreshNotifications);
             tabPageAdminNotifications.Controls.Add(btnMarkAsRead);
             tabPageAdminNotifications.Controls.Add(dgvNotifications);
-            tabPageAdminNotifications.Location = new Point(4, 29);
+            tabPageAdminNotifications.Location = new Point(4, 44);
             tabPageAdminNotifications.Name = "tabPageAdminNotifications";
             tabPageAdminNotifications.Padding = new Padding(3);
-            tabPageAdminNotifications.Size = new Size(1157, 545);
+            tabPageAdminNotifications.Size = new Size(1157, 569);
             tabPageAdminNotifications.TabIndex = 4;
             tabPageAdminNotifications.Text = "Admin Notifications";
             tabPageAdminNotifications.UseVisualStyleBackColor = true;
@@ -672,7 +685,7 @@
             lblNotificationCount.AutoSize = true;
             lblNotificationCount.Location = new Point(621, 469);
             lblNotificationCount.Name = "lblNotificationCount";
-            lblNotificationCount.Size = new Size(50, 20);
+            lblNotificationCount.Size = new Size(53, 21);
             lblNotificationCount.TabIndex = 3;
             lblNotificationCount.Text = "label1";
             // 
@@ -707,27 +720,17 @@
             // 
             // tabPageUserManagement
             // 
-            tabPageUserManagement.Controls.Add(btnLogout);
             tabPageUserManagement.Controls.Add(btnToggleUserActiveStatus);
             tabPageUserManagement.Controls.Add(btnEditUserRole);
             tabPageUserManagement.Controls.Add(btnAddUser);
             tabPageUserManagement.Controls.Add(dgvUsers);
-            tabPageUserManagement.Location = new Point(4, 29);
+            tabPageUserManagement.Location = new Point(4, 44);
             tabPageUserManagement.Name = "tabPageUserManagement";
             tabPageUserManagement.Padding = new Padding(3);
-            tabPageUserManagement.Size = new Size(1157, 545);
+            tabPageUserManagement.Size = new Size(1157, 569);
             tabPageUserManagement.TabIndex = 5;
             tabPageUserManagement.Text = "User Management";
             tabPageUserManagement.UseVisualStyleBackColor = true;
-            // 
-            // btnLogout
-            // 
-            btnLogout.Location = new Point(946, 456);
-            btnLogout.Name = "btnLogout";
-            btnLogout.Size = new Size(205, 29);
-            btnLogout.TabIndex = 4;
-            btnLogout.Text = "LOGOUT";
-            btnLogout.UseVisualStyleBackColor = true;
             // 
             // btnToggleUserActiveStatus
             // 
@@ -795,7 +798,7 @@
             // 
             lblLoggedUsername.AutoSize = true;
             lblLoggedUsername.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblLoggedUsername.Location = new Point(973, 18);
+            lblLoggedUsername.Location = new Point(973, 36);
             lblLoggedUsername.Name = "lblLoggedUsername";
             lblLoggedUsername.Size = new Size(78, 20);
             lblLoggedUsername.TabIndex = 5;
@@ -805,9 +808,9 @@
             // 
             pictureBox2.BackgroundImage = (Image)resources.GetObject("pictureBox2.BackgroundImage");
             pictureBox2.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox2.Location = new Point(917, 18);
+            pictureBox2.Location = new Point(927, 28);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(50, 50);
+            pictureBox2.Size = new Size(40, 40);
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox2.TabIndex = 4;
             pictureBox2.TabStop = false;
@@ -847,11 +850,12 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1167, 764);
+            ClientSize = new Size(1167, 714);
             Controls.Add(panel1);
             Controls.Add(tbvAdmin);
             Cursor = Cursors.Hand;
             Name = "AdminDashboardForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Admin Dashboard Form";
             tbvAdmin.ResumeLayout(false);
             tabPageDashboard.ResumeLayout(false);
@@ -899,22 +903,11 @@
         #endregion
 
         private TabControl tbvAdmin;
-        private TabPage tabPageDashboard;
         private TabPage tabPageJobs;
         private TabPage tabPageCustomers;
         private TabPage tabPageResources;
         private TabPage tabPageAdminNotifications;
         private TabPage tabPageUserManagement;
-        private GroupBox groupBoxAvailableLorries;
-        private GroupBox groupBoxAvailableDrivers;
-        private Label lblAvailableDrivers;
-        private Label lblAvailableLorries;
-        private GroupBox groupBoxJobRequests;
-        private Label lblPendingRequests;
-        private GroupBox groupBoxActiveJobs;
-        private Label lblTotalActiveJobs;
-        private GroupBox groupBoxTotalCustomers;
-        private Label lblTotalCustomers;
         private ComboBox cmbJobStatusFilter;
         private TextBox txtSearchJobs;
         private DataGridView dgvJobs;
@@ -953,7 +946,6 @@
         private Button btnRefreshNotifications;
         private Button btnMarkAsRead;
         private DataGridView dgvNotifications;
-        private Button btnLogout;
         private Button btnToggleUserActiveStatus;
         private Button btnEditUserRole;
         private Button btnAddUser;
@@ -966,5 +958,16 @@
         private PictureBox pbLogout;
         private Label lblLoggedUsername;
         private PictureBox pictureBox2;
+        private TabPage tabPageDashboard;
+        private GroupBox groupBoxTotalCustomers;
+        private Label lblTotalCustomers;
+        private GroupBox groupBoxAvailableDrivers;
+        private Label lblAvailableDrivers;
+        private GroupBox groupBoxAvailableLorries;
+        private Label lblAvailableLorries;
+        private GroupBox groupBoxJobRequests;
+        private Label lblPendingRequests;
+        private GroupBox groupBoxActiveJobs;
+        private Label lblTotalActiveJobs;
     }
 }

@@ -61,6 +61,7 @@ namespace EShift.Forms
             LoadAdminNotifications();
             LoadAllCustomers();
             LoadAllUsers();
+            this.MaximizeBox = false;
         }
 
         private void LoadAllUsers()
@@ -733,5 +734,6 @@ namespace EShift.Forms
             }
             this.Close();
         }
+
     }
 }
