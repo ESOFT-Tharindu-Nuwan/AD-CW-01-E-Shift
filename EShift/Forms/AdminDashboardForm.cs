@@ -643,12 +643,12 @@ namespace EShift.Forms
                 StartPosition = FormStartPosition.CenterParent
             };
             Label textLabel = new Label() { Left = 50, Top = 20, Text = "Select new status:" };
-            ComboBox comboBox = new ComboBox() { Left = 50, Top = 50, Width = 200, DropDownStyle = ComboBoxStyle.DropDownList };
+            ComboBox comboBox = new ComboBox() { Left = 50, Top = 50, Width = 200, Height = 50, DropDownStyle = ComboBoxStyle.DropDownList };
             string[] statuses = new string[] { "Pending", "Quoted", "Scheduled", "In Progress", "Completed", "Cancelled", "Delivered" };
             comboBox.Items.AddRange(statuses);
-            comboBox.SelectedItem = currentStatus; // Pre-select current status
+            comboBox.SelectedItem = currentStatus;
 
-            Button confirmation = new Button() { Text = "Ok", Left = 150, Width = 100, Top = 80, DialogResult = DialogResult.OK };
+            Button confirmation = new Button() { Text = "Ok", Left = 150, Width = 100, Top = 80, Height = 30, DialogResult = DialogResult.OK };
             confirmation.Click += (sender, e) => { prompt.Close(); };
             prompt.Controls.Add(comboBox);
             prompt.Controls.Add(textLabel);
@@ -658,24 +658,16 @@ namespace EShift.Forms
             return prompt.ShowDialog() == DialogResult.OK ? comboBox.SelectedItem?.ToString() : string.Empty;
         }
 
-        // *** Duplicates from your provided code removed for clarity. Make sure you only have one set of these. ***
-        // private void btnViewJobDetails_Click_1(object sender, EventArgs e) { /* ... */ }
-        // private void btnAssignTransportUnit_Click_1(object sender, EventArgs e) { /* ... */ }
-        // private void btnUpdateJobStatus_Click_1(object sender, EventArgs e) { /* ... */ }
-
-        // --- Notification Handling for Admin ---
         private void LoadAdminNotifications()
         {
             try
             {
-                // Assuming adminUserId is set in the constructor
                 List<Notification> notifications = _notificationService.GetUnreadNotificationsForUser(_currentAdminUserId);
-                dgvNotifications.DataSource = notifications; // Assuming dgvNotifications DataGridView
+                dgvNotifications.DataSource = notifications;
 
                 if (notifications.Count > 0)
                 {
-                    lblNotificationCount.Text = notifications.Count.ToString(); // Update a label for count
-                    // Optional: Highlight notification tab or play a sound
+                    lblNotificationCount.Text = notifications.Count.ToString();
                 }
                 else
                 {
@@ -699,7 +691,7 @@ namespace EShift.Forms
                     if (_notificationService.MarkNotificationAsRead(notificationId))
                     {
                         MessageBox.Show("Notification marked as read.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        LoadAdminNotifications(); // Refresh notifications
+                        LoadAdminNotifications();
                     }
                     else
                     {

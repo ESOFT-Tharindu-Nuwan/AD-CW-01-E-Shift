@@ -41,6 +41,7 @@ namespace EShift.Forms
             LoadAllNotifications();
             LoadAllJobs();
             LoadCustomerDetails();
+            this.MaximizeBox = false;
         }
 
         private void LoadCustomerDetails()

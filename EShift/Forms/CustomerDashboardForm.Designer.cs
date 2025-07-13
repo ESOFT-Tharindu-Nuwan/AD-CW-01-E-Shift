@@ -85,6 +85,7 @@
             label1 = new Label();
             label2 = new Label();
             pictureBox1 = new PictureBox();
+            label3 = new Label();
             tabControlCustomer.SuspendLayout();
             tabPageNewJob.SuspendLayout();
             tabPageMyJobs.SuspendLayout();
@@ -114,6 +115,9 @@
             // 
             // tabPageNewJob
             // 
+            tabPageNewJob.BackgroundImage = (Image)resources.GetObject("tabPageNewJob.BackgroundImage");
+            tabPageNewJob.BackgroundImageLayout = ImageLayout.Center;
+            tabPageNewJob.Controls.Add(label3);
             tabPageNewJob.Controls.Add(btnClear);
             tabPageNewJob.Controls.Add(btnSubmit);
             tabPageNewJob.Controls.Add(txtSpecialInstructions);
@@ -140,27 +144,31 @@
             // 
             // btnClear
             // 
-            btnClear.Location = new Point(8, 383);
+            btnClear.BackColor = SystemColors.Highlight;
+            btnClear.ForeColor = SystemColors.ButtonHighlight;
+            btnClear.Location = new Point(101, 434);
             btnClear.Name = "btnClear";
-            btnClear.Size = new Size(94, 29);
+            btnClear.Size = new Size(150, 50);
             btnClear.TabIndex = 15;
             btnClear.Text = "CLEAR";
-            btnClear.UseVisualStyleBackColor = true;
+            btnClear.UseVisualStyleBackColor = false;
             btnClear.Click += btnClear_Click;
             // 
             // btnSubmit
             // 
-            btnSubmit.Location = new Point(258, 383);
+            btnSubmit.BackColor = SystemColors.Highlight;
+            btnSubmit.ForeColor = SystemColors.ButtonHighlight;
+            btnSubmit.Location = new Point(613, 434);
             btnSubmit.Name = "btnSubmit";
-            btnSubmit.Size = new Size(94, 29);
+            btnSubmit.Size = new Size(150, 50);
             btnSubmit.TabIndex = 14;
             btnSubmit.Text = "SUBMIT";
-            btnSubmit.UseVisualStyleBackColor = true;
+            btnSubmit.UseVisualStyleBackColor = false;
             btnSubmit.Click += btnSubmit_Click;
             // 
             // txtSpecialInstructions
             // 
-            txtSpecialInstructions.Location = new Point(258, 310);
+            txtSpecialInstructions.Location = new Point(310, 376);
             txtSpecialInstructions.Name = "txtSpecialInstructions";
             txtSpecialInstructions.Size = new Size(453, 30);
             txtSpecialInstructions.TabIndex = 13;
@@ -168,7 +176,7 @@
             // lblSpecialInstructions
             // 
             lblSpecialInstructions.AutoSize = true;
-            lblSpecialInstructions.Location = new Point(8, 313);
+            lblSpecialInstructions.Location = new Point(101, 376);
             lblSpecialInstructions.Name = "lblSpecialInstructions";
             lblSpecialInstructions.Size = new Size(165, 23);
             lblSpecialInstructions.TabIndex = 12;
@@ -176,15 +184,15 @@
             // 
             // txtVolumeCBM
             // 
-            txtVolumeCBM.Location = new Point(258, 259);
+            txtVolumeCBM.Location = new Point(310, 322);
             txtVolumeCBM.Name = "txtVolumeCBM";
-            txtVolumeCBM.Size = new Size(176, 30);
+            txtVolumeCBM.Size = new Size(453, 30);
             txtVolumeCBM.TabIndex = 11;
             // 
             // lblVolumeCBM
             // 
             lblVolumeCBM.AutoSize = true;
-            lblVolumeCBM.Location = new Point(8, 262);
+            lblVolumeCBM.Location = new Point(101, 325);
             lblVolumeCBM.Name = "lblVolumeCBM";
             lblVolumeCBM.Size = new Size(125, 23);
             lblVolumeCBM.TabIndex = 10;
@@ -192,15 +200,15 @@
             // 
             // txtWeightKG
             // 
-            txtWeightKG.Location = new Point(258, 208);
+            txtWeightKG.Location = new Point(310, 271);
             txtWeightKG.Name = "txtWeightKG";
-            txtWeightKG.Size = new Size(176, 30);
+            txtWeightKG.Size = new Size(453, 30);
             txtWeightKG.TabIndex = 9;
             // 
             // lblWeightKG
             // 
             lblWeightKG.AutoSize = true;
-            lblWeightKG.Location = new Point(8, 211);
+            lblWeightKG.Location = new Point(101, 274);
             lblWeightKG.Name = "lblWeightKG";
             lblWeightKG.Size = new Size(109, 23);
             lblWeightKG.TabIndex = 8;
@@ -208,15 +216,15 @@
             // 
             // txtDescription
             // 
-            txtDescription.Location = new Point(258, 159);
+            txtDescription.Location = new Point(310, 222);
             txtDescription.Name = "txtDescription";
-            txtDescription.Size = new Size(176, 30);
+            txtDescription.Size = new Size(453, 30);
             txtDescription.TabIndex = 7;
             // 
             // lblDescription
             // 
             lblDescription.AutoSize = true;
-            lblDescription.Location = new Point(8, 162);
+            lblDescription.Location = new Point(101, 225);
             lblDescription.Name = "lblDescription";
             lblDescription.Size = new Size(102, 23);
             lblDescription.TabIndex = 6;
@@ -224,15 +232,15 @@
             // 
             // dateScheduledPickupDate
             // 
-            dateScheduledPickupDate.Location = new Point(258, 106);
+            dateScheduledPickupDate.Location = new Point(310, 168);
             dateScheduledPickupDate.Name = "dateScheduledPickupDate";
-            dateScheduledPickupDate.Size = new Size(250, 30);
+            dateScheduledPickupDate.Size = new Size(453, 30);
             dateScheduledPickupDate.TabIndex = 5;
             // 
             // lblScheduledPickupDate
             // 
             lblScheduledPickupDate.AutoSize = true;
-            lblScheduledPickupDate.Location = new Point(8, 111);
+            lblScheduledPickupDate.Location = new Point(101, 174);
             lblScheduledPickupDate.Name = "lblScheduledPickupDate";
             lblScheduledPickupDate.Size = new Size(195, 23);
             lblScheduledPickupDate.TabIndex = 4;
@@ -240,15 +248,15 @@
             // 
             // txtDeliveryLocation
             // 
-            txtDeliveryLocation.Location = new Point(258, 58);
+            txtDeliveryLocation.Location = new Point(310, 121);
             txtDeliveryLocation.Name = "txtDeliveryLocation";
-            txtDeliveryLocation.Size = new Size(176, 30);
+            txtDeliveryLocation.Size = new Size(453, 30);
             txtDeliveryLocation.TabIndex = 3;
             // 
             // lblDeliveryLocation
             // 
             lblDeliveryLocation.AutoSize = true;
-            lblDeliveryLocation.Location = new Point(8, 61);
+            lblDeliveryLocation.Location = new Point(101, 124);
             lblDeliveryLocation.Name = "lblDeliveryLocation";
             lblDeliveryLocation.Size = new Size(150, 23);
             lblDeliveryLocation.TabIndex = 2;
@@ -256,15 +264,15 @@
             // 
             // txtPickupLocation
             // 
-            txtPickupLocation.Location = new Point(258, 12);
+            txtPickupLocation.Location = new Point(310, 75);
             txtPickupLocation.Name = "txtPickupLocation";
-            txtPickupLocation.Size = new Size(176, 30);
+            txtPickupLocation.Size = new Size(453, 30);
             txtPickupLocation.TabIndex = 1;
             // 
             // lblPickupLocation
             // 
             lblPickupLocation.AutoSize = true;
-            lblPickupLocation.Location = new Point(8, 15);
+            lblPickupLocation.Location = new Point(101, 78);
             lblPickupLocation.Name = "lblPickupLocation";
             lblPickupLocation.Size = new Size(137, 23);
             lblPickupLocation.TabIndex = 0;
@@ -275,10 +283,10 @@
             tabPageMyJobs.Controls.Add(btnCancelJob);
             tabPageMyJobs.Controls.Add(btnViewMyJobDetails);
             tabPageMyJobs.Controls.Add(dgvMyJobs);
-            tabPageMyJobs.Location = new Point(4, 29);
+            tabPageMyJobs.Location = new Point(4, 44);
             tabPageMyJobs.Name = "tabPageMyJobs";
             tabPageMyJobs.Padding = new Padding(3);
-            tabPageMyJobs.Size = new Size(790, 509);
+            tabPageMyJobs.Size = new Size(888, 506);
             tabPageMyJobs.TabIndex = 1;
             tabPageMyJobs.Text = "My Jobs";
             tabPageMyJobs.UseVisualStyleBackColor = true;
@@ -335,10 +343,10 @@
             tabPageProfile.Controls.Add(lblNewPassword);
             tabPageProfile.Controls.Add(txtUsername);
             tabPageProfile.Controls.Add(lblUsername);
-            tabPageProfile.Location = new Point(4, 29);
+            tabPageProfile.Location = new Point(4, 44);
             tabPageProfile.Name = "tabPageProfile";
             tabPageProfile.Padding = new Padding(3);
-            tabPageProfile.Size = new Size(790, 509);
+            tabPageProfile.Size = new Size(888, 506);
             tabPageProfile.TabIndex = 2;
             tabPageProfile.Text = "My Profile";
             tabPageProfile.UseVisualStyleBackColor = true;
@@ -532,10 +540,10 @@
             // 
             tabPageCustomerNotifications.Controls.Add(btnMarkNotificationAsRead);
             tabPageCustomerNotifications.Controls.Add(dgvCustomerNotifications);
-            tabPageCustomerNotifications.Location = new Point(4, 29);
+            tabPageCustomerNotifications.Location = new Point(4, 44);
             tabPageCustomerNotifications.Name = "tabPageCustomerNotifications";
             tabPageCustomerNotifications.Padding = new Padding(3);
-            tabPageCustomerNotifications.Size = new Size(790, 509);
+            tabPageCustomerNotifications.Size = new Size(888, 506);
             tabPageCustomerNotifications.TabIndex = 3;
             tabPageCustomerNotifications.Text = "My Notifications";
             tabPageCustomerNotifications.UseVisualStyleBackColor = true;
@@ -636,6 +644,16 @@
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Showcard Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label3.Location = new Point(175, 24);
+            label3.Name = "label3";
+            label3.Size = new Size(522, 26);
+            label3.TabIndex = 16;
+            label3.Text = "Create a new Request for your transport need";
+            // 
             // CustomerDashboardForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -644,6 +662,7 @@
             Controls.Add(panel1);
             Controls.Add(tabControlCustomer);
             Name = "CustomerDashboardForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "CustomerDashboardForm";
             tabControlCustomer.ResumeLayout(false);
             tabPageNewJob.ResumeLayout(false);
@@ -720,5 +739,6 @@
         private Label label1;
         private Label label2;
         private PictureBox pictureBox1;
+        private Label label3;
     }
 }
