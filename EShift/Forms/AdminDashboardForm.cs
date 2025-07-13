@@ -107,30 +107,6 @@ namespace EShift.Forms
             }
         }
 
-        private string PromptForNewJobStatus()
-        {
-            // Simple InputBox or a custom dialog form
-            Form prompt = new Form()
-            {
-                Width = 300,
-                Height = 150,
-                FormBorderStyle = FormBorderStyle.FixedDialog,
-                Text = "Update Job Status",
-                StartPosition = FormStartPosition.CenterParent
-            };
-            Label textLabel = new Label() { Left = 50, Top = 20, Text = "Enter new status:" };
-            ComboBox comboBox = new ComboBox() { Left = 50, Top = 50, Width = 200 };
-            comboBox.Items.AddRange(new string[] { "Pending", "Quoted", "Scheduled", "In Progress", "Completed", "Cancelled" }); // Or fetch from a static list
-            Button confirmation = new Button() { Text = "Ok", Left = 150, Width = 100, Top = 80, DialogResult = DialogResult.OK };
-            confirmation.Click += (sender, e) => { prompt.Close(); };
-            prompt.Controls.Add(comboBox);
-            prompt.Controls.Add(textLabel);
-            prompt.Controls.Add(confirmation);
-            prompt.AcceptButton = confirmation;
-
-            return prompt.ShowDialog() == DialogResult.OK ? comboBox.SelectedItem?.ToString() : string.Empty;
-        }
-
         private void LoadAllLorries()
         {
             try
@@ -552,21 +528,21 @@ namespace EShift.Forms
 
         private void btnAssignTransportUnit_Click_1(object sender, EventArgs e)
         {
-            //if (dgvJobs.SelectedRows.Count > 0)
-            //{
-            //    int selectedJobId = (int)dgvJobs.SelectedRows[0].Cells["JobID"].Value;
-            //    // Open AssignTransportUnitForm
-            //    //AssignTransportUnitForm assignForm = new AssignTransportUnitForm(selectedJobId, _jobService, _lorryService, _driverService, _assistantService, _containerService, _notificationService, _customerService);
-            //    if (assignForm.ShowDialog() == DialogResult.OK)
-            //    {
-            //        LoadAllJobs(); // Refresh job list
-            //        LoadDashboardOverview(); // Update overview if job status/counts changed
-            //    }
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Please select a job to assign a transport unit.", "No Job Selected", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //}
+            if (dgvJobs.SelectedRows.Count > 0)
+            {
+                int selectedJobId = (int)dgvJobs.SelectedRows[0].Cells["JobID"].Value;
+                // Open AssignTransportUnitForm
+                AssignTransportUnitForm assignForm = new AssignTransportUnitForm(selectedJobId, _jobService, _transportUnitService, _lorryService, _driverService, _assistantService, _containerService, _notificationService, _customerService);
+                if (assignForm.ShowDialog() == DialogResult.OK)
+                {
+                    LoadAllJobs(); // Refresh job list
+                    LoadDashboardOverview(); // Update overview if job status/counts changed
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a job to assign a transport unit.", "No Job Selected", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private void btnUpdateJobStatus_Click_1(object sender, EventArgs e)
@@ -627,7 +603,7 @@ namespace EShift.Forms
             Form prompt = new Form()
             {
                 Width = 300,
-                Height = 150,
+                Height = 250,
                 FormBorderStyle = FormBorderStyle.FixedDialog,
                 Text = "Update Job Status",
                 StartPosition = FormStartPosition.CenterParent

@@ -16,5 +16,6 @@ namespace EShift.Models
         public string? FuelType { get; set; }
         public decimal CurrentMileage { get; set; }
         public bool IsAvailable { get; set; }
+        public string Status { get; internal set; }
     }
 }

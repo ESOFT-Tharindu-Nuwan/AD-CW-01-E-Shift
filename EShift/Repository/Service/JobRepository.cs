@@ -21,7 +21,7 @@ namespace EShift.Repository.Service
                 CustomerID = (int)reader["CustomerID"],
                 RequestedDate = (DateTime)reader["RequestedDate"],
                 ScheduledPickupDate = reader["ScheduledPickupDate"] as DateTime?,
-                ScheduledDeliveryDate = reader["ScheduledDeliveryDate"] as DateTime?,
+                //ScheduledDeliveryDate = reader["ScheduledDeliveryDate"] as DateTime?,
                 ActualPickupDate = reader["ActualPickupDate"] as DateTime?,
                 ActualDeliveryDate = reader["ActualDeliveryDate"] as DateTime?,
                 PickupLocation = reader["PickupLocation"].ToString(),
