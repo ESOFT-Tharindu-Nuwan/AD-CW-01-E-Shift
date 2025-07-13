@@ -17,5 +17,7 @@ namespace EShift.Business.Interface
 
         // Utility to get user by username (could be private in implementation, but useful for checks)
         User GetUserByUsername(string username);
+
+        List<User> GetAllUsers();
     }
 }

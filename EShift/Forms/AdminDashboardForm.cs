@@ -58,6 +58,36 @@ namespace EShift.Forms
             LoadAllAssistants();
             LoadAllContainers();
             LoadAdminNotifications();
+            LoadAllCustomers();
+            LoadAllUsers();
+        }
+
+        private void LoadAllUsers()
+        {
+            try
+            {
+                List<User> allUsers = _userService.GetAllUsers();
+                dgvUsers.DataSource = allUsers;
+                dgvUsers.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading users: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void LoadAllCustomers()
+        {
+            try
+            {
+                List<Customer> allCustomers = _customerService.GetAllCustomers();
+                dgvCustomers.DataSource = allCustomers;
+                dgvCustomers.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading customers: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void LoadDashboardOverview()
@@ -66,10 +96,9 @@ namespace EShift.Forms
             {
                 lblTotalActiveJobs.Text = _jobService.GetTotalActiveJobsCount().ToString();
                 lblPendingRequests.Text = _jobService.GetPendingJobRequestsCount().ToString();
-                // Add similar calls for lorries, drivers, customers etc.
                 lblAvailableLorries.Text = new LorryService().GetAvailableLorriesCount().ToString();
                 lblAvailableDrivers.Text = new DriverService().GetAvailableDriversCount().ToString();
-                //lblTotalCustomers.Text = new CustomerService().GetTotalCustomersCount().ToString();
+                lblTotalCustomers.Text = new CustomerService().GetTotalCustomersCount().ToString();
             }
             catch (Exception ex)
             {

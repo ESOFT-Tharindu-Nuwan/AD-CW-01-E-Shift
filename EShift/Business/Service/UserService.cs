@@ -126,5 +126,10 @@ namespace EShift.Business.Service
         {
             return _userRepository.GetUserByUsername(username);
         }
+
+        public List<User> GetAllUsers()
+        {
+            return _userRepository.GetAll();
+        }
     }
 }
