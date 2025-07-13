@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            tabControl1 = new TabControl();
+            tbvAdmin = new TabControl();
             tabPageDashboard = new TabPage();
             groupBoxTotalCustomers = new GroupBox();
             lblTotalCustomers = new Label();
@@ -81,14 +81,15 @@
             tabPageAdminNotifications = new TabPage();
             btnRefreshNotifications = new Button();
             btnMarkAsRead = new Button();
-            dgvAdminNotifications = new DataGridView();
+            dgvNotifications = new DataGridView();
             tabPageUserManagement = new TabPage();
             btnLogout = new Button();
             btnToggleUserActiveStatus = new Button();
             btnEditUserRole = new Button();
             btnAddUser = new Button();
             dgvUsers = new DataGridView();
-            tabControl1.SuspendLayout();
+            lblNotificationCount = new Label();
+            tbvAdmin.SuspendLayout();
             tabPageDashboard.SuspendLayout();
             groupBoxTotalCustomers.SuspendLayout();
             groupBoxAvailableDrivers.SuspendLayout();
@@ -112,24 +113,24 @@
             tabPageTransportUnits.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvTransportUnits).BeginInit();
             tabPageAdminNotifications.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dgvAdminNotifications).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvNotifications).BeginInit();
             tabPageUserManagement.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvUsers).BeginInit();
             SuspendLayout();
             // 
-            // tabControl1
+            // tbvAdmin
             // 
-            tabControl1.Controls.Add(tabPageDashboard);
-            tabControl1.Controls.Add(tabPageJobs);
-            tabControl1.Controls.Add(tabPageCustomers);
-            tabControl1.Controls.Add(tabPageResources);
-            tabControl1.Controls.Add(tabPageAdminNotifications);
-            tabControl1.Controls.Add(tabPageUserManagement);
-            tabControl1.Location = new Point(0, 0);
-            tabControl1.Name = "tabControl1";
-            tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(1165, 578);
-            tabControl1.TabIndex = 0;
+            tbvAdmin.Controls.Add(tabPageDashboard);
+            tbvAdmin.Controls.Add(tabPageJobs);
+            tbvAdmin.Controls.Add(tabPageCustomers);
+            tbvAdmin.Controls.Add(tabPageResources);
+            tbvAdmin.Controls.Add(tabPageAdminNotifications);
+            tbvAdmin.Controls.Add(tabPageUserManagement);
+            tbvAdmin.Location = new Point(0, 0);
+            tbvAdmin.Name = "tbvAdmin";
+            tbvAdmin.SelectedIndex = 0;
+            tbvAdmin.Size = new Size(1165, 578);
+            tbvAdmin.TabIndex = 0;
             // 
             // tabPageDashboard
             // 
@@ -265,6 +266,7 @@
             btnUpdateJobStatus.TabIndex = 5;
             btnUpdateJobStatus.Text = "Update Job Status";
             btnUpdateJobStatus.UseVisualStyleBackColor = true;
+            btnUpdateJobStatus.Click += btnUpdateJobStatus_Click_1;
             // 
             // btnAssignTransportUnit
             // 
@@ -274,6 +276,7 @@
             btnAssignTransportUnit.TabIndex = 4;
             btnAssignTransportUnit.Text = "Assign Transport Unit";
             btnAssignTransportUnit.UseVisualStyleBackColor = true;
+            btnAssignTransportUnit.Click += btnAssignTransportUnit_Click_1;
             // 
             // btnViewJobDetails
             // 
@@ -283,6 +286,7 @@
             btnViewJobDetails.TabIndex = 3;
             btnViewJobDetails.Text = "View Job Details";
             btnViewJobDetails.UseVisualStyleBackColor = true;
+            btnViewJobDetails.Click += btnViewJobDetails_Click_1;
             // 
             // cmbJobStatusFilter
             // 
@@ -639,9 +643,10 @@
             // 
             // tabPageAdminNotifications
             // 
+            tabPageAdminNotifications.Controls.Add(lblNotificationCount);
             tabPageAdminNotifications.Controls.Add(btnRefreshNotifications);
             tabPageAdminNotifications.Controls.Add(btnMarkAsRead);
-            tabPageAdminNotifications.Controls.Add(dgvAdminNotifications);
+            tabPageAdminNotifications.Controls.Add(dgvNotifications);
             tabPageAdminNotifications.Location = new Point(4, 29);
             tabPageAdminNotifications.Name = "tabPageAdminNotifications";
             tabPageAdminNotifications.Padding = new Padding(3);
@@ -658,6 +663,7 @@
             btnRefreshNotifications.TabIndex = 2;
             btnRefreshNotifications.Text = "Refresh Notifications";
             btnRefreshNotifications.UseVisualStyleBackColor = true;
+            btnRefreshNotifications.Click += btnRefreshNotifications_Click;
             // 
             // btnMarkAsRead
             // 
@@ -667,15 +673,16 @@
             btnMarkAsRead.TabIndex = 1;
             btnMarkAsRead.Text = "Mark Selected as Read";
             btnMarkAsRead.UseVisualStyleBackColor = true;
+            btnMarkAsRead.Click += btnMarkAsRead_Click;
             // 
-            // dgvAdminNotifications
+            // dgvNotifications
             // 
-            dgvAdminNotifications.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvAdminNotifications.Location = new Point(0, 0);
-            dgvAdminNotifications.Name = "dgvAdminNotifications";
-            dgvAdminNotifications.RowHeadersWidth = 51;
-            dgvAdminNotifications.Size = new Size(1154, 427);
-            dgvAdminNotifications.TabIndex = 0;
+            dgvNotifications.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvNotifications.Location = new Point(0, 0);
+            dgvNotifications.Name = "dgvNotifications";
+            dgvNotifications.RowHeadersWidth = 51;
+            dgvNotifications.Size = new Size(1154, 427);
+            dgvNotifications.TabIndex = 0;
             // 
             // tabPageUserManagement
             // 
@@ -737,15 +744,24 @@
             dgvUsers.Size = new Size(1157, 375);
             dgvUsers.TabIndex = 0;
             // 
+            // lblNotificationCount
+            // 
+            lblNotificationCount.AutoSize = true;
+            lblNotificationCount.Location = new Point(621, 469);
+            lblNotificationCount.Name = "lblNotificationCount";
+            lblNotificationCount.Size = new Size(50, 20);
+            lblNotificationCount.TabIndex = 3;
+            lblNotificationCount.Text = "label1";
+            // 
             // AdminDashboardForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1167, 580);
-            Controls.Add(tabControl1);
+            Controls.Add(tbvAdmin);
             Name = "AdminDashboardForm";
             Text = "Admin Dashboard Form";
-            tabControl1.ResumeLayout(false);
+            tbvAdmin.ResumeLayout(false);
             tabPageDashboard.ResumeLayout(false);
             groupBoxTotalCustomers.ResumeLayout(false);
             groupBoxTotalCustomers.PerformLayout();
@@ -776,7 +792,8 @@
             tabPageTransportUnits.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvTransportUnits).EndInit();
             tabPageAdminNotifications.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dgvAdminNotifications).EndInit();
+            tabPageAdminNotifications.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvNotifications).EndInit();
             tabPageUserManagement.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvUsers).EndInit();
             ResumeLayout(false);
@@ -784,7 +801,7 @@
 
         #endregion
 
-        private TabControl tabControl1;
+        private TabControl tbvAdmin;
         private TabPage tabPageDashboard;
         private TabPage tabPageJobs;
         private TabPage tabPageCustomers;
@@ -838,11 +855,12 @@
         private DataGridView dgvTransportUnits;
         private Button btnRefreshNotifications;
         private Button btnMarkAsRead;
-        private DataGridView dgvAdminNotifications;
+        private DataGridView dgvNotifications;
         private Button btnLogout;
         private Button btnToggleUserActiveStatus;
         private Button btnEditUserRole;
         private Button btnAddUser;
         private DataGridView dgvUsers;
+        private Label lblNotificationCount;
     }
 }

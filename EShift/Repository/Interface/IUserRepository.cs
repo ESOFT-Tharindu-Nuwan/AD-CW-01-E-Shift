@@ -17,5 +17,8 @@ namespace EShift.Repository.Interface
 
         // (Optional) Method to delete a user, useful for rollback if customer creation fails
         void DeleteUser(int userId);
+        List<User> GetAll();
+        User GetById(int userId);
+        int GetTotalUsersCount();
     }
 }

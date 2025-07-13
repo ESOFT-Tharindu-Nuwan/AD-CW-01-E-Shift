@@ -21,49 +21,43 @@ namespace EShift.Forms
         private readonly ITransportUnitService _transportUnitService;
         private readonly IAssistantService _assistantService;
         private readonly IContainerService _containerService;
+
+        private readonly IUserService _userService; // ADDED: For admin user details and potentially notifications
+        private readonly INotificationService _notificationService; // ADDED: For handling notifications
+        private readonly ICustomerService _customerService; // ADDED: To get customer email for notifications
+
+        private int _currentAdminUserId; // To store the logged-in admin's ID
         public AdminDashboardForm()
         {
             InitializeComponent();
-            _jobService = new JobService();
-            LoadDashboardOverview();
-            LoadAllJobs();
-            _lorryService = new LorryService(); // Initialize LorryService
-            LoadAllLorries();
-            _driverService = new DriverService(); // Initialize DriverService
-            LoadAllDrivers();
-            _transportUnitService = new TransportUnitService(); // Initialize TransportUnitService
-            LoadAllTransportUnits();
-            _assistantService = new AssistantService(); // Initialize AssistantService.
-            LoadAllAssistants();
-            _containerService = new ContainerService(); // Initialize ContainerService
-            LoadAllContainers();
         }
 
         public AdminDashboardForm(int adminUserId)
         {
             InitializeComponent();
-            //_currentAdminUserId = adminUserId;
-            //_userService = new UserService();
-            _jobService = new JobService(); // Initialize JobService
-            // ... initialize other services
 
-            //User adminUser = _userService.GetUserById(_currentAdminUserId);
-            //this.Text = $"e-Shift Admin Dashboard - Welcome, {adminUser?.Username ?? "Admin"}";
+            _currentAdminUserId = adminUserId; // Store the admin ID
 
-            //SetupTabs();
+            // Initialize all services here to ensure they are available in both constructors
+            _jobService = new JobService();
+            _lorryService = new LorryService();
+            _driverService = new DriverService();
+            _transportUnitService = new TransportUnitService();
+            _assistantService = new AssistantService();
+            _containerService = new ContainerService();
+            _userService = new UserService(); // Initialize UserService
+            _notificationService = new NotificationService(); // Initialize NotificationService
+            _customerService = new CustomerService(); // Initialize CustomerService
+
+            // Load initial data
             LoadDashboardOverview();
             LoadAllJobs();
-            _lorryService = new LorryService(); // Initialize LorryService
-
             LoadAllLorries();
-            _driverService = new DriverService(); // Initialize DriverService
             LoadAllDrivers();
-            _transportUnitService = new TransportUnitService(); // Initialize TransportUnitService
             LoadAllTransportUnits();
-            _assistantService = new AssistantService(); // Initialize AssistantService.
             LoadAllAssistants();
-            _containerService = new ContainerService(); // Initialize ContainerService
             LoadAllContainers();
+            LoadAdminNotifications();
         }
 
         private void LoadDashboardOverview()
@@ -73,9 +67,9 @@ namespace EShift.Forms
                 lblTotalActiveJobs.Text = _jobService.GetTotalActiveJobsCount().ToString();
                 lblPendingRequests.Text = _jobService.GetPendingJobRequestsCount().ToString();
                 // Add similar calls for lorries, drivers, customers etc.
-                // lblAvailableLorries.Text = new LorryService().GetAvailableLorriesCount().ToString();
-                // lblAvailableDrivers.Text = new DriverService().GetAvailableDriversCount().ToString();
-                // lblTotalCustomers.Text = new CustomerService().GetTotalCustomersCount().ToString();
+                lblAvailableLorries.Text = new LorryService().GetAvailableLorriesCount().ToString();
+                lblAvailableDrivers.Text = new DriverService().GetAvailableDriversCount().ToString();
+                //lblTotalCustomers.Text = new CustomerService().GetTotalCustomersCount().ToString();
             }
             catch (Exception ex)
             {
@@ -605,6 +599,188 @@ namespace EShift.Forms
             {
                 MessageBox.Show("Please select a container to delete.", "No Container Selected", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+        }
+
+        private void btnViewJobDetails_Click_1(object sender, EventArgs e)
+        {
+            if (dgvJobs.SelectedRows.Count > 0)
+            {
+                int selectedJobId = (int)dgvJobs.SelectedRows[0].Cells["JobID"].Value;
+                // Open JobDetailsForm
+                JobDetailsForm jobDetailsForm = new JobDetailsForm(selectedJobId, _jobService); // Pass jobService
+                if (jobDetailsForm.ShowDialog() == DialogResult.OK)
+                {
+                    LoadAllJobs(); // Refresh job list after potential edits
+                    LoadDashboardOverview(); // Update overview if job status/counts changed
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a job to view details.", "No Job Selected", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void btnAssignTransportUnit_Click_1(object sender, EventArgs e)
+        {
+            if (dgvJobs.SelectedRows.Count > 0)
+            {
+                int selectedJobId = (int)dgvJobs.SelectedRows[0].Cells["JobID"].Value;
+                // Open AssignTransportUnitForm
+                AssignTransportUnitForm assignForm = new AssignTransportUnitForm(selectedJobId, _jobService, _lorryService, _driverService, _assistantService, _containerService, _notificationService, _customerService);
+                if (assignForm.ShowDialog() == DialogResult.OK)
+                {
+                    LoadAllJobs(); // Refresh job list
+                    LoadDashboardOverview(); // Update overview if job status/counts changed
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a job to assign a transport unit.", "No Job Selected", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void btnUpdateJobStatus_Click_1(object sender, EventArgs e)
+        {
+            if (dgvJobs.SelectedRows.Count > 0)
+            {
+                int selectedJobId = (int)dgvJobs.SelectedRows[0].Cells["JobID"].Value;
+                string currentJobStatus = dgvJobs.SelectedRows[0].Cells["JobStatus"].Value.ToString(); // Get current status
+
+                string newStatus = PromptForNewJobStatus(currentJobStatus); // Pass current status to prompt
+                if (!string.IsNullOrEmpty(newStatus) && newStatus != currentJobStatus) // Only update if status changed
+                {
+                    try
+                    {
+                        if (_jobService.UpdateJobStatus(selectedJobId, newStatus))
+                        {
+                            MessageBox.Show("Job status updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            LoadAllJobs(); // Refresh list
+                            LoadDashboardOverview(); // Update overview
+
+                            // Notify customer about status change
+                            Job updatedJob = _jobService.GetJobById(selectedJobId);
+                            if (updatedJob != null && updatedJob.CustomerID.HasValue)
+                            {
+                                Customer customer = _customerService.GetCustomerById(updatedJob.CustomerID.Value);
+                                if (customer != null && customer.UserID.HasValue)
+                                {
+                                    _notificationService.AddNotification(new Notification
+                                    {
+                                        UserID = customer.UserID.Value, // Customer's UserID
+                                        MessageType = "Job_StatusUpdate",
+                                        MessageContent = $"Your job '{updatedJob.JobNumber}' has been updated to status: '{newStatus}'.",
+                                        RelatedEntityID = selectedJobId,
+                                        RelatedEntityType = "Job"
+                                    });
+                                }
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Failed to update job status.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Error updating job status: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a job to update its status.", "No Job Selected", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private string PromptForNewJobStatus(string currentStatus)
+        {
+            Form prompt = new Form()
+            {
+                Width = 300,
+                Height = 150,
+                FormBorderStyle = FormBorderStyle.FixedDialog,
+                Text = "Update Job Status",
+                StartPosition = FormStartPosition.CenterParent
+            };
+            Label textLabel = new Label() { Left = 50, Top = 20, Text = "Select new status:" };
+            ComboBox comboBox = new ComboBox() { Left = 50, Top = 50, Width = 200, DropDownStyle = ComboBoxStyle.DropDownList };
+            string[] statuses = new string[] { "Pending", "Quoted", "Scheduled", "In Progress", "Completed", "Cancelled", "Delivered" };
+            comboBox.Items.AddRange(statuses);
+            comboBox.SelectedItem = currentStatus; // Pre-select current status
+
+            Button confirmation = new Button() { Text = "Ok", Left = 150, Width = 100, Top = 80, DialogResult = DialogResult.OK };
+            confirmation.Click += (sender, e) => { prompt.Close(); };
+            prompt.Controls.Add(comboBox);
+            prompt.Controls.Add(textLabel);
+            prompt.Controls.Add(confirmation);
+            prompt.AcceptButton = confirmation;
+
+            return prompt.ShowDialog() == DialogResult.OK ? comboBox.SelectedItem?.ToString() : string.Empty;
+        }
+
+        // *** Duplicates from your provided code removed for clarity. Make sure you only have one set of these. ***
+        // private void btnViewJobDetails_Click_1(object sender, EventArgs e) { /* ... */ }
+        // private void btnAssignTransportUnit_Click_1(object sender, EventArgs e) { /* ... */ }
+        // private void btnUpdateJobStatus_Click_1(object sender, EventArgs e) { /* ... */ }
+
+        // --- Notification Handling for Admin ---
+        private void LoadAdminNotifications()
+        {
+            try
+            {
+                // Assuming adminUserId is set in the constructor
+                List<Notification> notifications = _notificationService.GetUnreadNotificationsForUser(_currentAdminUserId);
+                dgvNotifications.DataSource = notifications; // Assuming dgvNotifications DataGridView
+
+                if (notifications.Count > 0)
+                {
+                    lblNotificationCount.Text = notifications.Count.ToString(); // Update a label for count
+                    // Optional: Highlight notification tab or play a sound
+                }
+                else
+                {
+                    lblNotificationCount.Text = "0";
+                }
+                dgvNotifications.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading notifications: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnMarkAsRead_Click(object sender, EventArgs e)
+        {
+            if (dgvNotifications.SelectedRows.Count > 0)
+            {
+                int notificationId = (int)dgvNotifications.SelectedRows[0].Cells["NotificationID"].Value;
+                try
+                {
+                    if (_notificationService.MarkNotificationAsRead(notificationId))
+                    {
+                        MessageBox.Show("Notification marked as read.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        LoadAdminNotifications(); // Refresh notifications
+                    }
+                    else
+                    {
+                        MessageBox.Show("Failed to mark notification as read.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error marking notification as read: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a notification to mark as read.", "No Notification Selected", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void btnRefreshNotifications_Click(object sender, EventArgs e)
+        {
+            LoadAdminNotifications(); // Simply refresh the notifications list
+            MessageBox.Show("Notifications refreshed.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

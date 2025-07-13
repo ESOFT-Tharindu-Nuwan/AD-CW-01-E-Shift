@@ -13,10 +13,12 @@ namespace EShift.Business.Service
     public class CustomerService : ICustomerService
     {
         private readonly ICustomerRepository _customerRepository;
+        private readonly IUserRepository _userRepository;
 
         public CustomerService()
         {
             _customerRepository = new CustomerRepository();
+            _userRepository = new UserRepository();
         }
 
         public void SaveCustomer(Customer customer)
@@ -35,5 +37,21 @@ namespace EShift.Business.Service
         {
             return _customerRepository.GetCustomerByUserID(userId);
         }
+
+        public Customer GetCustomerById(int customerId)
+        {
+            return _customerRepository.GetCustomerById(customerId);
+        }
+
+        public List<Customer> GetAllCustomers()
+        {
+            return _customerRepository.GetAllCustomers();
+        }
+
+        public int GetTotalCustomersCount()
+        {
+            return _customerRepository.GetTotalCustomersCount();
+        }
+
     }
 }

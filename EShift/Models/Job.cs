@@ -10,7 +10,7 @@ namespace EShift.Models
     {
         public int JobID { get; set; }
         public string JobNumber { get; set; }
-        public int CustomerID { get; set; } // Foreign Key to Customer
+        public int? CustomerID { get; set; } // Foreign Key to Customer
         public DateTime RequestedDate { get; set; }
         public DateTime? ScheduledPickupDate { get; set; }
         public DateTime? ScheduledDeliveryDate { get; set; }

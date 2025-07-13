@@ -12,7 +12,10 @@ namespace EShift.Business.Interface
         // For saving/updating existing customer details
         void SaveCustomer(Customer customer);
 
-        // (Optional) Add a method to get customer by UserID if needed later
         Customer GetCustomerByUserID(int userId);
+
+        Customer GetCustomerById(int customerId);
+        List<Customer> GetAllCustomers();
+        int GetTotalCustomersCount();
     }
 }

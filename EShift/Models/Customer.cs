@@ -9,7 +9,7 @@ namespace EShift.Models
     public class Customer
     {
         public int CustomerID { get; set; }
-        public int UserID { get; set; }
+        public int? UserID { get; set; }
         public string CustomerNumber { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }

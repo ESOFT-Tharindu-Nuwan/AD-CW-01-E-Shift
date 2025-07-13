@@ -20,5 +20,9 @@ namespace EShift.Repository.Interface
 
         // (Optional) Update an existing customer
         void UpdateCustomer(Customer customer);
+
+        Customer GetCustomerById(int customerId);
+        List<Customer> GetAllCustomers();
+        int GetTotalCustomersCount();
     }
 }
