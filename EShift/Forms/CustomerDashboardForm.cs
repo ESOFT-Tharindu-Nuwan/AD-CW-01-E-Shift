@@ -59,6 +59,7 @@ namespace EShift.Forms
                 txtEmail.Text = customer.Email;
                 txtPhoneNumber.Text = customer.PhoneNumber;
                 txtUsername.Text = user.Username;
+                lblLoggedUsername.Text = user.Username;
             }
             catch (Exception ex)
             {
@@ -77,7 +78,7 @@ namespace EShift.Forms
             {
                 MessageBox.Show($"Error loading jobs: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
+
         }
 
         private void LoadAllNotifications()
@@ -91,7 +92,7 @@ namespace EShift.Forms
             {
                 MessageBox.Show($"Error loading notifications: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
+
         }
 
         private void btnSubmit_Click(object sender, EventArgs e)
@@ -184,6 +185,18 @@ namespace EShift.Forms
             txtVolumeCBM.Clear();
             txtSpecialInstructions.Clear();
             txtPickupLocation.Focus(); // Set focus to the first field
+        }
+
+        private void pbLogout_Click(object sender, EventArgs e)
+        {
+            DialogResult confirm = MessageBox.Show("Are you sure you want to log out?", "Confirm Logout", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (confirm == DialogResult.Yes)
+            {
+                LoginForm loginForm = new LoginForm();
+                loginForm.Show();
+            }
+            this.Close();
         }
     }
 }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CustomerDashboardForm));
             tabControlCustomer = new TabControl();
             tabPageNewJob = new TabPage();
             btnClear = new Button();
@@ -77,6 +78,13 @@
             tabPageCustomerNotifications = new TabPage();
             btnMarkNotificationAsRead = new Button();
             dgvCustomerNotifications = new DataGridView();
+            panel1 = new Panel();
+            pbLogout = new PictureBox();
+            lblLoggedUsername = new Label();
+            pictureBox2 = new PictureBox();
+            label1 = new Label();
+            label2 = new Label();
+            pictureBox1 = new PictureBox();
             tabControlCustomer.SuspendLayout();
             tabPageNewJob.SuspendLayout();
             tabPageMyJobs.SuspendLayout();
@@ -84,6 +92,10 @@
             tabPageProfile.SuspendLayout();
             tabPageCustomerNotifications.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvCustomerNotifications).BeginInit();
+            panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pbLogout).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // tabControlCustomer
@@ -92,10 +104,12 @@
             tabControlCustomer.Controls.Add(tabPageMyJobs);
             tabControlCustomer.Controls.Add(tabPageProfile);
             tabControlCustomer.Controls.Add(tabPageCustomerNotifications);
-            tabControlCustomer.Location = new Point(0, 0);
+            tabControlCustomer.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            tabControlCustomer.ItemSize = new Size(126, 40);
+            tabControlCustomer.Location = new Point(0, 96);
             tabControlCustomer.Name = "tabControlCustomer";
             tabControlCustomer.SelectedIndex = 0;
-            tabControlCustomer.Size = new Size(798, 542);
+            tabControlCustomer.Size = new Size(896, 554);
             tabControlCustomer.TabIndex = 0;
             // 
             // tabPageNewJob
@@ -116,10 +130,10 @@
             tabPageNewJob.Controls.Add(lblDeliveryLocation);
             tabPageNewJob.Controls.Add(txtPickupLocation);
             tabPageNewJob.Controls.Add(lblPickupLocation);
-            tabPageNewJob.Location = new Point(4, 29);
+            tabPageNewJob.Location = new Point(4, 44);
             tabPageNewJob.Name = "tabPageNewJob";
             tabPageNewJob.Padding = new Padding(3);
-            tabPageNewJob.Size = new Size(790, 509);
+            tabPageNewJob.Size = new Size(888, 506);
             tabPageNewJob.TabIndex = 0;
             tabPageNewJob.Text = "New Job Request";
             tabPageNewJob.UseVisualStyleBackColor = true;
@@ -148,7 +162,7 @@
             // 
             txtSpecialInstructions.Location = new Point(258, 310);
             txtSpecialInstructions.Name = "txtSpecialInstructions";
-            txtSpecialInstructions.Size = new Size(453, 27);
+            txtSpecialInstructions.Size = new Size(453, 30);
             txtSpecialInstructions.TabIndex = 13;
             // 
             // lblSpecialInstructions
@@ -156,7 +170,7 @@
             lblSpecialInstructions.AutoSize = true;
             lblSpecialInstructions.Location = new Point(8, 313);
             lblSpecialInstructions.Name = "lblSpecialInstructions";
-            lblSpecialInstructions.Size = new Size(136, 20);
+            lblSpecialInstructions.Size = new Size(165, 23);
             lblSpecialInstructions.TabIndex = 12;
             lblSpecialInstructions.Text = "Special Instructions";
             // 
@@ -164,7 +178,7 @@
             // 
             txtVolumeCBM.Location = new Point(258, 259);
             txtVolumeCBM.Name = "txtVolumeCBM";
-            txtVolumeCBM.Size = new Size(176, 27);
+            txtVolumeCBM.Size = new Size(176, 30);
             txtVolumeCBM.TabIndex = 11;
             // 
             // lblVolumeCBM
@@ -172,7 +186,7 @@
             lblVolumeCBM.AutoSize = true;
             lblVolumeCBM.Location = new Point(8, 262);
             lblVolumeCBM.Name = "lblVolumeCBM";
-            lblVolumeCBM.Size = new Size(104, 20);
+            lblVolumeCBM.Size = new Size(125, 23);
             lblVolumeCBM.TabIndex = 10;
             lblVolumeCBM.Text = "Volume (CBM)";
             // 
@@ -180,7 +194,7 @@
             // 
             txtWeightKG.Location = new Point(258, 208);
             txtWeightKG.Name = "txtWeightKG";
-            txtWeightKG.Size = new Size(176, 27);
+            txtWeightKG.Size = new Size(176, 30);
             txtWeightKG.TabIndex = 9;
             // 
             // lblWeightKG
@@ -188,7 +202,7 @@
             lblWeightKG.AutoSize = true;
             lblWeightKG.Location = new Point(8, 211);
             lblWeightKG.Name = "lblWeightKG";
-            lblWeightKG.Size = new Size(88, 20);
+            lblWeightKG.Size = new Size(109, 23);
             lblWeightKG.TabIndex = 8;
             lblWeightKG.Text = "Weight (KG)";
             // 
@@ -196,7 +210,7 @@
             // 
             txtDescription.Location = new Point(258, 159);
             txtDescription.Name = "txtDescription";
-            txtDescription.Size = new Size(176, 27);
+            txtDescription.Size = new Size(176, 30);
             txtDescription.TabIndex = 7;
             // 
             // lblDescription
@@ -204,7 +218,7 @@
             lblDescription.AutoSize = true;
             lblDescription.Location = new Point(8, 162);
             lblDescription.Name = "lblDescription";
-            lblDescription.Size = new Size(85, 20);
+            lblDescription.Size = new Size(102, 23);
             lblDescription.TabIndex = 6;
             lblDescription.Text = "Description";
             // 
@@ -212,7 +226,7 @@
             // 
             dateScheduledPickupDate.Location = new Point(258, 106);
             dateScheduledPickupDate.Name = "dateScheduledPickupDate";
-            dateScheduledPickupDate.Size = new Size(250, 27);
+            dateScheduledPickupDate.Size = new Size(250, 30);
             dateScheduledPickupDate.TabIndex = 5;
             // 
             // lblScheduledPickupDate
@@ -220,7 +234,7 @@
             lblScheduledPickupDate.AutoSize = true;
             lblScheduledPickupDate.Location = new Point(8, 111);
             lblScheduledPickupDate.Name = "lblScheduledPickupDate";
-            lblScheduledPickupDate.Size = new Size(161, 20);
+            lblScheduledPickupDate.Size = new Size(195, 23);
             lblScheduledPickupDate.TabIndex = 4;
             lblScheduledPickupDate.Text = "Scheduled Pickup Date";
             // 
@@ -228,7 +242,7 @@
             // 
             txtDeliveryLocation.Location = new Point(258, 58);
             txtDeliveryLocation.Name = "txtDeliveryLocation";
-            txtDeliveryLocation.Size = new Size(176, 27);
+            txtDeliveryLocation.Size = new Size(176, 30);
             txtDeliveryLocation.TabIndex = 3;
             // 
             // lblDeliveryLocation
@@ -236,7 +250,7 @@
             lblDeliveryLocation.AutoSize = true;
             lblDeliveryLocation.Location = new Point(8, 61);
             lblDeliveryLocation.Name = "lblDeliveryLocation";
-            lblDeliveryLocation.Size = new Size(124, 20);
+            lblDeliveryLocation.Size = new Size(150, 23);
             lblDeliveryLocation.TabIndex = 2;
             lblDeliveryLocation.Text = "Delivery Location";
             // 
@@ -244,7 +258,7 @@
             // 
             txtPickupLocation.Location = new Point(258, 12);
             txtPickupLocation.Name = "txtPickupLocation";
-            txtPickupLocation.Size = new Size(176, 27);
+            txtPickupLocation.Size = new Size(176, 30);
             txtPickupLocation.TabIndex = 1;
             // 
             // lblPickupLocation
@@ -252,7 +266,7 @@
             lblPickupLocation.AutoSize = true;
             lblPickupLocation.Location = new Point(8, 15);
             lblPickupLocation.Name = "lblPickupLocation";
-            lblPickupLocation.Size = new Size(113, 20);
+            lblPickupLocation.Size = new Size(137, 23);
             lblPickupLocation.TabIndex = 0;
             lblPickupLocation.Text = "Pickup Location";
             // 
@@ -342,7 +356,7 @@
             // 
             txtEmail.Location = new Point(385, 329);
             txtEmail.Name = "txtEmail";
-            txtEmail.Size = new Size(338, 27);
+            txtEmail.Size = new Size(338, 30);
             txtEmail.TabIndex = 47;
             // 
             // lblEmail
@@ -350,7 +364,7 @@
             lblEmail.AutoSize = true;
             lblEmail.Location = new Point(385, 306);
             lblEmail.Name = "lblEmail";
-            lblEmail.Size = new Size(46, 20);
+            lblEmail.Size = new Size(54, 23);
             lblEmail.TabIndex = 46;
             lblEmail.Text = "Email";
             // 
@@ -358,7 +372,7 @@
             // 
             txtPhoneNumber.Location = new Point(21, 329);
             txtPhoneNumber.Name = "txtPhoneNumber";
-            txtPhoneNumber.Size = new Size(312, 27);
+            txtPhoneNumber.Size = new Size(312, 30);
             txtPhoneNumber.TabIndex = 45;
             // 
             // lblPhoneNumber
@@ -366,7 +380,7 @@
             lblPhoneNumber.AutoSize = true;
             lblPhoneNumber.Location = new Point(21, 306);
             lblPhoneNumber.Name = "lblPhoneNumber";
-            lblPhoneNumber.Size = new Size(108, 20);
+            lblPhoneNumber.Size = new Size(130, 23);
             lblPhoneNumber.TabIndex = 44;
             lblPhoneNumber.Text = "Phone Number";
             // 
@@ -374,7 +388,7 @@
             // 
             txtPostalCode.Location = new Point(523, 259);
             txtPostalCode.Name = "txtPostalCode";
-            txtPostalCode.Size = new Size(200, 27);
+            txtPostalCode.Size = new Size(200, 30);
             txtPostalCode.TabIndex = 43;
             // 
             // lblPostalCode
@@ -382,7 +396,7 @@
             lblPostalCode.AutoSize = true;
             lblPostalCode.Location = new Point(523, 236);
             lblPostalCode.Name = "lblPostalCode";
-            lblPostalCode.Size = new Size(87, 20);
+            lblPostalCode.Size = new Size(103, 23);
             lblPostalCode.TabIndex = 42;
             lblPostalCode.Text = "Postal Code";
             // 
@@ -390,7 +404,7 @@
             // 
             txtProvince.Location = new Point(263, 259);
             txtProvince.Name = "txtProvince";
-            txtProvince.Size = new Size(200, 27);
+            txtProvince.Size = new Size(200, 30);
             txtProvince.TabIndex = 41;
             // 
             // lblProvince
@@ -398,7 +412,7 @@
             lblProvince.AutoSize = true;
             lblProvince.Location = new Point(263, 236);
             lblProvince.Name = "lblProvince";
-            lblProvince.Size = new Size(65, 20);
+            lblProvince.Size = new Size(78, 23);
             lblProvince.TabIndex = 40;
             lblProvince.Text = "Province";
             // 
@@ -406,7 +420,7 @@
             // 
             txtCity.Location = new Point(21, 259);
             txtCity.Name = "txtCity";
-            txtCity.Size = new Size(200, 27);
+            txtCity.Size = new Size(200, 30);
             txtCity.TabIndex = 39;
             // 
             // lblCity
@@ -414,7 +428,7 @@
             lblCity.AutoSize = true;
             lblCity.Location = new Point(21, 236);
             lblCity.Name = "lblCity";
-            lblCity.Size = new Size(34, 20);
+            lblCity.Size = new Size(42, 23);
             lblCity.TabIndex = 38;
             lblCity.Text = "City";
             // 
@@ -422,7 +436,7 @@
             // 
             txtAddressLine2.Location = new Point(385, 183);
             txtAddressLine2.Name = "txtAddressLine2";
-            txtAddressLine2.Size = new Size(338, 27);
+            txtAddressLine2.Size = new Size(338, 30);
             txtAddressLine2.TabIndex = 37;
             // 
             // lblAddressLine2
@@ -430,7 +444,7 @@
             lblAddressLine2.AutoSize = true;
             lblAddressLine2.Location = new Point(385, 160);
             lblAddressLine2.Name = "lblAddressLine2";
-            lblAddressLine2.Size = new Size(105, 20);
+            lblAddressLine2.Size = new Size(127, 23);
             lblAddressLine2.TabIndex = 36;
             lblAddressLine2.Text = "Address Line 2";
             // 
@@ -438,7 +452,7 @@
             // 
             txtAddressLine1.Location = new Point(21, 183);
             txtAddressLine1.Name = "txtAddressLine1";
-            txtAddressLine1.Size = new Size(312, 27);
+            txtAddressLine1.Size = new Size(312, 30);
             txtAddressLine1.TabIndex = 35;
             // 
             // lblAddressLine1
@@ -446,7 +460,7 @@
             lblAddressLine1.AutoSize = true;
             lblAddressLine1.Location = new Point(21, 160);
             lblAddressLine1.Name = "lblAddressLine1";
-            lblAddressLine1.Size = new Size(105, 20);
+            lblAddressLine1.Size = new Size(127, 23);
             lblAddressLine1.TabIndex = 34;
             lblAddressLine1.Text = "Address Line 1";
             // 
@@ -454,7 +468,7 @@
             // 
             txtLastName.Location = new Point(385, 111);
             txtLastName.Name = "txtLastName";
-            txtLastName.Size = new Size(338, 27);
+            txtLastName.Size = new Size(338, 30);
             txtLastName.TabIndex = 33;
             // 
             // lblLastName
@@ -462,7 +476,7 @@
             lblLastName.AutoSize = true;
             lblLastName.Location = new Point(385, 88);
             lblLastName.Name = "lblLastName";
-            lblLastName.Size = new Size(79, 20);
+            lblLastName.Size = new Size(94, 23);
             lblLastName.TabIndex = 32;
             lblLastName.Text = "Last Name";
             // 
@@ -470,7 +484,7 @@
             // 
             txtFirstName.Location = new Point(21, 111);
             txtFirstName.Name = "txtFirstName";
-            txtFirstName.Size = new Size(312, 27);
+            txtFirstName.Size = new Size(312, 30);
             txtFirstName.TabIndex = 31;
             // 
             // lblFirstName
@@ -478,7 +492,7 @@
             lblFirstName.AutoSize = true;
             lblFirstName.Location = new Point(21, 88);
             lblFirstName.Name = "lblFirstName";
-            lblFirstName.Size = new Size(80, 20);
+            lblFirstName.Size = new Size(97, 23);
             lblFirstName.TabIndex = 30;
             lblFirstName.Text = "First Name";
             // 
@@ -486,7 +500,7 @@
             // 
             txtNewPassword.Location = new Point(385, 38);
             txtNewPassword.Name = "txtNewPassword";
-            txtNewPassword.Size = new Size(338, 27);
+            txtNewPassword.Size = new Size(338, 30);
             txtNewPassword.TabIndex = 27;
             // 
             // lblNewPassword
@@ -494,7 +508,7 @@
             lblNewPassword.AutoSize = true;
             lblNewPassword.Location = new Point(385, 15);
             lblNewPassword.Name = "lblNewPassword";
-            lblNewPassword.Size = new Size(70, 20);
+            lblNewPassword.Size = new Size(85, 23);
             lblNewPassword.TabIndex = 26;
             lblNewPassword.Text = "Password";
             // 
@@ -502,7 +516,7 @@
             // 
             txtUsername.Location = new Point(21, 38);
             txtUsername.Name = "txtUsername";
-            txtUsername.Size = new Size(312, 27);
+            txtUsername.Size = new Size(312, 30);
             txtUsername.TabIndex = 25;
             // 
             // lblUsername
@@ -510,7 +524,7 @@
             lblUsername.AutoSize = true;
             lblUsername.Location = new Point(21, 15);
             lblUsername.Name = "lblUsername";
-            lblUsername.Size = new Size(75, 20);
+            lblUsername.Size = new Size(89, 23);
             lblUsername.TabIndex = 24;
             lblUsername.Text = "Username";
             // 
@@ -544,11 +558,90 @@
             dgvCustomerNotifications.Size = new Size(790, 422);
             dgvCustomerNotifications.TabIndex = 0;
             // 
+            // panel1
+            // 
+            panel1.BackColor = SystemColors.ActiveCaption;
+            panel1.Controls.Add(pbLogout);
+            panel1.Controls.Add(lblLoggedUsername);
+            panel1.Controls.Add(pictureBox2);
+            panel1.Controls.Add(label1);
+            panel1.Controls.Add(label2);
+            panel1.Controls.Add(pictureBox1);
+            panel1.Location = new Point(0, 0);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(909, 90);
+            panel1.TabIndex = 2;
+            // 
+            // pbLogout
+            // 
+            pbLogout.BackgroundImage = (Image)resources.GetObject("pbLogout.BackgroundImage");
+            pbLogout.BackgroundImageLayout = ImageLayout.Zoom;
+            pbLogout.Location = new Point(846, 18);
+            pbLogout.Name = "pbLogout";
+            pbLogout.Size = new Size(43, 50);
+            pbLogout.SizeMode = PictureBoxSizeMode.StretchImage;
+            pbLogout.TabIndex = 6;
+            pbLogout.TabStop = false;
+            pbLogout.Click += pbLogout_Click;
+            // 
+            // lblLoggedUsername
+            // 
+            lblLoggedUsername.AutoSize = true;
+            lblLoggedUsername.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblLoggedUsername.Location = new Point(707, 36);
+            lblLoggedUsername.Name = "lblLoggedUsername";
+            lblLoggedUsername.Size = new Size(78, 20);
+            lblLoggedUsername.TabIndex = 5;
+            lblLoggedUsername.Text = "username";
+            // 
+            // pictureBox2
+            // 
+            pictureBox2.BackgroundImage = (Image)resources.GetObject("pictureBox2.BackgroundImage");
+            pictureBox2.BackgroundImageLayout = ImageLayout.Zoom;
+            pictureBox2.Location = new Point(661, 28);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(40, 40);
+            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox2.TabIndex = 4;
+            pictureBox2.TabStop = false;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Showcard Gothic", 28.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.Location = new Point(96, 18);
+            label1.Name = "label1";
+            label1.Size = new Size(205, 59);
+            label1.TabIndex = 2;
+            label1.Text = "E-SHIFT";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Tempus Sans ITC", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.Location = new Point(307, 36);
+            label2.Name = "label2";
+            label2.Size = new Size(323, 26);
+            label2.TabIndex = 3;
+            label2.Text = "Powered by Trust, Driven by Tech";
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.BackgroundImage = (Image)resources.GetObject("pictureBox1.BackgroundImage");
+            pictureBox1.BackgroundImageLayout = ImageLayout.Zoom;
+            pictureBox1.Location = new Point(0, 0);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(90, 90);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 0;
+            pictureBox1.TabStop = false;
+            // 
             // CustomerDashboardForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 554);
+            ClientSize = new Size(908, 648);
+            Controls.Add(panel1);
             Controls.Add(tabControlCustomer);
             Name = "CustomerDashboardForm";
             Text = "CustomerDashboardForm";
@@ -561,6 +654,11 @@
             tabPageProfile.PerformLayout();
             tabPageCustomerNotifications.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvCustomerNotifications).EndInit();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pbLogout).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
 
@@ -615,5 +713,12 @@
         private Label lblUsername;
         private Button btnMarkNotificationAsRead;
         private DataGridView dgvCustomerNotifications;
+        private Panel panel1;
+        private PictureBox pbLogout;
+        private Label lblLoggedUsername;
+        private PictureBox pictureBox2;
+        private Label label1;
+        private Label label2;
+        private PictureBox pictureBox1;
     }
 }

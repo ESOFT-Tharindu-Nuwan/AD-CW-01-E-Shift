@@ -30,17 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminDashboardForm));
             tbvAdmin = new TabControl();
-            tabPageDashboard = new TabPage();
-            groupBoxTotalCustomers = new GroupBox();
-            lblTotalCustomers = new Label();
-            groupBoxAvailableDrivers = new GroupBox();
-            lblAvailableDrivers = new Label();
-            groupBoxAvailableLorries = new GroupBox();
-            lblAvailableLorries = new Label();
-            groupBoxJobRequests = new GroupBox();
-            lblPendingRequests = new Label();
-            groupBoxActiveJobs = new GroupBox();
-            lblTotalActiveJobs = new Label();
             tabPageJobs = new TabPage();
             btnUpdateJobStatus = new Button();
             btnAssignTransportUnit = new Button();
@@ -96,13 +85,23 @@
             label1 = new Label();
             label2 = new Label();
             pictureBox1 = new PictureBox();
+            groupBoxActiveJobs = new GroupBox();
+            lblTotalActiveJobs = new Label();
+            groupBoxJobRequests = new GroupBox();
+            lblPendingRequests = new Label();
+            groupBoxAvailableLorries = new GroupBox();
+            lblAvailableLorries = new Label();
+            groupBoxAvailableDrivers = new GroupBox();
+            lblAvailableDrivers = new Label();
+            groupBoxTotalCustomers = new GroupBox();
+            lblTotalCustomers = new Label();
+            tabPageDashboard = new TabPage();
+            pictureBox3 = new PictureBox();
+            pictureBox4 = new PictureBox();
+            pictureBox5 = new PictureBox();
+            pictureBox6 = new PictureBox();
+            pictureBox7 = new PictureBox();
             tbvAdmin.SuspendLayout();
-            tabPageDashboard.SuspendLayout();
-            groupBoxTotalCustomers.SuspendLayout();
-            groupBoxAvailableDrivers.SuspendLayout();
-            groupBoxAvailableLorries.SuspendLayout();
-            groupBoxJobRequests.SuspendLayout();
-            groupBoxActiveJobs.SuspendLayout();
             tabPageJobs.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvJobs).BeginInit();
             tabPageCustomers.SuspendLayout();
@@ -127,6 +126,17 @@
             ((System.ComponentModel.ISupportInitialize)pbLogout).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            groupBoxActiveJobs.SuspendLayout();
+            groupBoxJobRequests.SuspendLayout();
+            groupBoxAvailableLorries.SuspendLayout();
+            groupBoxAvailableDrivers.SuspendLayout();
+            groupBoxTotalCustomers.SuspendLayout();
+            tabPageDashboard.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
             SuspendLayout();
             // 
             // tbvAdmin
@@ -144,128 +154,6 @@
             tbvAdmin.SelectedIndex = 0;
             tbvAdmin.Size = new Size(1165, 617);
             tbvAdmin.TabIndex = 0;
-            // 
-            // tabPageDashboard
-            // 
-            tabPageDashboard.BackgroundImage = (Image)resources.GetObject("tabPageDashboard.BackgroundImage");
-            tabPageDashboard.BackgroundImageLayout = ImageLayout.Stretch;
-            tabPageDashboard.Controls.Add(groupBoxTotalCustomers);
-            tabPageDashboard.Controls.Add(groupBoxAvailableDrivers);
-            tabPageDashboard.Controls.Add(groupBoxAvailableLorries);
-            tabPageDashboard.Controls.Add(groupBoxJobRequests);
-            tabPageDashboard.Controls.Add(groupBoxActiveJobs);
-            tabPageDashboard.Location = new Point(4, 44);
-            tabPageDashboard.Name = "tabPageDashboard";
-            tabPageDashboard.Padding = new Padding(3);
-            tabPageDashboard.Size = new Size(1157, 569);
-            tabPageDashboard.TabIndex = 0;
-            tabPageDashboard.Text = "Dashboard Overview";
-            tabPageDashboard.UseVisualStyleBackColor = true;
-            // 
-            // groupBoxTotalCustomers
-            // 
-            groupBoxTotalCustomers.Controls.Add(lblTotalCustomers);
-            groupBoxTotalCustomers.Font = new Font("Calibri", 10.2F, FontStyle.Bold);
-            groupBoxTotalCustomers.ForeColor = SystemColors.HighlightText;
-            groupBoxTotalCustomers.Location = new Point(678, 288);
-            groupBoxTotalCustomers.Name = "groupBoxTotalCustomers";
-            groupBoxTotalCustomers.Size = new Size(185, 108);
-            groupBoxTotalCustomers.TabIndex = 2;
-            groupBoxTotalCustomers.TabStop = false;
-            groupBoxTotalCustomers.Text = "Total Customers:";
-            // 
-            // lblTotalCustomers
-            // 
-            lblTotalCustomers.AutoSize = true;
-            lblTotalCustomers.Location = new Point(36, 49);
-            lblTotalCustomers.Name = "lblTotalCustomers";
-            lblTotalCustomers.Size = new Size(124, 21);
-            lblTotalCustomers.TabIndex = 1;
-            lblTotalCustomers.Text = "Total Customers";
-            // 
-            // groupBoxAvailableDrivers
-            // 
-            groupBoxAvailableDrivers.Controls.Add(lblAvailableDrivers);
-            groupBoxAvailableDrivers.Font = new Font("Calibri", 10.2F, FontStyle.Bold);
-            groupBoxAvailableDrivers.ForeColor = SystemColors.HighlightText;
-            groupBoxAvailableDrivers.Location = new Point(260, 288);
-            groupBoxAvailableDrivers.Name = "groupBoxAvailableDrivers";
-            groupBoxAvailableDrivers.Size = new Size(185, 108);
-            groupBoxAvailableDrivers.TabIndex = 2;
-            groupBoxAvailableDrivers.TabStop = false;
-            groupBoxAvailableDrivers.Text = "Available Drivers:";
-            // 
-            // lblAvailableDrivers
-            // 
-            lblAvailableDrivers.AutoSize = true;
-            lblAvailableDrivers.Location = new Point(31, 49);
-            lblAvailableDrivers.Name = "lblAvailableDrivers";
-            lblAvailableDrivers.Size = new Size(129, 21);
-            lblAvailableDrivers.TabIndex = 1;
-            lblAvailableDrivers.Text = "Available Drivers";
-            // 
-            // groupBoxAvailableLorries
-            // 
-            groupBoxAvailableLorries.Controls.Add(lblAvailableLorries);
-            groupBoxAvailableLorries.Font = new Font("Calibri", 10.2F, FontStyle.Bold);
-            groupBoxAvailableLorries.ForeColor = SystemColors.HighlightText;
-            groupBoxAvailableLorries.Location = new Point(881, 87);
-            groupBoxAvailableLorries.Name = "groupBoxAvailableLorries";
-            groupBoxAvailableLorries.Size = new Size(185, 108);
-            groupBoxAvailableLorries.TabIndex = 2;
-            groupBoxAvailableLorries.TabStop = false;
-            groupBoxAvailableLorries.Text = "Available Lorries:";
-            // 
-            // lblAvailableLorries
-            // 
-            lblAvailableLorries.AutoSize = true;
-            lblAvailableLorries.Location = new Point(31, 49);
-            lblAvailableLorries.Name = "lblAvailableLorries";
-            lblAvailableLorries.Size = new Size(126, 21);
-            lblAvailableLorries.TabIndex = 1;
-            lblAvailableLorries.Text = "Available Lorries";
-            // 
-            // groupBoxJobRequests
-            // 
-            groupBoxJobRequests.Controls.Add(lblPendingRequests);
-            groupBoxJobRequests.Font = new Font("Calibri", 10.2F, FontStyle.Bold);
-            groupBoxJobRequests.ForeColor = SystemColors.HighlightText;
-            groupBoxJobRequests.Location = new Point(457, 87);
-            groupBoxJobRequests.Name = "groupBoxJobRequests";
-            groupBoxJobRequests.Size = new Size(185, 108);
-            groupBoxJobRequests.TabIndex = 2;
-            groupBoxJobRequests.TabStop = false;
-            groupBoxJobRequests.Text = "Pending Job Requests:";
-            // 
-            // lblPendingRequests
-            // 
-            lblPendingRequests.AutoSize = true;
-            lblPendingRequests.Location = new Point(18, 49);
-            lblPendingRequests.Name = "lblPendingRequests";
-            lblPendingRequests.Size = new Size(19, 21);
-            lblPendingRequests.TabIndex = 1;
-            lblPendingRequests.Text = "0";
-            // 
-            // groupBoxActiveJobs
-            // 
-            groupBoxActiveJobs.Controls.Add(lblTotalActiveJobs);
-            groupBoxActiveJobs.Font = new Font("Calibri", 10.2F, FontStyle.Bold);
-            groupBoxActiveJobs.ForeColor = SystemColors.HighlightText;
-            groupBoxActiveJobs.Location = new Point(60, 87);
-            groupBoxActiveJobs.Name = "groupBoxActiveJobs";
-            groupBoxActiveJobs.Size = new Size(185, 108);
-            groupBoxActiveJobs.TabIndex = 0;
-            groupBoxActiveJobs.TabStop = false;
-            groupBoxActiveJobs.Text = "Total Active Jobs:";
-            // 
-            // lblTotalActiveJobs
-            // 
-            lblTotalActiveJobs.AutoSize = true;
-            lblTotalActiveJobs.Location = new Point(31, 49);
-            lblTotalActiveJobs.Name = "lblTotalActiveJobs";
-            lblTotalActiveJobs.Size = new Size(19, 21);
-            lblTotalActiveJobs.TabIndex = 1;
-            lblTotalActiveJobs.Text = "0";
             // 
             // tabPageJobs
             // 
@@ -846,6 +734,193 @@
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
+            // groupBoxActiveJobs
+            // 
+            groupBoxActiveJobs.Controls.Add(pictureBox3);
+            groupBoxActiveJobs.Controls.Add(lblTotalActiveJobs);
+            groupBoxActiveJobs.Font = new Font("Calibri", 16.2F, FontStyle.Bold);
+            groupBoxActiveJobs.ForeColor = SystemColors.ControlLight;
+            groupBoxActiveJobs.Location = new Point(60, 87);
+            groupBoxActiveJobs.Name = "groupBoxActiveJobs";
+            groupBoxActiveJobs.Size = new Size(294, 168);
+            groupBoxActiveJobs.TabIndex = 0;
+            groupBoxActiveJobs.TabStop = false;
+            groupBoxActiveJobs.Text = "Total Active Jobs:";
+            // 
+            // lblTotalActiveJobs
+            // 
+            lblTotalActiveJobs.AutoSize = true;
+            lblTotalActiveJobs.Font = new Font("Microsoft Sans Serif", 48F, FontStyle.Bold);
+            lblTotalActiveJobs.ForeColor = Color.Gold;
+            lblTotalActiveJobs.Location = new Point(152, 51);
+            lblTotalActiveJobs.Name = "lblTotalActiveJobs";
+            lblTotalActiveJobs.Size = new Size(84, 91);
+            lblTotalActiveJobs.TabIndex = 1;
+            lblTotalActiveJobs.Text = "0";
+            // 
+            // groupBoxJobRequests
+            // 
+            groupBoxJobRequests.Controls.Add(pictureBox4);
+            groupBoxJobRequests.Controls.Add(lblPendingRequests);
+            groupBoxJobRequests.Font = new Font("Calibri", 16.2F, FontStyle.Bold);
+            groupBoxJobRequests.ForeColor = SystemColors.ControlLight;
+            groupBoxJobRequests.Location = new Point(424, 87);
+            groupBoxJobRequests.Name = "groupBoxJobRequests";
+            groupBoxJobRequests.Size = new Size(294, 168);
+            groupBoxJobRequests.TabIndex = 2;
+            groupBoxJobRequests.TabStop = false;
+            groupBoxJobRequests.Text = "Pending Job Requests:";
+            // 
+            // lblPendingRequests
+            // 
+            lblPendingRequests.AutoSize = true;
+            lblPendingRequests.Font = new Font("Microsoft Sans Serif", 48F, FontStyle.Bold);
+            lblPendingRequests.ForeColor = Color.Tomato;
+            lblPendingRequests.Location = new Point(158, 51);
+            lblPendingRequests.Name = "lblPendingRequests";
+            lblPendingRequests.Size = new Size(84, 91);
+            lblPendingRequests.TabIndex = 1;
+            lblPendingRequests.Text = "0";
+            // 
+            // groupBoxAvailableLorries
+            // 
+            groupBoxAvailableLorries.Controls.Add(pictureBox5);
+            groupBoxAvailableLorries.Controls.Add(lblAvailableLorries);
+            groupBoxAvailableLorries.Font = new Font("Calibri", 16.2F, FontStyle.Bold);
+            groupBoxAvailableLorries.ForeColor = SystemColors.ControlLight;
+            groupBoxAvailableLorries.Location = new Point(801, 87);
+            groupBoxAvailableLorries.Name = "groupBoxAvailableLorries";
+            groupBoxAvailableLorries.Size = new Size(294, 168);
+            groupBoxAvailableLorries.TabIndex = 2;
+            groupBoxAvailableLorries.TabStop = false;
+            groupBoxAvailableLorries.Text = "Available Lorries:";
+            // 
+            // lblAvailableLorries
+            // 
+            lblAvailableLorries.AutoSize = true;
+            lblAvailableLorries.Font = new Font("Microsoft Sans Serif", 48F, FontStyle.Bold);
+            lblAvailableLorries.ForeColor = Color.GreenYellow;
+            lblAvailableLorries.Location = new Point(167, 51);
+            lblAvailableLorries.Name = "lblAvailableLorries";
+            lblAvailableLorries.Size = new Size(84, 91);
+            lblAvailableLorries.TabIndex = 1;
+            lblAvailableLorries.Text = "0";
+            // 
+            // groupBoxAvailableDrivers
+            // 
+            groupBoxAvailableDrivers.Controls.Add(pictureBox6);
+            groupBoxAvailableDrivers.Controls.Add(lblAvailableDrivers);
+            groupBoxAvailableDrivers.Font = new Font("Calibri", 16.2F, FontStyle.Bold);
+            groupBoxAvailableDrivers.ForeColor = SystemColors.ControlLight;
+            groupBoxAvailableDrivers.Location = new Point(260, 288);
+            groupBoxAvailableDrivers.Name = "groupBoxAvailableDrivers";
+            groupBoxAvailableDrivers.Size = new Size(294, 168);
+            groupBoxAvailableDrivers.TabIndex = 2;
+            groupBoxAvailableDrivers.TabStop = false;
+            groupBoxAvailableDrivers.Text = "Available Drivers:";
+            // 
+            // lblAvailableDrivers
+            // 
+            lblAvailableDrivers.AutoSize = true;
+            lblAvailableDrivers.Font = new Font("Microsoft Sans Serif", 48F, FontStyle.Bold);
+            lblAvailableDrivers.ForeColor = Color.Gold;
+            lblAvailableDrivers.Location = new Point(164, 50);
+            lblAvailableDrivers.Name = "lblAvailableDrivers";
+            lblAvailableDrivers.Size = new Size(84, 91);
+            lblAvailableDrivers.TabIndex = 1;
+            lblAvailableDrivers.Text = "0";
+            // 
+            // groupBoxTotalCustomers
+            // 
+            groupBoxTotalCustomers.Controls.Add(pictureBox7);
+            groupBoxTotalCustomers.Controls.Add(lblTotalCustomers);
+            groupBoxTotalCustomers.Font = new Font("Calibri", 16.2F, FontStyle.Bold);
+            groupBoxTotalCustomers.ForeColor = SystemColors.ControlLight;
+            groupBoxTotalCustomers.Location = new Point(678, 288);
+            groupBoxTotalCustomers.Name = "groupBoxTotalCustomers";
+            groupBoxTotalCustomers.Size = new Size(294, 168);
+            groupBoxTotalCustomers.TabIndex = 2;
+            groupBoxTotalCustomers.TabStop = false;
+            groupBoxTotalCustomers.Text = "Total Customers:";
+            // 
+            // lblTotalCustomers
+            // 
+            lblTotalCustomers.AutoSize = true;
+            lblTotalCustomers.Font = new Font("Microsoft Sans Serif", 48F, FontStyle.Bold);
+            lblTotalCustomers.ForeColor = Color.YellowGreen;
+            lblTotalCustomers.Location = new Point(159, 50);
+            lblTotalCustomers.Name = "lblTotalCustomers";
+            lblTotalCustomers.Size = new Size(84, 91);
+            lblTotalCustomers.TabIndex = 1;
+            lblTotalCustomers.Text = "0";
+            // 
+            // tabPageDashboard
+            // 
+            tabPageDashboard.BackgroundImage = (Image)resources.GetObject("tabPageDashboard.BackgroundImage");
+            tabPageDashboard.BackgroundImageLayout = ImageLayout.Stretch;
+            tabPageDashboard.Controls.Add(groupBoxTotalCustomers);
+            tabPageDashboard.Controls.Add(groupBoxAvailableDrivers);
+            tabPageDashboard.Controls.Add(groupBoxAvailableLorries);
+            tabPageDashboard.Controls.Add(groupBoxJobRequests);
+            tabPageDashboard.Controls.Add(groupBoxActiveJobs);
+            tabPageDashboard.Location = new Point(4, 44);
+            tabPageDashboard.Name = "tabPageDashboard";
+            tabPageDashboard.Padding = new Padding(3);
+            tabPageDashboard.Size = new Size(1157, 569);
+            tabPageDashboard.TabIndex = 0;
+            tabPageDashboard.Text = "Dashboard Overview";
+            tabPageDashboard.UseVisualStyleBackColor = true;
+            // 
+            // pictureBox3
+            // 
+            pictureBox3.BackgroundImage = (Image)resources.GetObject("pictureBox3.BackgroundImage");
+            pictureBox3.BackgroundImageLayout = ImageLayout.Zoom;
+            pictureBox3.Location = new Point(19, 35);
+            pictureBox3.Name = "pictureBox3";
+            pictureBox3.Size = new Size(120, 120);
+            pictureBox3.TabIndex = 3;
+            pictureBox3.TabStop = false;
+            // 
+            // pictureBox4
+            // 
+            pictureBox4.BackgroundImage = (Image)resources.GetObject("pictureBox4.BackgroundImage");
+            pictureBox4.BackgroundImageLayout = ImageLayout.Zoom;
+            pictureBox4.Location = new Point(19, 35);
+            pictureBox4.Name = "pictureBox4";
+            pictureBox4.Size = new Size(120, 120);
+            pictureBox4.TabIndex = 4;
+            pictureBox4.TabStop = false;
+            // 
+            // pictureBox5
+            // 
+            pictureBox5.BackgroundImage = (Image)resources.GetObject("pictureBox5.BackgroundImage");
+            pictureBox5.BackgroundImageLayout = ImageLayout.Zoom;
+            pictureBox5.Location = new Point(20, 35);
+            pictureBox5.Name = "pictureBox5";
+            pictureBox5.Size = new Size(120, 120);
+            pictureBox5.TabIndex = 5;
+            pictureBox5.TabStop = false;
+            // 
+            // pictureBox6
+            // 
+            pictureBox6.BackgroundImage = (Image)resources.GetObject("pictureBox6.BackgroundImage");
+            pictureBox6.BackgroundImageLayout = ImageLayout.Zoom;
+            pictureBox6.Location = new Point(17, 39);
+            pictureBox6.Name = "pictureBox6";
+            pictureBox6.Size = new Size(120, 120);
+            pictureBox6.TabIndex = 6;
+            pictureBox6.TabStop = false;
+            // 
+            // pictureBox7
+            // 
+            pictureBox7.BackgroundImage = (Image)resources.GetObject("pictureBox7.BackgroundImage");
+            pictureBox7.BackgroundImageLayout = ImageLayout.Zoom;
+            pictureBox7.Location = new Point(15, 39);
+            pictureBox7.Name = "pictureBox7";
+            pictureBox7.Size = new Size(120, 120);
+            pictureBox7.TabIndex = 7;
+            pictureBox7.TabStop = false;
+            // 
             // AdminDashboardForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -858,17 +933,6 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Admin Dashboard Form";
             tbvAdmin.ResumeLayout(false);
-            tabPageDashboard.ResumeLayout(false);
-            groupBoxTotalCustomers.ResumeLayout(false);
-            groupBoxTotalCustomers.PerformLayout();
-            groupBoxAvailableDrivers.ResumeLayout(false);
-            groupBoxAvailableDrivers.PerformLayout();
-            groupBoxAvailableLorries.ResumeLayout(false);
-            groupBoxAvailableLorries.PerformLayout();
-            groupBoxJobRequests.ResumeLayout(false);
-            groupBoxJobRequests.PerformLayout();
-            groupBoxActiveJobs.ResumeLayout(false);
-            groupBoxActiveJobs.PerformLayout();
             tabPageJobs.ResumeLayout(false);
             tabPageJobs.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvJobs).EndInit();
@@ -897,6 +961,22 @@
             ((System.ComponentModel.ISupportInitialize)pbLogout).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            groupBoxActiveJobs.ResumeLayout(false);
+            groupBoxActiveJobs.PerformLayout();
+            groupBoxJobRequests.ResumeLayout(false);
+            groupBoxJobRequests.PerformLayout();
+            groupBoxAvailableLorries.ResumeLayout(false);
+            groupBoxAvailableLorries.PerformLayout();
+            groupBoxAvailableDrivers.ResumeLayout(false);
+            groupBoxAvailableDrivers.PerformLayout();
+            groupBoxTotalCustomers.ResumeLayout(false);
+            groupBoxTotalCustomers.PerformLayout();
+            tabPageDashboard.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
             ResumeLayout(false);
         }
 
@@ -969,5 +1049,10 @@
         private Label lblPendingRequests;
         private GroupBox groupBoxActiveJobs;
         private Label lblTotalActiveJobs;
+        private PictureBox pictureBox7;
+        private PictureBox pictureBox6;
+        private PictureBox pictureBox5;
+        private PictureBox pictureBox4;
+        private PictureBox pictureBox3;
     }
 }
