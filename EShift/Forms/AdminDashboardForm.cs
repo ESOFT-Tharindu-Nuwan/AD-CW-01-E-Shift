@@ -107,76 +107,6 @@ namespace EShift.Forms
             }
         }
 
-        // Event handler for View Job Details button
-        private void btnViewJobDetails_Click(object sender, EventArgs e)
-        {
-            if (dgvJobs.SelectedRows.Count > 0)
-            {
-                int selectedJobId = (int)dgvJobs.SelectedRows[0].Cells["JobID"].Value;
-                // Open a new form to view/edit job details
-                // You will need to create JobDetailsForm
-                //JobDetailsForm jobDetailsForm = new JobDetailsForm(selectedJobId);
-                //jobDetailsForm.ShowDialog(); // Show as modal dialog
-                LoadAllJobs(); // Refresh job list after potential edits
-            }
-            else
-            {
-                MessageBox.Show("Please select a job to view details.", "No Job Selected", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-        }
-
-        // Event handler for Assign Transport Unit button
-        private void btnAssignTransportUnit_Click(object sender, EventArgs e)
-        {
-            if (dgvJobs.SelectedRows.Count > 0)
-            {
-                int selectedJobId = (int)dgvJobs.SelectedRows[0].Cells["JobID"].Value;
-                // Open a new form to assign transport unit
-                // You will need to create AssignTransportUnitForm
-                //AssignTransportUnitForm assignForm = new AssignTransportUnitForm(selectedJobId);
-                //assignForm.ShowDialog();
-                LoadAllJobs(); // Refresh job list
-            }
-            else
-            {
-                MessageBox.Show("Please select a job to assign a transport unit.", "No Job Selected", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-        }
-
-        // Event handler for Update Job Status button
-        private void btnUpdateJobStatus_Click(object sender, EventArgs e)
-        {
-            if (dgvJobs.SelectedRows.Count > 0)
-            {
-                int selectedJobId = (int)dgvJobs.SelectedRows[0].Cells["JobID"].Value;
-                // A simple dialog or another form to pick new status
-                string newStatus = PromptForNewJobStatus(); // Implement this method
-                if (!string.IsNullOrEmpty(newStatus))
-                {
-                    try
-                    {
-                        if (_jobService.UpdateJobStatus(selectedJobId, newStatus))
-                        {
-                            MessageBox.Show("Job status updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            LoadAllJobs(); // Refresh list
-                        }
-                        else
-                        {
-                            MessageBox.Show("Failed to update job status.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show($"Error updating job status: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-            }
-            else
-            {
-                MessageBox.Show("Please select a job to update its status.", "No Job Selected", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-        }
-
         private string PromptForNewJobStatus()
         {
             // Simple InputBox or a custom dialog form
@@ -607,7 +537,7 @@ namespace EShift.Forms
             {
                 int selectedJobId = (int)dgvJobs.SelectedRows[0].Cells["JobID"].Value;
                 // Open JobDetailsForm
-                JobDetailsForm jobDetailsForm = new JobDetailsForm(selectedJobId, _jobService); // Pass jobService
+                JobDetailsForm jobDetailsForm = new JobDetailsForm(selectedJobId, _jobService, _customerService);
                 if (jobDetailsForm.ShowDialog() == DialogResult.OK)
                 {
                     LoadAllJobs(); // Refresh job list after potential edits
@@ -622,21 +552,21 @@ namespace EShift.Forms
 
         private void btnAssignTransportUnit_Click_1(object sender, EventArgs e)
         {
-            if (dgvJobs.SelectedRows.Count > 0)
-            {
-                int selectedJobId = (int)dgvJobs.SelectedRows[0].Cells["JobID"].Value;
-                // Open AssignTransportUnitForm
-                AssignTransportUnitForm assignForm = new AssignTransportUnitForm(selectedJobId, _jobService, _lorryService, _driverService, _assistantService, _containerService, _notificationService, _customerService);
-                if (assignForm.ShowDialog() == DialogResult.OK)
-                {
-                    LoadAllJobs(); // Refresh job list
-                    LoadDashboardOverview(); // Update overview if job status/counts changed
-                }
-            }
-            else
-            {
-                MessageBox.Show("Please select a job to assign a transport unit.", "No Job Selected", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+            //if (dgvJobs.SelectedRows.Count > 0)
+            //{
+            //    int selectedJobId = (int)dgvJobs.SelectedRows[0].Cells["JobID"].Value;
+            //    // Open AssignTransportUnitForm
+            //    //AssignTransportUnitForm assignForm = new AssignTransportUnitForm(selectedJobId, _jobService, _lorryService, _driverService, _assistantService, _containerService, _notificationService, _customerService);
+            //    if (assignForm.ShowDialog() == DialogResult.OK)
+            //    {
+            //        LoadAllJobs(); // Refresh job list
+            //        LoadDashboardOverview(); // Update overview if job status/counts changed
+            //    }
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Please select a job to assign a transport unit.", "No Job Selected", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //}
         }
 
         private void btnUpdateJobStatus_Click_1(object sender, EventArgs e)
