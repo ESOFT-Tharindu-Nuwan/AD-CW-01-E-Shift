@@ -106,6 +106,7 @@
             label1 = new Label();
             label2 = new Label();
             pictureBox1 = new PictureBox();
+            groupBox1 = new GroupBox();
             tbvAdmin.SuspendLayout();
             tabPageDashboard.SuspendLayout();
             groupBoxTotalCustomers.SuspendLayout();
@@ -142,6 +143,7 @@
             ((System.ComponentModel.ISupportInitialize)pbLogout).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            groupBox1.SuspendLayout();
             SuspendLayout();
             // 
             // tbvAdmin
@@ -164,15 +166,12 @@
             // 
             tabPageDashboard.BackgroundImage = (Image)resources.GetObject("tabPageDashboard.BackgroundImage");
             tabPageDashboard.BackgroundImageLayout = ImageLayout.Stretch;
-            tabPageDashboard.Controls.Add(btnCustomersExcel);
-            tabPageDashboard.Controls.Add(btnCustomersPDF);
-            tabPageDashboard.Controls.Add(btnJobsExcel);
-            tabPageDashboard.Controls.Add(btnJobsPDF);
             tabPageDashboard.Controls.Add(groupBoxTotalCustomers);
             tabPageDashboard.Controls.Add(groupBoxAvailableDrivers);
             tabPageDashboard.Controls.Add(groupBoxAvailableLorries);
             tabPageDashboard.Controls.Add(groupBoxJobRequests);
             tabPageDashboard.Controls.Add(groupBoxActiveJobs);
+            tabPageDashboard.Controls.Add(groupBox1);
             tabPageDashboard.Location = new Point(4, 44);
             tabPageDashboard.Name = "tabPageDashboard";
             tabPageDashboard.Padding = new Padding(3);
@@ -183,42 +182,58 @@
             // 
             // btnCustomersExcel
             // 
-            btnCustomersExcel.Location = new Point(821, 513);
+            btnCustomersExcel.BackColor = Color.Teal;
+            btnCustomersExcel.FlatStyle = FlatStyle.Flat;
+            btnCustomersExcel.Font = new Font("Britannic Bold", 10.2F);
+            btnCustomersExcel.ForeColor = SystemColors.ButtonHighlight;
+            btnCustomersExcel.Location = new Point(676, 27);
             btnCustomersExcel.Name = "btnCustomersExcel";
-            btnCustomersExcel.Size = new Size(161, 29);
+            btnCustomersExcel.Size = new Size(150, 35);
             btnCustomersExcel.TabIndex = 6;
             btnCustomersExcel.Text = "Customers Excel";
-            btnCustomersExcel.UseVisualStyleBackColor = true;
+            btnCustomersExcel.UseVisualStyleBackColor = false;
             btnCustomersExcel.Click += btnCustomersExcel_Click;
             // 
             // btnCustomersPDF
             // 
-            btnCustomersPDF.Location = new Point(612, 513);
+            btnCustomersPDF.BackColor = Color.Teal;
+            btnCustomersPDF.FlatStyle = FlatStyle.Flat;
+            btnCustomersPDF.Font = new Font("Britannic Bold", 10.2F);
+            btnCustomersPDF.ForeColor = SystemColors.ButtonHighlight;
+            btnCustomersPDF.Location = new Point(468, 27);
             btnCustomersPDF.Name = "btnCustomersPDF";
-            btnCustomersPDF.Size = new Size(145, 29);
+            btnCustomersPDF.Size = new Size(150, 35);
             btnCustomersPDF.TabIndex = 5;
             btnCustomersPDF.Text = "Customers PDF";
-            btnCustomersPDF.UseVisualStyleBackColor = true;
+            btnCustomersPDF.UseVisualStyleBackColor = false;
             btnCustomersPDF.Click += btnCustomersPDF_Click;
             // 
             // btnJobsExcel
             // 
-            btnJobsExcel.Location = new Point(460, 513);
+            btnJobsExcel.BackColor = Color.Teal;
+            btnJobsExcel.FlatStyle = FlatStyle.Flat;
+            btnJobsExcel.Font = new Font("Britannic Bold", 10.2F);
+            btnJobsExcel.ForeColor = SystemColors.ButtonHighlight;
+            btnJobsExcel.Location = new Point(235, 27);
             btnJobsExcel.Name = "btnJobsExcel";
-            btnJobsExcel.Size = new Size(94, 29);
+            btnJobsExcel.Size = new Size(150, 35);
             btnJobsExcel.TabIndex = 4;
             btnJobsExcel.Text = "Jobs Excel";
-            btnJobsExcel.UseVisualStyleBackColor = true;
+            btnJobsExcel.UseVisualStyleBackColor = false;
             btnJobsExcel.Click += btnJobsExcel_Click;
             // 
             // btnJobsPDF
             // 
-            btnJobsPDF.Location = new Point(303, 513);
+            btnJobsPDF.BackColor = Color.Teal;
+            btnJobsPDF.FlatStyle = FlatStyle.Flat;
+            btnJobsPDF.Font = new Font("Britannic Bold", 10.2F);
+            btnJobsPDF.ForeColor = SystemColors.ButtonHighlight;
+            btnJobsPDF.Location = new Point(23, 27);
             btnJobsPDF.Name = "btnJobsPDF";
-            btnJobsPDF.Size = new Size(94, 29);
+            btnJobsPDF.Size = new Size(150, 35);
             btnJobsPDF.TabIndex = 3;
             btnJobsPDF.Text = "Jobs PDF";
-            btnJobsPDF.UseVisualStyleBackColor = true;
+            btnJobsPDF.UseVisualStyleBackColor = false;
             btnJobsPDF.Click += btnJobsPDF_Click;
             // 
             // groupBoxTotalCustomers
@@ -227,7 +242,7 @@
             groupBoxTotalCustomers.Controls.Add(lblTotalCustomers);
             groupBoxTotalCustomers.Font = new Font("Calibri", 16.2F, FontStyle.Bold);
             groupBoxTotalCustomers.ForeColor = Color.Navy;
-            groupBoxTotalCustomers.Location = new Point(678, 288);
+            groupBoxTotalCustomers.Location = new Point(613, 243);
             groupBoxTotalCustomers.Name = "groupBoxTotalCustomers";
             groupBoxTotalCustomers.Size = new Size(294, 168);
             groupBoxTotalCustomers.TabIndex = 2;
@@ -261,7 +276,7 @@
             groupBoxAvailableDrivers.Controls.Add(lblAvailableDrivers);
             groupBoxAvailableDrivers.Font = new Font("Calibri", 16.2F, FontStyle.Bold);
             groupBoxAvailableDrivers.ForeColor = Color.Navy;
-            groupBoxAvailableDrivers.Location = new Point(260, 288);
+            groupBoxAvailableDrivers.Location = new Point(236, 243);
             groupBoxAvailableDrivers.Name = "groupBoxAvailableDrivers";
             groupBoxAvailableDrivers.Size = new Size(294, 168);
             groupBoxAvailableDrivers.TabIndex = 2;
@@ -295,7 +310,7 @@
             groupBoxAvailableLorries.Controls.Add(lblAvailableLorries);
             groupBoxAvailableLorries.Font = new Font("Calibri", 16.2F, FontStyle.Bold);
             groupBoxAvailableLorries.ForeColor = Color.Navy;
-            groupBoxAvailableLorries.Location = new Point(801, 87);
+            groupBoxAvailableLorries.Location = new Point(801, 42);
             groupBoxAvailableLorries.Name = "groupBoxAvailableLorries";
             groupBoxAvailableLorries.Size = new Size(294, 168);
             groupBoxAvailableLorries.TabIndex = 2;
@@ -329,7 +344,7 @@
             groupBoxJobRequests.Controls.Add(lblPendingRequests);
             groupBoxJobRequests.Font = new Font("Calibri", 16.2F, FontStyle.Bold);
             groupBoxJobRequests.ForeColor = Color.Navy;
-            groupBoxJobRequests.Location = new Point(424, 87);
+            groupBoxJobRequests.Location = new Point(424, 42);
             groupBoxJobRequests.Name = "groupBoxJobRequests";
             groupBoxJobRequests.Size = new Size(294, 168);
             groupBoxJobRequests.TabIndex = 2;
@@ -363,7 +378,7 @@
             groupBoxActiveJobs.Controls.Add(lblTotalActiveJobs);
             groupBoxActiveJobs.Font = new Font("Calibri", 16.2F, FontStyle.Bold);
             groupBoxActiveJobs.ForeColor = Color.Navy;
-            groupBoxActiveJobs.Location = new Point(60, 87);
+            groupBoxActiveJobs.Location = new Point(60, 42);
             groupBoxActiveJobs.Name = "groupBoxActiveJobs";
             groupBoxActiveJobs.Size = new Size(294, 168);
             groupBoxActiveJobs.TabIndex = 0;
@@ -983,6 +998,21 @@
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
+            // groupBox1
+            // 
+            groupBox1.Controls.Add(btnCustomersExcel);
+            groupBox1.Controls.Add(btnJobsPDF);
+            groupBox1.Controls.Add(btnCustomersPDF);
+            groupBox1.Controls.Add(btnJobsExcel);
+            groupBox1.Font = new Font("Britannic Bold", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            groupBox1.ForeColor = Color.DarkOliveGreen;
+            groupBox1.Location = new Point(145, 466);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(855, 76);
+            groupBox1.TabIndex = 7;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Generate Reports and Download";
+            // 
             // AdminDashboardForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -1039,6 +1069,7 @@
             ((System.ComponentModel.ISupportInitialize)pbLogout).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            groupBox1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -1121,5 +1152,6 @@
         private Button btnJobsExcel;
         private Button btnJobsPDF;
         private ComboBox cmbSearchCustomersBy;
+        private GroupBox groupBox1;
     }
 }

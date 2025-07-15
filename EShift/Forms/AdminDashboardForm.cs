@@ -731,8 +731,8 @@ namespace EShift.Forms
             {
                 LoginForm loginForm = new LoginForm();
                 loginForm.Show();
+                this.Close();
             }
-            this.Close();
         }
 
         private async void btnJobsPDF_Click(object sender, EventArgs e)

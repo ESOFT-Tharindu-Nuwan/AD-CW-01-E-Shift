@@ -196,8 +196,8 @@ namespace EShift.Forms
             {
                 LoginForm loginForm = new LoginForm();
                 loginForm.Show();
+                this.Close();
             }
-            this.Close();
         }
     }
 }
