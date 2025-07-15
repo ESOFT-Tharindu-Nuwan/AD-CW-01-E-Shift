@@ -31,6 +31,10 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminDashboardForm));
             tbvAdmin = new TabControl();
             tabPageDashboard = new TabPage();
+            btnCustomersExcel = new Button();
+            btnCustomersPDF = new Button();
+            btnJobsExcel = new Button();
+            btnJobsPDF = new Button();
             groupBoxTotalCustomers = new GroupBox();
             pictureBox7 = new PictureBox();
             lblTotalCustomers = new Label();
@@ -50,10 +54,11 @@
             btnUpdateJobStatus = new Button();
             btnAssignTransportUnit = new Button();
             btnViewJobDetails = new Button();
-            cmbJobStatusFilter = new ComboBox();
+            cmbSearchJobsBy = new ComboBox();
             txtSearchJobs = new TextBox();
             dgvJobs = new DataGridView();
             tabPageCustomers = new TabPage();
+            cmbSearchCustomersBy = new ComboBox();
             txtSearchCustomers = new TextBox();
             btnViewCustomerDetails = new Button();
             dgvCustomers = new DataGridView();
@@ -101,10 +106,6 @@
             label1 = new Label();
             label2 = new Label();
             pictureBox1 = new PictureBox();
-            btnJobsPDF = new Button();
-            btnJobsExcel = new Button();
-            btnCustomersPDF = new Button();
-            btnCustomersExcel = new Button();
             tbvAdmin.SuspendLayout();
             tabPageDashboard.SuspendLayout();
             groupBoxTotalCustomers.SuspendLayout();
@@ -179,6 +180,46 @@
             tabPageDashboard.TabIndex = 0;
             tabPageDashboard.Text = "Dashboard Overview";
             tabPageDashboard.UseVisualStyleBackColor = true;
+            // 
+            // btnCustomersExcel
+            // 
+            btnCustomersExcel.Location = new Point(821, 513);
+            btnCustomersExcel.Name = "btnCustomersExcel";
+            btnCustomersExcel.Size = new Size(161, 29);
+            btnCustomersExcel.TabIndex = 6;
+            btnCustomersExcel.Text = "Customers Excel";
+            btnCustomersExcel.UseVisualStyleBackColor = true;
+            btnCustomersExcel.Click += btnCustomersExcel_Click;
+            // 
+            // btnCustomersPDF
+            // 
+            btnCustomersPDF.Location = new Point(612, 513);
+            btnCustomersPDF.Name = "btnCustomersPDF";
+            btnCustomersPDF.Size = new Size(145, 29);
+            btnCustomersPDF.TabIndex = 5;
+            btnCustomersPDF.Text = "Customers PDF";
+            btnCustomersPDF.UseVisualStyleBackColor = true;
+            btnCustomersPDF.Click += btnCustomersPDF_Click;
+            // 
+            // btnJobsExcel
+            // 
+            btnJobsExcel.Location = new Point(460, 513);
+            btnJobsExcel.Name = "btnJobsExcel";
+            btnJobsExcel.Size = new Size(94, 29);
+            btnJobsExcel.TabIndex = 4;
+            btnJobsExcel.Text = "Jobs Excel";
+            btnJobsExcel.UseVisualStyleBackColor = true;
+            btnJobsExcel.Click += btnJobsExcel_Click;
+            // 
+            // btnJobsPDF
+            // 
+            btnJobsPDF.Location = new Point(303, 513);
+            btnJobsPDF.Name = "btnJobsPDF";
+            btnJobsPDF.Size = new Size(94, 29);
+            btnJobsPDF.TabIndex = 3;
+            btnJobsPDF.Text = "Jobs PDF";
+            btnJobsPDF.UseVisualStyleBackColor = true;
+            btnJobsPDF.Click += btnJobsPDF_Click;
             // 
             // groupBoxTotalCustomers
             // 
@@ -355,7 +396,7 @@
             tabPageJobs.Controls.Add(btnUpdateJobStatus);
             tabPageJobs.Controls.Add(btnAssignTransportUnit);
             tabPageJobs.Controls.Add(btnViewJobDetails);
-            tabPageJobs.Controls.Add(cmbJobStatusFilter);
+            tabPageJobs.Controls.Add(cmbSearchJobsBy);
             tabPageJobs.Controls.Add(txtSearchJobs);
             tabPageJobs.Controls.Add(dgvJobs);
             tabPageJobs.Location = new Point(4, 44);
@@ -396,13 +437,14 @@
             btnViewJobDetails.UseVisualStyleBackColor = true;
             btnViewJobDetails.Click += btnViewJobDetails_Click_1;
             // 
-            // cmbJobStatusFilter
+            // cmbSearchJobsBy
             // 
-            cmbJobStatusFilter.FormattingEnabled = true;
-            cmbJobStatusFilter.Location = new Point(304, 379);
-            cmbJobStatusFilter.Name = "cmbJobStatusFilter";
-            cmbJobStatusFilter.Size = new Size(282, 29);
-            cmbJobStatusFilter.TabIndex = 2;
+            cmbSearchJobsBy.FormattingEnabled = true;
+            cmbSearchJobsBy.Location = new Point(304, 379);
+            cmbSearchJobsBy.Name = "cmbSearchJobsBy";
+            cmbSearchJobsBy.Size = new Size(282, 29);
+            cmbSearchJobsBy.TabIndex = 2;
+            cmbSearchJobsBy.SelectedIndexChanged += cmbSearchJobsBy_SelectedIndexChanged;
             // 
             // txtSearchJobs
             // 
@@ -411,6 +453,7 @@
             txtSearchJobs.PlaceholderText = "Enter keyword here to search jobs....";
             txtSearchJobs.Size = new Size(274, 28);
             txtSearchJobs.TabIndex = 1;
+            txtSearchJobs.TextChanged += txtSearchJobs_TextChanged;
             // 
             // dgvJobs
             // 
@@ -423,6 +466,7 @@
             // 
             // tabPageCustomers
             // 
+            tabPageCustomers.Controls.Add(cmbSearchCustomersBy);
             tabPageCustomers.Controls.Add(txtSearchCustomers);
             tabPageCustomers.Controls.Add(btnViewCustomerDetails);
             tabPageCustomers.Controls.Add(dgvCustomers);
@@ -434,13 +478,23 @@
             tabPageCustomers.Text = "Customer Management";
             tabPageCustomers.UseVisualStyleBackColor = true;
             // 
+            // cmbSearchCustomersBy
+            // 
+            cmbSearchCustomersBy.FormattingEnabled = true;
+            cmbSearchCustomersBy.Location = new Point(8, 367);
+            cmbSearchCustomersBy.Name = "cmbSearchCustomersBy";
+            cmbSearchCustomersBy.Size = new Size(288, 29);
+            cmbSearchCustomersBy.TabIndex = 3;
+            cmbSearchCustomersBy.SelectedIndexChanged += cmbSearchCustomersBy_SelectedIndexChanged;
+            // 
             // txtSearchCustomers
             // 
-            txtSearchCustomers.Location = new Point(8, 368);
+            txtSearchCustomers.Location = new Point(343, 367);
             txtSearchCustomers.Name = "txtSearchCustomers";
             txtSearchCustomers.PlaceholderText = "Search...";
             txtSearchCustomers.Size = new Size(333, 28);
             txtSearchCustomers.TabIndex = 2;
+            txtSearchCustomers.TextChanged += txtSearchCustomers_TextChanged;
             // 
             // btnViewCustomerDetails
             // 
@@ -929,46 +983,6 @@
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
-            // btnJobsPDF
-            // 
-            btnJobsPDF.Location = new Point(303, 513);
-            btnJobsPDF.Name = "btnJobsPDF";
-            btnJobsPDF.Size = new Size(94, 29);
-            btnJobsPDF.TabIndex = 3;
-            btnJobsPDF.Text = "Jobs PDF";
-            btnJobsPDF.UseVisualStyleBackColor = true;
-            btnJobsPDF.Click += btnJobsPDF_Click;
-            // 
-            // btnJobsExcel
-            // 
-            btnJobsExcel.Location = new Point(460, 513);
-            btnJobsExcel.Name = "btnJobsExcel";
-            btnJobsExcel.Size = new Size(94, 29);
-            btnJobsExcel.TabIndex = 4;
-            btnJobsExcel.Text = "Jobs Excel";
-            btnJobsExcel.UseVisualStyleBackColor = true;
-            btnJobsExcel.Click += btnJobsExcel_Click;
-            // 
-            // btnCustomersPDF
-            // 
-            btnCustomersPDF.Location = new Point(612, 513);
-            btnCustomersPDF.Name = "btnCustomersPDF";
-            btnCustomersPDF.Size = new Size(145, 29);
-            btnCustomersPDF.TabIndex = 5;
-            btnCustomersPDF.Text = "Customers PDF";
-            btnCustomersPDF.UseVisualStyleBackColor = true;
-            btnCustomersPDF.Click += btnCustomersPDF_Click;
-            // 
-            // btnCustomersExcel
-            // 
-            btnCustomersExcel.Location = new Point(821, 513);
-            btnCustomersExcel.Name = "btnCustomersExcel";
-            btnCustomersExcel.Size = new Size(161, 29);
-            btnCustomersExcel.TabIndex = 6;
-            btnCustomersExcel.Text = "Customers Excel";
-            btnCustomersExcel.UseVisualStyleBackColor = true;
-            btnCustomersExcel.Click += btnCustomersExcel_Click;
-            // 
             // AdminDashboardForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -1036,7 +1050,7 @@
         private TabPage tabPageResources;
         private TabPage tabPageAdminNotifications;
         private TabPage tabPageUserManagement;
-        private ComboBox cmbJobStatusFilter;
+        private ComboBox cmbSearchJobsBy;
         private TextBox txtSearchJobs;
         private DataGridView dgvJobs;
         private Button btnUpdateJobStatus;
@@ -1106,5 +1120,6 @@
         private Button btnCustomersPDF;
         private Button btnJobsExcel;
         private Button btnJobsPDF;
+        private ComboBox cmbSearchCustomersBy;
     }
 }

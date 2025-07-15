@@ -1,5 +1,5 @@
 ﻿using EShift.Business.Interface;
-using EShift.Models; // Assuming Job, Customer, etc. are here
+using EShift.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -18,9 +18,7 @@ namespace EShift.Business.Service
     {
         private readonly IJobService _jobService;
         private readonly ICustomerService _customerService;
-        // Add other services if you need their data for reports
 
-        // Constructor to inject necessary data services
         public ReportService(IJobService jobService, ICustomerService customerService)
         {
             _jobService = jobService;

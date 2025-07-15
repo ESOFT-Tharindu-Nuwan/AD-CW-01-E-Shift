@@ -30,6 +30,8 @@ namespace EShift.Forms
         private readonly IReportService _reportService;
 
         private int _currentAdminUserId;
+        private List<Customer> _allCustomersCache;
+        private List<Job> _allJobsCache;
 
         public AdminDashboardForm(int adminUserId, IEmailService emailService)
         {
@@ -58,6 +60,7 @@ namespace EShift.Forms
             LoadAdminNotifications();
             LoadAllCustomers();
             LoadAllUsers();
+            InitializeSearchFilters();
             this.MaximizeBox = false;
         }
 
@@ -75,13 +78,21 @@ namespace EShift.Forms
             }
         }
 
+        private void InitializeSearchFilters()
+        {
+            cmbSearchCustomersBy.Items.AddRange(new string[] { "Customer Number", "First Name", "Last Name", "Email", "Phone Number" });
+            cmbSearchCustomersBy.SelectedIndex = 0;
+
+            cmbSearchJobsBy.Items.AddRange(new string[] { "Job Number", "Pickup Location", "Delivery Location", "Job Status" });
+            cmbSearchJobsBy.SelectedIndex = 0;
+        }
+
         private void LoadAllCustomers()
         {
             try
             {
-                List<Customer> allCustomers = _customerService.GetAllCustomers();
-                dgvCustomers.DataSource = allCustomers;
-                dgvCustomers.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+                _allCustomersCache = _customerService.GetAllCustomers();
+                ApplyCustomerFilter();
             }
             catch (Exception ex)
             {
@@ -112,23 +123,29 @@ namespace EShift.Forms
         {
             try
             {
-                List<Job> allJobs = _jobService.GetAllJobs();
-                dgvJobs.DataSource = allJobs;
+                _allJobsCache = _jobService.GetAllJobs();
+                ApplyJobFilter();
+                dgvJobs.AutoGenerateColumns = false;
+                dgvJobs.Columns.Clear();
+
+                dgvJobs.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "JobID", HeaderText = "Job ID", ReadOnly = true });
+                dgvJobs.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "JobNumber", HeaderText = "Job No." });
+                dgvJobs.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "CustomerID", HeaderText = "Customer ID" });
+                dgvJobs.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "RequestedDate", HeaderText = "Requested Date" });
+                dgvJobs.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "ScheduledPickupDate", HeaderText = "Scheduled Pickup" });
+                dgvJobs.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "ActualPickupDate", HeaderText = "Actual Pickup" });
+                dgvJobs.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "ActualDeliveryDate", HeaderText = "Actual Delivery" });
+                dgvJobs.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "PickupLocation", HeaderText = "Pickup Location" });
+                dgvJobs.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "DeliveryLocation", HeaderText = "Delivery Location" });
+                dgvJobs.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "JobStatus", HeaderText = "Status" });
+                dgvJobs.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "TransportUnitID", HeaderText = "Unit ID" });
+                dgvJobs.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "QuotedPrice", HeaderText = "Quoted Price" });
+                dgvJobs.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "FinalPrice", HeaderText = "Final Price" });
+                dgvJobs.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Remarks", HeaderText = "Remarks" });
+                dgvJobs.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "AdminAssignedDate", HeaderText = "Assigned Date" });
 
                 dgvJobs.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
 
-                if (cmbJobStatusFilter.Items.Count == 0)
-                {
-                    cmbJobStatusFilter.Items.Add("All");
-                    cmbJobStatusFilter.Items.Add("Pending");
-                    cmbJobStatusFilter.Items.Add("Quoted");
-                    cmbJobStatusFilter.Items.Add("Scheduled");
-                    cmbJobStatusFilter.Items.Add("In Progress");
-                    cmbJobStatusFilter.Items.Add("Completed");
-                    cmbJobStatusFilter.Items.Add("Cancelled");
-                    cmbJobStatusFilter.Items.Add("Delivered");
-                    cmbJobStatusFilter.SelectedIndex = 0;
-                }
             }
             catch (Exception ex)
             {
@@ -832,6 +849,96 @@ namespace EShift.Forms
             {
                 MessageBox.Show($"Error generating or saving Customer Excel report: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void ApplyCustomerFilter()
+        {
+            if (_allCustomersCache == null) return; // Ensure data is loaded
+
+            string searchTerm = txtSearchCustomers.Text.Trim();
+            string searchByField = cmbSearchCustomersBy.SelectedItem?.ToString();
+
+            IEnumerable<Customer> filteredCustomers = _allCustomersCache;
+
+            if (!string.IsNullOrWhiteSpace(searchTerm) && !string.IsNullOrWhiteSpace(searchByField))
+            {
+                // Perform client-side filtering using LINQ
+                filteredCustomers = filteredCustomers.Where(c =>
+                {
+                    switch (searchByField)
+                    {
+                        case "Customer Number":
+                            return c.CustomerNumber?.IndexOf(searchTerm, StringComparison.OrdinalIgnoreCase) >= 0;
+                        case "First Name":
+                            return c.FirstName?.IndexOf(searchTerm, StringComparison.OrdinalIgnoreCase) >= 0;
+                        case "Last Name":
+                            return c.LastName?.IndexOf(searchTerm, StringComparison.OrdinalIgnoreCase) >= 0;
+                        case "Email":
+                            return c.Email?.IndexOf(searchTerm, StringComparison.OrdinalIgnoreCase) >= 0;
+                        case "Phone Number":
+                            return c.PhoneNumber?.IndexOf(searchTerm, StringComparison.OrdinalIgnoreCase) >= 0;
+                        default:
+                            return false; // Should not happen with proper ComboBox setup
+                    }
+                }).ToList();
+            }
+
+            dgvCustomers.DataSource = filteredCustomers.ToList(); // Update DataGridView
+            dgvCustomers.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+        }
+
+        private void ApplyJobFilter()
+        {
+            if (_allJobsCache == null) return; // Ensure data is loaded
+
+            string searchTerm = txtSearchJobs.Text.Trim();
+            string searchByField = cmbSearchJobsBy.SelectedItem?.ToString();
+
+            IEnumerable<Job> filteredJobs = _allJobsCache;
+
+            if (!string.IsNullOrWhiteSpace(searchTerm) && !string.IsNullOrWhiteSpace(searchByField))
+            {
+                // Perform client-side filtering using LINQ
+                filteredJobs = filteredJobs.Where(j =>
+                {
+                    switch (searchByField)
+                    {
+                        case "Job Number":
+                            return j.JobNumber?.IndexOf(searchTerm, StringComparison.OrdinalIgnoreCase) >= 0;
+                        case "Pickup Location":
+                            return j.PickupLocation?.IndexOf(searchTerm, StringComparison.OrdinalIgnoreCase) >= 0;
+                        case "Delivery Location":
+                            return j.DeliveryLocation?.IndexOf(searchTerm, StringComparison.OrdinalIgnoreCase) >= 0;
+                        case "Job Status":
+                            return j.JobStatus?.IndexOf(searchTerm, StringComparison.OrdinalIgnoreCase) >= 0;
+                        default:
+                            return false; // Should not happen
+                    }
+                }).ToList();
+            }
+
+            dgvJobs.DataSource = filteredJobs.ToList(); // Update DataGridView
+            dgvJobs.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+        }
+
+        private void txtSearchJobs_TextChanged(object sender, EventArgs e)
+        {
+            ApplyJobFilter();
+        }
+
+        private void cmbSearchJobsBy_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ApplyJobFilter();
+        }
+
+        private void cmbSearchCustomersBy_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ApplyCustomerFilter();
+        }
+
+        private void txtSearchCustomers_TextChanged(object sender, EventArgs e)
+        {
+            ApplyCustomerFilter();
         }
     }
 }

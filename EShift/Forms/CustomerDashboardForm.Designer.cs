@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CustomerDashboardForm));
             tabControlCustomer = new TabControl();
             tabPageNewJob = new TabPage();
+            label3 = new Label();
             btnClear = new Button();
             btnSubmit = new Button();
             txtSpecialInstructions = new TextBox();
@@ -85,7 +86,6 @@
             label1 = new Label();
             label2 = new Label();
             pictureBox1 = new PictureBox();
-            label3 = new Label();
             tabControlCustomer.SuspendLayout();
             tabPageNewJob.SuspendLayout();
             tabPageMyJobs.SuspendLayout();
@@ -141,6 +141,16 @@
             tabPageNewJob.TabIndex = 0;
             tabPageNewJob.Text = "New Job Request";
             tabPageNewJob.UseVisualStyleBackColor = true;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Showcard Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label3.Location = new Point(175, 24);
+            label3.Name = "label3";
+            label3.Size = new Size(522, 26);
+            label3.TabIndex = 16;
+            label3.Text = "Create a new Request for your transport need";
             // 
             // btnClear
             // 
@@ -315,7 +325,7 @@
             dgvMyJobs.Location = new Point(8, 8);
             dgvMyJobs.Name = "dgvMyJobs";
             dgvMyJobs.RowHeadersWidth = 51;
-            dgvMyJobs.Size = new Size(776, 363);
+            dgvMyJobs.Size = new Size(874, 363);
             dgvMyJobs.TabIndex = 0;
             // 
             // tabPageProfile
@@ -563,7 +573,7 @@
             dgvCustomerNotifications.Location = new Point(0, 0);
             dgvCustomerNotifications.Name = "dgvCustomerNotifications";
             dgvCustomerNotifications.RowHeadersWidth = 51;
-            dgvCustomerNotifications.Size = new Size(790, 422);
+            dgvCustomerNotifications.Size = new Size(888, 422);
             dgvCustomerNotifications.TabIndex = 0;
             // 
             // panel1
@@ -643,16 +653,6 @@
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Showcard Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.Location = new Point(175, 24);
-            label3.Name = "label3";
-            label3.Size = new Size(522, 26);
-            label3.TabIndex = 16;
-            label3.Text = "Create a new Request for your transport need";
             // 
             // CustomerDashboardForm
             // 
