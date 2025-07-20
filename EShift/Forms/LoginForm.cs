@@ -17,11 +17,13 @@ namespace EShift.Forms
     {
         private readonly IUserService _userService;
         private readonly IEmailService _emailService;
+        private readonly ICustomerService _customerService;
         public LoginForm()
         {
             InitializeComponent();
             _userService = new UserService();
             _emailService = new EmailService();
+            _customerService = new CustomerService();
 
             txtPassword.PasswordChar = '*';
             this.MaximizeBox = false;
@@ -60,7 +62,8 @@ namespace EShift.Forms
                     {
                         // Assuming you have a CustomerDashboardForm
                         // Pass the UserID to the CustomerDashboardForm to load user-specific data
-                        CustomerDashboardForm customerDashboard = new CustomerDashboardForm(authenticatedUser.UserID);
+                        Customer loggedCustomer = _customerService.GetCustomerByUserID(authenticatedUser.UserID);
+                        CustomerDashboardForm customerDashboard = new CustomerDashboardForm(loggedCustomer.CustomerID);
                         customerDashboard.Show();
                     }
                     else
