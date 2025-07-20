@@ -61,6 +61,9 @@
             txtQuotedPrice = new TextBox();
             txtFinalPrice = new TextBox();
             btnCancel = new Button();
+            label1 = new Label();
+            label2 = new Label();
+            label3 = new Label();
             groupBoxJobStatus.SuspendLayout();
             groupBoxPickupDate.SuspendLayout();
             groupBoxRequestedDate.SuspendLayout();
@@ -192,7 +195,7 @@
             // cmbTransportUnits
             // 
             cmbTransportUnits.FormattingEnabled = true;
-            cmbTransportUnits.Location = new Point(861, 41);
+            cmbTransportUnits.Location = new Point(586, 165);
             cmbTransportUnits.Name = "cmbTransportUnits";
             cmbTransportUnits.Size = new Size(244, 28);
             cmbTransportUnits.TabIndex = 13;
@@ -200,7 +203,7 @@
             // lblTransportUnit
             // 
             lblTransportUnit.AutoSize = true;
-            lblTransportUnit.Location = new Point(861, 12);
+            lblTransportUnit.Location = new Point(586, 136);
             lblTransportUnit.Name = "lblTransportUnit";
             lblTransportUnit.Size = new Size(102, 20);
             lblTransportUnit.TabIndex = 14;
@@ -208,18 +211,23 @@
             // 
             // btnAssign
             // 
-            btnAssign.Location = new Point(301, 382);
+            btnAssign.BackColor = Color.CornflowerBlue;
+            btnAssign.Cursor = Cursors.Hand;
+            btnAssign.FlatStyle = FlatStyle.Flat;
+            btnAssign.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+            btnAssign.ForeColor = SystemColors.ButtonHighlight;
+            btnAssign.Location = new Point(865, 353);
             btnAssign.Name = "btnAssign";
-            btnAssign.Size = new Size(94, 29);
+            btnAssign.Size = new Size(100, 35);
             btnAssign.TabIndex = 15;
             btnAssign.Text = "Assign";
-            btnAssign.UseVisualStyleBackColor = true;
+            btnAssign.UseVisualStyleBackColor = false;
             btnAssign.Click += btnAssign_Click;
             // 
             // groupBoxCustomerEmail
             // 
             groupBoxCustomerEmail.Controls.Add(lblCustomerEmail);
-            groupBoxCustomerEmail.Location = new Point(576, 342);
+            groupBoxCustomerEmail.Location = new Point(580, 12);
             groupBoxCustomerEmail.Name = "groupBoxCustomerEmail";
             groupBoxCustomerEmail.Size = new Size(250, 69);
             groupBoxCustomerEmail.TabIndex = 17;
@@ -238,7 +246,7 @@
             // groupBoxCustomerPhoneNumber
             // 
             groupBoxCustomerPhoneNumber.Controls.Add(lblCustomerPhoneNumber);
-            groupBoxCustomerPhoneNumber.Location = new Point(576, 256);
+            groupBoxCustomerPhoneNumber.Location = new Point(295, 341);
             groupBoxCustomerPhoneNumber.Name = "groupBoxCustomerPhoneNumber";
             groupBoxCustomerPhoneNumber.Size = new Size(250, 69);
             groupBoxCustomerPhoneNumber.TabIndex = 18;
@@ -257,7 +265,7 @@
             // groupBoxCustomerLastName
             // 
             groupBoxCustomerLastName.Controls.Add(lblCustomerLastName);
-            groupBoxCustomerLastName.Location = new Point(576, 172);
+            groupBoxCustomerLastName.Location = new Point(295, 257);
             groupBoxCustomerLastName.Name = "groupBoxCustomerLastName";
             groupBoxCustomerLastName.Size = new Size(250, 69);
             groupBoxCustomerLastName.TabIndex = 19;
@@ -276,7 +284,7 @@
             // groupBoxCustomerFirstName
             // 
             groupBoxCustomerFirstName.Controls.Add(lblCustomerFirstName);
-            groupBoxCustomerFirstName.Location = new Point(576, 87);
+            groupBoxCustomerFirstName.Location = new Point(295, 172);
             groupBoxCustomerFirstName.Name = "groupBoxCustomerFirstName";
             groupBoxCustomerFirstName.Size = new Size(250, 69);
             groupBoxCustomerFirstName.TabIndex = 20;
@@ -295,7 +303,7 @@
             // groupBoxCustomerNumber
             // 
             groupBoxCustomerNumber.Controls.Add(lblCustomerNumber);
-            groupBoxCustomerNumber.Location = new Point(576, 12);
+            groupBoxCustomerNumber.Location = new Point(295, 87);
             groupBoxCustomerNumber.Name = "groupBoxCustomerNumber";
             groupBoxCustomerNumber.Size = new Size(250, 69);
             groupBoxCustomerNumber.TabIndex = 16;
@@ -313,14 +321,14 @@
             // 
             // dtpActualPickupDate
             // 
-            dtpActualPickupDate.Location = new Point(283, 140);
+            dtpActualPickupDate.Location = new Point(586, 253);
             dtpActualPickupDate.Name = "dtpActualPickupDate";
             dtpActualPickupDate.Size = new Size(250, 27);
             dtpActualPickupDate.TabIndex = 1;
             // 
             // dtpActualDeliveryDate
             // 
-            dtpActualDeliveryDate.Location = new Point(283, 239);
+            dtpActualDeliveryDate.Location = new Point(586, 352);
             dtpActualDeliveryDate.Name = "dtpActualDeliveryDate";
             dtpActualDeliveryDate.Size = new Size(250, 27);
             dtpActualDeliveryDate.TabIndex = 2;
@@ -328,7 +336,7 @@
             // lblActualPickup
             // 
             lblActualPickup.AutoSize = true;
-            lblActualPickup.Location = new Point(283, 107);
+            lblActualPickup.Location = new Point(586, 220);
             lblActualPickup.Name = "lblActualPickup";
             lblActualPickup.Size = new Size(142, 20);
             lblActualPickup.TabIndex = 21;
@@ -337,7 +345,7 @@
             // lblActualDelivery
             // 
             lblActualDelivery.AutoSize = true;
-            lblActualDelivery.Location = new Point(283, 216);
+            lblActualDelivery.Location = new Point(586, 329);
             lblActualDelivery.Name = "lblActualDelivery";
             lblActualDelivery.Size = new Size(145, 20);
             lblActualDelivery.TabIndex = 22;
@@ -345,43 +353,78 @@
             // 
             // txtRemarks
             // 
-            txtRemarks.Location = new Point(872, 204);
+            txtRemarks.Location = new Point(865, 253);
             txtRemarks.Name = "txtRemarks";
             txtRemarks.PlaceholderText = "Remarks";
-            txtRemarks.Size = new Size(125, 27);
+            txtRemarks.Size = new Size(261, 27);
             txtRemarks.TabIndex = 23;
             // 
             // txtQuotedPrice
             // 
-            txtQuotedPrice.Location = new Point(872, 271);
+            txtQuotedPrice.Location = new Point(865, 54);
             txtQuotedPrice.Name = "txtQuotedPrice";
             txtQuotedPrice.PlaceholderText = "Quoted Price";
-            txtQuotedPrice.Size = new Size(125, 27);
+            txtQuotedPrice.Size = new Size(261, 27);
             txtQuotedPrice.TabIndex = 24;
             // 
             // txtFinalPrice
             // 
-            txtFinalPrice.Location = new Point(872, 342);
+            txtFinalPrice.Location = new Point(865, 153);
             txtFinalPrice.Name = "txtFinalPrice";
             txtFinalPrice.PlaceholderText = "Final Price";
-            txtFinalPrice.Size = new Size(125, 27);
+            txtFinalPrice.Size = new Size(261, 27);
             txtFinalPrice.TabIndex = 25;
             // 
             // btnCancel
             // 
-            btnCancel.Location = new Point(420, 382);
+            btnCancel.BackColor = Color.CornflowerBlue;
+            btnCancel.Cursor = Cursors.Hand;
+            btnCancel.FlatStyle = FlatStyle.Flat;
+            btnCancel.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+            btnCancel.ForeColor = SystemColors.ButtonHighlight;
+            btnCancel.Location = new Point(1026, 353);
             btnCancel.Name = "btnCancel";
-            btnCancel.Size = new Size(94, 29);
+            btnCancel.Size = new Size(100, 35);
             btnCancel.TabIndex = 26;
             btnCancel.Text = "Cancel";
-            btnCancel.UseVisualStyleBackColor = true;
+            btnCancel.UseVisualStyleBackColor = false;
             btnCancel.Click += btnCancel_Click;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(865, 31);
+            label1.Name = "label1";
+            label1.Size = new Size(95, 20);
+            label1.TabIndex = 27;
+            label1.Text = "Quoted Price";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(865, 130);
+            label2.Name = "label2";
+            label2.Size = new Size(76, 20);
+            label2.TabIndex = 28;
+            label2.Text = "Final Price";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(865, 230);
+            label3.Name = "label3";
+            label3.Size = new Size(65, 20);
+            label3.TabIndex = 29;
+            label3.Text = "Remarks";
             // 
             // AssignTransportUnitForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1150, 450);
+            Controls.Add(label3);
+            Controls.Add(label2);
+            Controls.Add(label1);
             Controls.Add(btnCancel);
             Controls.Add(txtFinalPrice);
             Controls.Add(txtQuotedPrice);
@@ -467,5 +510,8 @@
         private TextBox txtQuotedPrice;
         private TextBox txtFinalPrice;
         private Button btnCancel;
+        private Label label1;
+        private Label label2;
+        private Label label3;
     }
 }
