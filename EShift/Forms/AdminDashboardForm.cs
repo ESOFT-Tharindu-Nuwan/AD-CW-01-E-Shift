@@ -125,24 +125,24 @@ namespace EShift.Forms
             {
                 _allJobsCache = _jobService.GetAllJobs();
                 ApplyJobFilter();
-                dgvJobs.AutoGenerateColumns = false;
+                dgvJobs.AutoGenerateColumns = true;
                 dgvJobs.Columns.Clear();
 
-                dgvJobs.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "JobID", HeaderText = "Job ID", ReadOnly = true });
-                dgvJobs.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "JobNumber", HeaderText = "Job No." });
-                dgvJobs.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "CustomerID", HeaderText = "Customer ID" });
-                dgvJobs.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "RequestedDate", HeaderText = "Requested Date" });
-                dgvJobs.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "ScheduledPickupDate", HeaderText = "Scheduled Pickup" });
-                dgvJobs.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "ActualPickupDate", HeaderText = "Actual Pickup" });
-                dgvJobs.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "ActualDeliveryDate", HeaderText = "Actual Delivery" });
-                dgvJobs.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "PickupLocation", HeaderText = "Pickup Location" });
-                dgvJobs.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "DeliveryLocation", HeaderText = "Delivery Location" });
-                dgvJobs.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "JobStatus", HeaderText = "Status" });
-                dgvJobs.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "TransportUnitID", HeaderText = "Unit ID" });
-                dgvJobs.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "QuotedPrice", HeaderText = "Quoted Price" });
-                dgvJobs.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "FinalPrice", HeaderText = "Final Price" });
-                dgvJobs.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Remarks", HeaderText = "Remarks" });
-                dgvJobs.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "AdminAssignedDate", HeaderText = "Assigned Date" });
+                //dgvJobs.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "JobID", HeaderText = "Job ID", ReadOnly = true });
+                //dgvJobs.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "JobNumber", HeaderText = "Job No." });
+                //dgvJobs.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "CustomerID", HeaderText = "Customer ID" });
+                //dgvJobs.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "RequestedDate", HeaderText = "Requested Date" });
+                //dgvJobs.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "ScheduledPickupDate", HeaderText = "Scheduled Pickup" });
+                //dgvJobs.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "ActualPickupDate", HeaderText = "Actual Pickup" });
+                //dgvJobs.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "ActualDeliveryDate", HeaderText = "Actual Delivery" });
+                //dgvJobs.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "PickupLocation", HeaderText = "Pickup Location" });
+                //dgvJobs.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "DeliveryLocation", HeaderText = "Delivery Location" });
+                //dgvJobs.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "JobStatus", HeaderText = "Status" });
+                //dgvJobs.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "TransportUnitID", HeaderText = "Unit ID" });
+                //dgvJobs.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "QuotedPrice", HeaderText = "Quoted Price" });
+                //dgvJobs.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "FinalPrice", HeaderText = "Final Price" });
+                //dgvJobs.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Remarks", HeaderText = "Remarks" });
+                //dgvJobs.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "AdminAssignedDate", HeaderText = "Assigned Date" });
 
                 dgvJobs.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
 
